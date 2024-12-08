@@ -27,6 +27,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.25.6",
+    "@emotion/css": "^11.13.5",
+    "@emotion/react": "^11.13.5",
     "@eslint/js": "^8.50.0",
     "@types/node": "^18.17.19",
     "@types/react": "^18.2.14",
@@ -35,11 +37,11 @@
     "eslint": "^8.50.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.9",
-    "prettier": "3.3.3",
-    "react": "^18.2.14",
-    "react-dom": "^18.2.7",
+    "prettier": ">=2.0.0",
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0",
     "typescript": "^5.2.2",
-    "vite": "^5.4.8",
+    "vite": "*",
     "vite-plugin-dts": "^4.2.2"
   },
   "peerDependencies": {
