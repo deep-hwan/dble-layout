@@ -1,4 +1,4 @@
-interface FigureType {
+interface TrafficType {
   all?: number | string;
   horizontal?: number | string;
   vertical?: number | string;
@@ -8,4 +8,4 @@ interface FigureType {
   right?: number | string;
 }
 
-export type { FigureType };
+export type { TrafficType };

@@ -1,6 +1,6 @@
-import { FigureType } from '../types/FigureType';
+import { TrafficType } from '../types/TrafficType';
 
-const spaceStylesProps = (props?: { padding?: FigureType; margin?: FigureType }) => {
+const spaceStylesProps = (props?: { padding?: TrafficType; margin?: TrafficType }) => {
   if (!props) return {};
   return {
     paddingTop: props.padding?.all || props.padding?.vertical || props.padding?.top,
