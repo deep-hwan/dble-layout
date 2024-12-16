@@ -12,6 +12,7 @@ import { ShadowType } from './ShadowType';
 import { TrafficType } from './TrafficType';
 import { TransformType } from './TransformType';
 import { TransitionType } from './TransitionType';
+import { TypographyType } from './TypographyType';
 
 //
 // Element
@@ -53,6 +54,7 @@ export interface LayerType extends BorderType, TransformType {
   margin?: TrafficType;
   background?: BackgroundType;
   gradient?: GradientType | never;
+  opacity?: number;
   shadow?: ShadowType;
 }
 
@@ -104,4 +106,26 @@ export interface SkeletonType {
 export interface SkeletonPropsType extends HTMLAttributes<HTMLDivElement>, SkeletonType {
   children?: never[];
   mq?: MediaQueryType<SkeletonType>;
+}
+
+//
+// Txt
+export interface TxtType extends TypographyType, BorderType, TransformType {
+  sizes?: ScreenSizeType;
+  position?: PositionTypes;
+  padding?: TrafficType;
+  margin?: TrafficType;
+  background?: BackgroundType;
+  gradient?: GradientType | never;
+  opacity?: number;
+  shadow?: ShadowType;
+}
+
+export interface TxtPropsType<T extends ElementType> extends ElementPropsType, TxtType {
+  as?: T;
+  mq?: MediaQueryType<TxtType>;
+  _hover?: Partial<TxtType>;
+  _focus?: Partial<TxtType>;
+  _active?: Partial<TxtType>;
+  _disabled?: Partial<TxtType>;
 }

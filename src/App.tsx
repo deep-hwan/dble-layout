@@ -1,15 +1,15 @@
 import { css } from '@emotion/css';
 import { Divider } from './package/widgets/Divider';
-import Flex from './package/widgets/Flex';
 import Layer from './package/widgets/Layer';
 import { Skeleton } from './package/widgets/Skeleton';
 import { Spacing } from './package/widgets/Spacing';
+import Txt from './package/widgets/Txt';
 
 export default function App() {
   return (
     <>
       <Layer
-        as='header'
+        as='div'
         flex={{ align: 'center', crossAlign: 'center', gap: 20 }}
         zIndex={100}
         borderRadius={80}
@@ -23,6 +23,35 @@ export default function App() {
         <Spacing size={20} />
         <Skeleton height={50} primaryColor='#222222' />
       </Layer>
+
+      <>
+        <Txt
+          as='h2'
+          txtAlign='center'
+          txtDecoration='underline'
+          sizes={{ maxWidth: 500 }}
+          background={{ fill: '#f8f8f8' }}
+          // userSelect='none'
+          padding={{ vertical: 20, horizontal: 40 }}
+          margin={{ vertical: 50 }}
+          mq={{
+            w600: {
+              txtSize: 20,
+              txtColor: '#999',
+              padding: { vertical: 60, horizontal: 20 },
+              ellipsis: { isActive: false },
+              background: { fill: '#f8f8f8' },
+              opacity: 0.5,
+            },
+            w768: { txtColor: '#000', txtSize: 35, txtDecoration: 'none', background: { fill: '#fff' } },
+          }}
+          onClick={() => {}}
+          _hover={{ txtColor: '#eee' }}
+          ellipsis={{ isActive: true, line: 1 }}
+        >
+          e2468qdsafna@asd.comasd-2asd
+        </Txt>
+      </>
 
       <Divider
         color='#000'
@@ -42,66 +71,6 @@ export default function App() {
           w438: { size: 50 },
         }}
       />
-      <Layer
-        display='grid'
-        // grid={{ templateColumns: 'repeat(2, 1fr)', templateRows: 'repeat(5, 1fr)' }}
-        flex={{ align: 'center', crossAlign: 'center', gap: 20 }}
-        zIndex={100}
-        borderRadius={80}
-        background={{
-          fill: '#f0f9fc',
-        }}
-        shadow={{ x: 0, y: 10, blur: 50, color: 'red' }}
-        mq={{
-          w768: {
-            gradient: {
-              colors: [
-                { color: 'red', stop: 0 },
-                { color: 'blue', stop: 100 },
-              ],
-              degree: 90,
-            },
-            display: 'flex',
-            flex: { direction: 'column', crossAlign: 'center', align: 'start' },
-            borderRadius: '20px 20px 80px',
-            border: { stroke: 1, color: 'red', position: 'all', shape: 'solid' },
-            sizes: { minHeight: 500, width: 500 },
-          },
-        }}
-      >
-        <Flex
-          direction='column'
-          className='box'
-          gap={10}
-          flex={1} // 변경된 flex 값
-          onClick={() => alert('clicked')}
-        >
-          <Box bg='red' />
-          <Box bg='blue' />
-        </Flex>
-
-        <Flex
-          direction='column'
-          className='box'
-          gap={10}
-          flex={1} // 변경된 flex 값
-          onClick={() => alert('clicked')}
-        >
-          <Box bg='red' />
-          <Box bg='blue' />
-        </Flex>
-
-        <Flex
-          direction='column'
-          className='box'
-          onClick={() => alert('clicked')}
-          gap={10}
-          flex={2} // 변경된 flex 값
-        >
-          <Box bg='green' />
-          <Box bg='yellow' />
-        </Flex>
-      </Layer>
     </>
   );
 }

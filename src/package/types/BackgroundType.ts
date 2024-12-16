@@ -6,6 +6,5 @@ interface BackgroundType {
   position?: 'top' | 'bottom' | 'center' | 'left' | 'right' | 'string';
   clip?: 'border-box' | 'padding-box' | 'content-box' | 'initial' | 'inherit';
   blur?: number;
-  opacity?: number;
 }
 export type { BackgroundType };

@@ -11,7 +11,6 @@ const backgroundStylesProps = (props?: BackgroundType) => {
     backgroundImage: props?.imageUrl ? `url(${props?.imageUrl})` : undefined,
     backgroundClip: props.clip,
     filter: !!props.blur ? `blur(${props.blur}px)` : undefined,
-    opacity: props.opacity,
   };
 };
 

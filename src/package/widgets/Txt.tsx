@@ -4,35 +4,41 @@ import { css } from '@emotion/react';
 import React, { ComponentPropsWithoutRef, useMemo } from 'react';
 import { backgroundStylesProps } from '../styles/bgStylesProps';
 import { borderStylesProps } from '../styles/borderStylesProps';
-import { flexStylesProps } from '../styles/flexStylesProps';
 import { gradientStylesProps } from '../styles/gradientStylesProps';
-import { gridStylesProps } from '../styles/gridStylesProps';
 import { positionStylesProps } from '../styles/positionStylesProps';
 import { screenSizeStylesProps } from '../styles/screenSizeStylesProps';
 import { shadowStylesProps } from '../styles/shadowStylesProps';
 import { spaceStylesProps } from '../styles/spaceStylesProps';
 import { transformStylesProps } from '../styles/transformStylesProps';
-import { LayerPropsType, LayerType } from '../types/_propsType';
+import { typographyStylesProps } from '../styles/typographyStylesProps';
+import { TxtPropsType, TxtType } from '../types/_propsType';
+import { TxtElementType } from '../types/elements/TxtElementsType';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
-import { LayoutElementType } from '../types/elements/LayerElementsType';
 
-const Layer = React.memo(
-  <T extends LayoutElementType = 'div'>({
+const Txt = React.memo(
+  <T extends TxtElementType = 'p'>({
     as,
     children,
     className,
-    display,
+    txtSize,
+    txtWeight,
+    txtAlign,
+    txtColor,
+    txtShadow,
+    txtTransform,
+    txtDecoration,
+    lineHeight,
+    whiteSpace,
+    ellipsis,
     sizes,
-    flex,
-    grid,
     position,
     padding,
     margin,
     borderRadius,
     border,
     background,
-    gradient,
     opacity,
+    gradient,
     shadow,
     axis,
     scale,
@@ -47,12 +53,19 @@ const Layer = React.memo(
     mq = {},
     css: cssProp,
     ...rest
-  }: LayerPropsType<T> & ComponentPropsWithoutRef<T>) => {
-    const layerProps = {
-      display,
+  }: TxtPropsType<T> & ComponentPropsWithoutRef<T>) => {
+    const txtProps = {
+      txtSize,
+      txtWeight,
+      txtAlign,
+      txtColor,
+      txtShadow,
+      txtTransform,
+      txtDecoration,
+      lineHeight,
+      whiteSpace,
+      ellipsis,
       sizes,
-      flex: display === 'flex' ? flex : undefined,
-      grid: display === 'grid' ? grid : undefined,
       position,
       padding,
       margin,
@@ -71,13 +84,23 @@ const Layer = React.memo(
 
     //
     // layer styles
-    const LayerStyles = (props: LayerType) => {
+    const TxtStyles = (props: TxtType & { as?: TxtElementType }) => {
       return {
-        display: props.display,
         opacity: props.opacity,
+        ...typographyStylesProps({
+          as: props.as,
+          txtSize: props.txtSize,
+          txtWeight: props.txtWeight,
+          txtAlign: props.txtAlign,
+          txtColor: props.txtColor,
+          txtShadow: props.txtShadow,
+          txtTransform: props.txtTransform,
+          lineHeight: props.lineHeight,
+          whiteSpace: props.whiteSpace,
+          ellipsis: props.ellipsis,
+          txtDecoration: props.txtDecoration,
+        }),
         ...spaceStylesProps({ padding: props.padding, margin: props.margin }),
-        ...(props.display === 'flex' && flexStylesProps(props.flex)),
-        ...(props.display === 'grid' && gridStylesProps(props.grid)),
         ...positionStylesProps({ position: props.position }),
         ...screenSizeStylesProps(props.sizes),
         ...borderStylesProps({ border: props.border, borderRadius: props.borderRadius }),
@@ -95,6 +118,7 @@ const Layer = React.memo(
         css({
           cursor: cursor ? cursor : (rest.onClick || rest.onMouseEnter) && 'pointer',
           transition: `all ${transition.time || 0.25}s ${transition.type || 'ease-in-out'}`,
+          display: 'inline-block',
           listStyle: 'none',
           outline: 'none',
           zIndex,
@@ -113,7 +137,7 @@ const Layer = React.memo(
 
           return css`
             @media (max-width: ${size}px) {
-              ${styles ? LayerStyles(styles) : ''}
+              ${styles ? TxtStyles(styles) : ''}
             }
           `;
         }),
@@ -125,9 +149,9 @@ const Layer = React.memo(
     const pseudoStyles = useMemo(
       () =>
         css({
-          '&:hover': LayerStyles(_hover || {}),
-          '&:focus': LayerStyles(_focus || {}),
-          '&:active': LayerStyles(_active || {}),
+          '&:hover': TxtStyles(_hover || {}),
+          '&:focus': TxtStyles(_focus || {}),
+          '&:active': TxtStyles(_active || {}),
         }),
       [_hover, _focus, _active],
     );
@@ -137,31 +161,29 @@ const Layer = React.memo(
     const combinedStyles = useMemo(
       () => css`
         ${baseStyle}
-        ${LayerStyles({
-          ...layerProps,
-          display: layerProps.display ?? 'flex',
-          sizes: { ...layerProps.sizes, width: layerProps.sizes?.width ?? '100%' },
-          flex:
-            layerProps.display === 'flex'
-              ? { ...layerProps.flex, direction: layerProps.flex?.direction ?? 'column' }
-              : undefined,
-          position: { ...layerProps.position, type: layerProps.position?.type ?? 'relative' },
+        ${TxtStyles({
+          ...txtProps,
+
+          txtSize: txtProps.txtSize ?? 15,
+          txtColor: txtProps.txtColor ?? '#5d5d5f',
+          sizes: { ...txtProps.sizes },
+          whiteSpace: txtProps.whiteSpace ?? 'pre-line',
           border: {
-            ...layerProps.border,
-            stroke: layerProps.border?.stroke ?? 0,
-            color: layerProps.border?.color ?? 'transparent',
-            shape: layerProps.border?.shape ?? 'solid',
+            ...txtProps.border,
+            stroke: txtProps.border?.stroke ?? 0,
+            color: txtProps.border?.color ?? 'transparent',
+            shape: txtProps.border?.shape ?? 'solid',
           } as any,
-          gradient: { ...layerProps.gradient, type: layerProps.gradient?.type ?? 'linear' } as any,
+          gradient: { ...txtProps.gradient, type: txtProps.gradient?.type ?? 'linear' } as any,
         })}
     ${mediaStyles}
     ${pseudoStyles}
     ${cssProp}
       `,
-      [baseStyle, layerProps, mediaStyles, pseudoStyles, cssProp],
+      [baseStyle, txtProps, mediaStyles, pseudoStyles, cssProp],
     );
 
-    const combinedClassName = cx('dble-layer', className);
+    const combinedClassName = cx('dble-txt', className);
 
     return (
       <Component className={combinedClassName} css={combinedStyles} {...rest}>
@@ -171,4 +193,4 @@ const Layer = React.memo(
   },
 );
 
-export default Layer;
+export default Txt;
