@@ -202,7 +202,7 @@ const Button = React.memo(
       [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp],
     );
 
-    const combinedClassName = cx('dble-txt', className);
+    const combinedClassName = cx('dble-button', className);
 
     return (
       <button className={combinedClassName} css={combinedStyles} {...(rest as any)}>

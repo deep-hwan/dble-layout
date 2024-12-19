@@ -1,50 +1,4 @@
-# <div align="left">
-
-<h1>NPM-Package-Template</h1>
-
-<p>
-ReactJs, Vite , Typescript 환경의 NPM 패키지를 쉽게 배포할 수 있도록 셋팅된 템플릿입니다
-
-</p>
-</div>
-
-[![GitHub](https://img.shields.io/github/license/beforesemicolon/flatlist-react)](https://github.com/deep-hwan/npm-vite-ts-package-template/blob/main/LICENSE)
-
-</div>
-
-## 배포 후 Install 셋팅
-
-    npm install package-name
-
-    yarn add package-name
-
----
-
-## 배포 방법
-
-1. package.json >> version 설정
-2. padkage.json >> description / repository.url / keywords 수정
-3. vite.config.ts >> build > lib > name 수정
-4. src > package > index.tsx 내에 배포할 패키지 export로 반환 셋팅
-5. npm login >> npm 로그인
-6. npm publish >> 패키지 버전 배포
-
----
-
-## License
-
-MIT © Deepfactory, Inc. See [LICENSE](LICENSE) for details.
-
-<!-- BOTTOM LOGO -->
-<a title="DEEP" href="https://www.deepfactory.kr/">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./src/assets/deep-white.png">
-    <img alt="DEEP" src="./src/assets/deep-dark.png" width="120">
-  </picture>
-</a>
-<!--  -->
-
-/\*_ @jsxImportSource @emotion/react _/
+/** @jsxImportSource @emotion/react */
 import { cx } from '@emotion/css';
 import { css } from '@emotion/react';
 import React, { ComponentPropsWithoutRef, useMemo } from 'react';
@@ -59,42 +13,64 @@ import { ScrollLayerElementType, ScrollLayerPropsType, ScrollLayerType } from '.
 import { mediaScreenSize } from '../utils/mediaScreenSize';
 
 const ScrollLayer = React.memo(
-<T extends ScrollLayerElementType = 'div'>({
-as,
-children,
-className,
-display,
-sizes,
-flex,
-padding,
-margin,
-borderRadius,
-border,
-background,
-gradient,
-opacity,
-shadow,
-zIndex,
-transition = { time: 0.25, type: 'ease-in-out' },
-mq = {},
-css: cssProp,
-...rest
-}: ScrollLayerPropsType<T> & ComponentPropsWithoutRef<T>) => {
-const pPs = {
-display,
-sizes,
-flex: display === 'flex' || !display ? flex : undefined,
-padding,
-margin,
-border,
-borderRadius,
-background,
-gradient,
-opacity,
-shadow,
-};
+  <T extends ScrollLayerElementType = 'div'>({
+    as,
+    children,
+    className,
+    display,
+    sizes,
+    flex,
+    padding,
+    margin,
+    borderRadius,
+    border,
+    background,
+    gradient,
+    opacity,
+    shadow,
+    zIndex,
+    transition = { time: 0.25, type: 'ease-in-out' },
+    mq = {},
+    css: cssProp,
+    forceVisible = 'y',
+    autoHide = true,
+    ...rest
+  }: ScrollLayerPropsType<T> & ComponentPropsWithoutRef<T>) => {
+    const pPs = {
+      display,
+      sizes: { ...sizes, width: sizes?.width ?? '100%' },
+      flex: display === 'flex' || !display ? flex : undefined,
+      padding,
+      margin,
+      border,
+      borderRadius,
+      background,
+      gradient,
+      opacity,
+      shadow,
+    };
 
     const Component = as || 'div';
+
+    // Custom scrollbar styles with auto-hide functionality
+    const scrollbarStyles = css`
+      &::-webkit-scrollbar {
+        background-color: none;
+        width: 6px;
+        height: 6px;
+        transition: opacity 0.3s ease;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        opacity: ${autoHide ? 0 : 1};
+        visibility: hidden;
+        border-radius: 100px;
+      }
+      &:hover::-webkit-scrollbar-thumb {
+        visibility: visible;
+        opacity: 1;
+      }
+    `;
 
     //
     // extended props styles
@@ -113,7 +89,7 @@ shadow,
     };
 
     //
-    // base style
+    // base style with smooth scrolling
     const baseStyle = useMemo(
       () =>
         css({
@@ -121,8 +97,11 @@ shadow,
           listStyle: 'none',
           outline: 'none',
           zIndex,
+          overflowX: forceVisible.includes('x') ? 'auto' : 'hidden',
+          overflowY: forceVisible.includes('y') ? 'auto' : 'hidden',
+          scrollBehavior: 'smooth', // Enable smooth scrolling
         }),
-      [transition, zIndex],
+      [transition, zIndex, autoHide, forceVisible],
     );
 
     //
@@ -147,6 +126,7 @@ shadow,
     const combinedStyles = useMemo(
       () => css`
         ${baseStyle}
+        ${scrollbarStyles}
         ${ExtendedStyles({
           ...pPs,
           display: pPs.display ?? 'flex',
@@ -163,10 +143,10 @@ shadow,
             shape: pPs.border?.shape ?? 'solid',
           } as any,
         })}
-    ${mediaStyles}
-    ${cssProp}
+        ${mediaStyles}
+        ${cssProp}
       `,
-      [baseStyle, pPs, mediaStyles, cssProp],
+      [baseStyle, scrollbarStyles, pPs, mediaStyles, cssProp],
     );
 
     const combinedClassName = cx('dble-scroll-layer', className);
@@ -175,8 +155,7 @@ shadow,
         {children}
       </Component>
     );
-
-},
+  },
 );
 
 export { ScrollLayer };

@@ -1,18 +1,28 @@
-import { Button, Divider, Layer, Skeleton, TouchableOpacity, Txt } from './package';
+import { Button, Divider, Layer, ScrollLayer, Skeleton, TouchableOpacity, Txt } from './package';
 
 export default function App() {
   return (
     <Layer as='section' flex={{ align: 'center', direction: 'column', gap: 20 }} padding={{ all: 20 }}>
-      {Array.from({ length: 5 }).map((_, index) => (
-        <Layer as='li' flex={{ direction: 'row', gap: 10, align: 'center' }} sizes={{ width: 'auto' }}>
-          <Skeleton width={50} height={50} borderRadius={100} />
+      <Layer
+        background={{ fill: '#f6f8fc' }}
+        padding={{ left: 20, right: 10, vertical: 20 }}
+        flex={{ gap: 10 }}
+        sizes={{ height: 300 }}
+        borderRadius={20}
+      >
+        <ScrollLayer>
+          {Array.from({ length: 10 }).map((_, index) => (
+            <Layer as='li' flex={{ direction: 'row', gap: 10, align: 'center' }} sizes={{ width: 'auto' }}>
+              <Skeleton width={50} height={50} borderRadius={100} />
 
-          <Layer flex={{ direction: 'column', gap: '6px' }} sizes={{ width: 'auto' }}>
-            <Skeleton width={120} height={10} borderRadius={5} />
-            <Skeleton width={200} height={18} borderRadius={6} />
-          </Layer>
-        </Layer>
-      ))}
+              <Layer flex={{ direction: 'column', gap: '6px' }} sizes={{ width: 'auto' }}>
+                <Skeleton width={120} height={10} borderRadius={5} />
+                <Skeleton width={200} height={18} borderRadius={6} />
+              </Layer>
+            </Layer>
+          ))}
+        </ScrollLayer>
+      </Layer>
 
       <Divider mq={{ w438: { height: 3 } }} />
 

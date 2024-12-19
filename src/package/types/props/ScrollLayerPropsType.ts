@@ -3,33 +3,18 @@ import { BackgroundType } from '../piece/BackgroundType';
 import { BorderType } from '../piece/BorderType';
 import { FlexType } from '../piece/FlexType';
 import { GradientType } from '../piece/GradientType';
-import { GridType } from '../piece/GridType';
 import { MediaQueryType } from '../piece/MediaQueryType';
-import { PositionType } from '../piece/PositionType';
 import { ScreenSizeType } from '../piece/ScreenSizeType';
 import { ShadowType } from '../piece/ShadowType';
 import { TrafficType } from '../piece/TrafficType';
 import { ElementPropsType } from './ExtendedElementPropsType';
 
-export type LayoutElementType =
-  | 'div'
-  | 'main'
-  | 'section'
-  | 'article'
-  | 'header'
-  | 'footer'
-  | 'aside'
-  | 'nav'
-  | 'ul'
-  | 'ol'
-  | 'li';
+export type ScrollLayerElementType = 'div' | 'main' | 'section' | 'article' | 'aside' | 'ul';
 
-export interface LayerType {
-  display?: 'flex' | 'grid' | 'none';
+export interface ScrollLayerType {
+  display?: 'flex' | 'none';
   sizes?: ScreenSizeType;
   flex?: FlexType;
-  grid?: GridType;
-  position?: PositionType;
   padding?: TrafficType;
   margin?: TrafficType;
   background?: BackgroundType;
@@ -38,15 +23,13 @@ export interface LayerType {
   borderRadius?: number | string;
   shadow?: ShadowType;
   opacity?: number;
-  scale?: number;
-  rotate?: string | number;
-  axis?: { x?: string | number; y?: string | number };
+  forceVisible?: 'x' | 'y' | 'xy';
+  autoHide?: boolean;
 }
 
-export interface LayerPropsType<T extends ElementType> extends ElementPropsType, LayerType {
+export interface ScrollLayerPropsType<T extends ElementType>
+  extends Omit<ElementPropsType, 'cursor' | 'userSelect'>,
+    ScrollLayerType {
   as?: T;
-  mq?: MediaQueryType<LayerType>;
-  _hover?: Partial<LayerType>;
-  _focus?: Partial<LayerType>;
-  _active?: Partial<LayerType>;
+  mq?: MediaQueryType<ScrollLayerType>;
 }

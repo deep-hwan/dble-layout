@@ -195,7 +195,7 @@ const TouchableOpacity = React.memo(
       [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp],
     );
 
-    const combinedClassName = cx('dble-txt', className);
+    const combinedClassName = cx('dble-touchableOpacity', className);
 
     return (
       <Component className={combinedClassName} css={combinedStyles} {...(rest as any)}>
