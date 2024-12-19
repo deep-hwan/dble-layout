@@ -1,4 +1,4 @@
-import { BackgroundType } from '../types/BackgroundType';
+import { BackgroundType } from '../types/piece/BackgroundType';
 
 const backgroundStylesProps = (props?: BackgroundType) => {
   if (!props) return {};

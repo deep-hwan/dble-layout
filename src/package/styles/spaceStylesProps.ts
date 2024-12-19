@@ -1,4 +1,4 @@
-import { TrafficType } from '../types/TrafficType';
+import { TrafficType } from '../types/piece/TrafficType';
 
 const spaceStylesProps = (props?: { padding?: TrafficType; margin?: TrafficType }) => {
   if (!props) return {};

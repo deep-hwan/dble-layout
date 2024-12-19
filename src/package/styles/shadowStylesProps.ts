@@ -1,4 +1,4 @@
-import { ShadowType } from '../types/ShadowType';
+import { ShadowType } from '../types/piece/ShadowType';
 
 const shadowStylesProps = (props?: ShadowType) => {
   if (!props) return {};

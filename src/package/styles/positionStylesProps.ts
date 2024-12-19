@@ -1,6 +1,6 @@
-import { PositionTypes } from '../types/PositionTypes';
+import { PositionType } from '../types/piece/PositionType';
 
-const positionStylesProps = (props?: { position?: PositionTypes }) => {
+const positionStylesProps = (props?: { position?: PositionType }) => {
   if (!props) return {};
   return {
     position: props.position?.type,

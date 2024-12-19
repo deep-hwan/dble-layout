@@ -1,4 +1,4 @@
-import { FlexType } from '../types/FlexType';
+import { FlexType } from '../types/piece/FlexType';
 
 const flexStylesProps = (props?: FlexType) => {
   const computedDirection: FlexType['direction'] = props?.isReverse

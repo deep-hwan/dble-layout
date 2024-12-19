@@ -2,7 +2,7 @@
 import { cx } from '@emotion/css';
 import { css } from '@emotion/react';
 import { ForwardedRef, forwardRef, memo, useMemo } from 'react';
-import { SpacingPropsType } from '../types/_propsType';
+import { SpacingPropsType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
 
 const SizeTheme = ({ direction, size }: Pick<SpacingPropsType, 'direction' | 'size'>) => ({

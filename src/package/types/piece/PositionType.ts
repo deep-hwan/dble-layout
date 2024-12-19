@@ -1,4 +1,4 @@
-interface PositionTypes {
+interface PositionType {
   type?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
   top?: string | number;
   bottom?: string | number;
@@ -6,4 +6,4 @@ interface PositionTypes {
   right?: string | number;
 }
 
-export type { PositionTypes };
+export type { PositionType };

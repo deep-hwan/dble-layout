@@ -1,4 +1,8 @@
-import { TransformType } from '../types/TransformType';
+type TransformType = {
+  axis?: { x?: string | number; y?: string | number };
+  scale?: number;
+  rotate?: string | number;
+};
 
 const transformStylesProps = (props?: TransformType) => {
   const { axis, scale, rotate } = props ?? {};

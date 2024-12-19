@@ -1,4 +1,4 @@
-import { GradientType } from '../types/GradientType';
+import { GradientType } from '../types/piece/GradientType';
 
 const gradientStylesProps = (props?: GradientType) => {
   if (!props) return {};

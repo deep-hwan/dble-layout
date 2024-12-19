@@ -2,7 +2,7 @@
 import { cx } from '@emotion/css';
 import { css } from '@emotion/react';
 import { ForwardedRef, forwardRef, memo } from 'react';
-import { DividerPropsType, DividerType } from '../types/_propsType';
+import { DividerPropsType, DividerType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
 
 export const Divider = memo(

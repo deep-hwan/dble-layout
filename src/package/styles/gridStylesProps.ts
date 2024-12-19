@@ -1,4 +1,4 @@
-import { GridType } from '../types/GridType';
+import { GridType } from '../types/piece/GridType';
 
 const gridStylesProps = (props?: GridType) => {
   if (!props) return {};

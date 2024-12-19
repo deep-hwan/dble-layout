@@ -2,7 +2,7 @@
 import { cx } from '@emotion/css';
 import { css } from '@emotion/react';
 import { ForwardedRef, forwardRef, memo, useMemo } from 'react';
-import { SkeletonPropsType, SkeletonType } from '../types/_propsType';
+import { SkeletonPropsType, SkeletonType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
 
 const Skeleton = memo(
@@ -33,7 +33,7 @@ const Skeleton = memo(
         });
       }, []);
 
-      const SkeletonStyle = useMemo(() => {
+      const ExtendedStyles = useMemo(() => {
         return (props: SkeletonType) =>
           css({
             minWidth: props.width,
@@ -58,12 +58,12 @@ const Skeleton = memo(
           return styles
             ? css`
                 @media (max-width: ${size}px) {
-                  ${SkeletonStyle(styles)}
+                  ${ExtendedStyles(styles)}
                 }
               `
             : '';
         });
-      }, [mq, SkeletonStyle]);
+      }, [mq, ExtendedStyles]);
 
       const combinedClassName = cx('dble-skeleton', props.className);
 
@@ -73,7 +73,7 @@ const Skeleton = memo(
           <div
             ref={ref}
             className={combinedClassName}
-            css={[baseStyle, SkeletonStyle({ width, height, borderRadius, primaryColor, moveColor }), ...mediaStyles]}
+            css={[baseStyle, ExtendedStyles({ width, height, borderRadius, primaryColor, moveColor }), ...mediaStyles]}
             {...props}
           />
         </>

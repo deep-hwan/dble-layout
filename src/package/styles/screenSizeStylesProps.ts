@@ -1,4 +1,4 @@
-import { ScreenSizeType } from '../types/ScreenSizeType';
+import { ScreenSizeType } from '../types/piece/ScreenSizeType';
 
 const screenSizeStylesProps = (props?: ScreenSizeType) => {
   if (!props) return {};

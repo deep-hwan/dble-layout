@@ -11,8 +11,7 @@ import { shadowStylesProps } from '../styles/shadowStylesProps';
 import { spaceStylesProps } from '../styles/spaceStylesProps';
 import { transformStylesProps } from '../styles/transformStylesProps';
 import { typographyStylesProps } from '../styles/typographyStylesProps';
-import { TxtPropsType, TxtType } from '../types/_propsType';
-import { TxtElementType } from '../types/elements/TxtElementsType';
+import { TxtElementType, TxtPropsType, TxtType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
 
 const Txt = React.memo(
@@ -54,7 +53,7 @@ const Txt = React.memo(
     css: cssProp,
     ...rest
   }: TxtPropsType<T> & ComponentPropsWithoutRef<T>) => {
-    const txtProps = {
+    const pPs = {
       txtSize,
       txtWeight,
       txtAlign,
@@ -80,11 +79,11 @@ const Txt = React.memo(
       rotate,
     };
 
-    const Component = as || 'div';
+    const Component = as || 'p';
 
     //
-    // layer styles
-    const TxtStyles = (props: TxtType & { as?: TxtElementType }) => {
+    // extended props styles
+    const ExtendedStyles = (props: TxtType & { as?: TxtElementType }) => {
       return {
         opacity: props.opacity,
         ...typographyStylesProps({
@@ -100,14 +99,14 @@ const Txt = React.memo(
           ellipsis: props.ellipsis,
           txtDecoration: props.txtDecoration,
         }),
-        ...spaceStylesProps({ padding: props.padding, margin: props.margin }),
-        ...positionStylesProps({ position: props.position }),
         ...screenSizeStylesProps(props.sizes),
+        ...positionStylesProps({ position: props.position }),
+        ...spaceStylesProps({ padding: props.padding, margin: props.margin }),
         ...borderStylesProps({ border: props.border, borderRadius: props.borderRadius }),
-        ...transformStylesProps({ axis: props.axis, scale: props.scale, rotate: props.rotate }),
         ...backgroundStylesProps(props.background),
         ...gradientStylesProps(props.gradient),
         ...shadowStylesProps(props.shadow),
+        ...transformStylesProps({ axis: props.axis, scale: props.scale, rotate: props.rotate }),
       };
     };
 
@@ -137,7 +136,7 @@ const Txt = React.memo(
 
           return css`
             @media (max-width: ${size}px) {
-              ${styles ? TxtStyles(styles) : ''}
+              ${styles ? ExtendedStyles(styles) : ''}
             }
           `;
         }),
@@ -149,9 +148,9 @@ const Txt = React.memo(
     const pseudoStyles = useMemo(
       () =>
         css({
-          '&:hover': TxtStyles(_hover || {}),
-          '&:focus': TxtStyles(_focus || {}),
-          '&:active': TxtStyles(_active || {}),
+          '&:hover': ExtendedStyles(_hover || {}),
+          '&:focus': ExtendedStyles(_focus || {}),
+          '&:active': ExtendedStyles(_active || {}),
         }),
       [_hover, _focus, _active],
     );
@@ -161,26 +160,26 @@ const Txt = React.memo(
     const combinedStyles = useMemo(
       () => css`
         ${baseStyle}
-        ${TxtStyles({
-          ...txtProps,
+        ${ExtendedStyles({
+          ...pPs,
 
-          txtSize: txtProps.txtSize ?? 15,
-          txtColor: txtProps.txtColor ?? '#5d5d5f',
-          sizes: { ...txtProps.sizes },
-          whiteSpace: txtProps.whiteSpace ?? 'pre-line',
+          sizes: { ...pPs.sizes },
+          gradient: { ...pPs.gradient, type: pPs.gradient?.type ?? 'linear' } as any,
           border: {
-            ...txtProps.border,
-            stroke: txtProps.border?.stroke ?? 0,
-            color: txtProps.border?.color ?? 'transparent',
-            shape: txtProps.border?.shape ?? 'solid',
+            ...pPs.border,
+            stroke: pPs.border?.stroke ?? 0,
+            color: pPs.border?.color ?? 'transparent',
+            shape: pPs.border?.shape ?? 'solid',
           } as any,
-          gradient: { ...txtProps.gradient, type: txtProps.gradient?.type ?? 'linear' } as any,
+          txtSize: pPs.txtSize ?? 15,
+          txtColor: pPs.txtColor ?? '#5d5d5f',
+          whiteSpace: pPs.whiteSpace ?? 'pre-line',
         })}
     ${mediaStyles}
     ${pseudoStyles}
     ${cssProp}
       `,
-      [baseStyle, txtProps, mediaStyles, pseudoStyles, cssProp],
+      [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp],
     );
 
     const combinedClassName = cx('dble-txt', className);
@@ -193,4 +192,4 @@ const Txt = React.memo(
   },
 );
 
-export default Txt;
+export { Txt };

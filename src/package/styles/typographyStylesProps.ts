@@ -1,5 +1,5 @@
-import { TxtElementType } from '../types/elements/TxtElementsType';
-import { TypographyType } from '../types/TypographyType';
+import { TxtElementType } from '../types';
+import { TypographyType } from '../types/piece/TypographyType';
 
 type Props = TypographyType & { as?: TxtElementType };
 

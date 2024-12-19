@@ -6,52 +6,71 @@ import { backgroundStylesProps } from '../styles/bgStylesProps';
 import { borderStylesProps } from '../styles/borderStylesProps';
 import { flexStylesProps } from '../styles/flexStylesProps';
 import { gradientStylesProps } from '../styles/gradientStylesProps';
-import { gridStylesProps } from '../styles/gridStylesProps';
 import { positionStylesProps } from '../styles/positionStylesProps';
 import { screenSizeStylesProps } from '../styles/screenSizeStylesProps';
 import { shadowStylesProps } from '../styles/shadowStylesProps';
 import { spaceStylesProps } from '../styles/spaceStylesProps';
 import { transformStylesProps } from '../styles/transformStylesProps';
-import { LayerPropsType, LayerType, LayoutElementType } from '../types';
+import { typographyStylesProps } from '../styles/typographyStylesProps';
+import { TouchableOpacitPropsType, TouchableOpacityElementsType, TouchableOpacityType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
 
-const Layer = React.memo(
-  <T extends LayoutElementType = 'div'>({
+const TouchableOpacity = React.memo(
+  <T extends TouchableOpacityElementsType = 'div'>({
     as,
     children,
     className,
+    txtSize,
+    txtWeight,
+    txtAlign,
+    txtColor,
+    txtShadow,
+    txtTransform,
+    txtDecoration,
+    lineHeight,
+    whiteSpace,
+    ellipsis,
     display,
     sizes,
     flex,
-    grid,
     position,
     padding,
     margin,
     borderRadius,
     border,
     background,
-    gradient,
     opacity,
+    gradient,
     shadow,
     axis,
     scale,
     rotate,
     zIndex,
     cursor,
-    userSelect,
-    transition = { time: 0.25, type: 'ease-in-out' },
+    userSelect = 'none',
+    transition = { time: 0.2, type: 'ease-in-out' },
     _hover,
     _focus,
     _active,
+    _disabled,
     mq = {},
     css: cssProp,
     ...rest
-  }: LayerPropsType<T> & ComponentPropsWithoutRef<T>) => {
+  }: TouchableOpacitPropsType<T> & ComponentPropsWithoutRef<T>) => {
     const pPs = {
+      txtSize,
+      txtWeight,
+      txtAlign,
+      txtColor,
+      txtShadow,
+      txtTransform,
+      txtDecoration,
+      lineHeight,
+      whiteSpace,
+      ellipsis,
       display,
       sizes,
-      flex: display === 'flex' || !display ? flex : undefined,
-      grid: display === 'grid' ? grid : undefined,
+      flex,
       position,
       padding,
       margin,
@@ -70,13 +89,24 @@ const Layer = React.memo(
 
     //
     // extended props styles
-    const ExtendedStyles = (props: LayerType) => {
+    const ExtendedStyles = (props: TouchableOpacityType & { as?: TouchableOpacityType }) => {
       return {
         display: props.display,
         opacity: props.opacity,
-        ...screenSizeStylesProps(props.sizes),
+        ...typographyStylesProps({
+          txtSize: props.txtSize,
+          txtWeight: props.txtWeight,
+          txtAlign: props.txtAlign,
+          txtColor: props.txtColor,
+          txtShadow: props.txtShadow,
+          txtTransform: props.txtTransform,
+          lineHeight: props.lineHeight,
+          whiteSpace: props.whiteSpace,
+          ellipsis: props.ellipsis,
+          txtDecoration: props.txtDecoration,
+        }),
         ...((props.display === 'flex' || !props.display) && flexStylesProps(props.flex)),
-        ...(props.display === 'grid' && gridStylesProps(props.grid)),
+        ...screenSizeStylesProps(props.sizes),
         ...positionStylesProps({ position: props.position }),
         ...spaceStylesProps({ padding: props.padding, margin: props.margin }),
         ...borderStylesProps({ border: props.border, borderRadius: props.borderRadius }),
@@ -92,12 +122,14 @@ const Layer = React.memo(
     const baseStyle = useMemo(
       () =>
         css({
-          cursor: cursor ? cursor : (rest.onClick || rest.onMouseEnter) && 'pointer',
-          transition: `all ${transition.time || 0.25}s ${transition.type || 'ease-in-out'}`,
+          cursor: 'disabled' in rest && rest.disabled ? 'default' : (cursor ?? 'pointer'),
+          transition: `all ${transition.time || 0.2}s ${transition.type || 'ease-in-out'}`,
+          display: 'inline-block',
           listStyle: 'none',
           outline: 'none',
           zIndex,
           userSelect,
+          borderWidth: 0,
         }),
       [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect],
     );
@@ -125,10 +157,11 @@ const Layer = React.memo(
       () =>
         css({
           '&:hover': ExtendedStyles(_hover || {}),
-          '&:focus': ExtendedStyles(_focus || {}),
-          '&:active': ExtendedStyles(_active || {}),
+          '&:focus': ExtendedStyles({ ..._focus, opacity: _focus?.opacity ?? 0.75 } || {}),
+          '&:active': ExtendedStyles({ ..._active, opacity: _active?.opacity ?? 0.75 } || {}),
+          '&:disabled': ExtendedStyles({ ..._disabled, txtColor: _disabled?.txtColor ?? '#aaa' } || {}),
         }),
-      [_hover, _focus, _active],
+      [_hover, _focus, _active, _disabled],
     );
 
     //
@@ -139,7 +172,6 @@ const Layer = React.memo(
         ${ExtendedStyles({
           ...pPs,
           display: pPs.display ?? 'flex',
-          sizes: { ...pPs.sizes, width: pPs.sizes?.width ?? '100%' },
           flex:
             pPs.display === 'flex' || !pPs.display
               ? { ...pPs.flex, direction: pPs.flex?.direction ?? 'column' }
@@ -152,6 +184,9 @@ const Layer = React.memo(
             color: pPs.border?.color ?? 'transparent',
             shape: pPs.border?.shape ?? 'solid',
           } as any,
+          txtSize: pPs.txtSize ?? 14,
+          txtColor: pPs.txtColor ?? '#5b94f0',
+          whiteSpace: pPs.whiteSpace ?? 'pre-line',
         })}
     ${mediaStyles}
     ${pseudoStyles}
@@ -160,7 +195,8 @@ const Layer = React.memo(
       [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp],
     );
 
-    const combinedClassName = cx('dble-layer', className);
+    const combinedClassName = cx('dble-txt', className);
+
     return (
       <Component className={combinedClassName} css={combinedStyles} {...(rest as any)}>
         {children}
@@ -169,4 +205,4 @@ const Layer = React.memo(
   },
 );
 
-export { Layer };
+export { TouchableOpacity };
