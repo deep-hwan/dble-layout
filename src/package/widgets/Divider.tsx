@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { ForwardedRef, forwardRef, memo } from 'react';
 import { DividerPropsType, DividerType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
+import useRender from '../utils/useRender';
 
 export const Divider = memo(
   forwardRef(function Solid(
@@ -11,6 +12,8 @@ export const Divider = memo(
     ref?: ForwardedRef<HTMLDivElement>,
   ) {
     type NumbericType = number | string;
+
+    useRender()
 
     const Types = (props: { width?: NumbericType; height?: NumbericType }) => ({
       width: direction === 'horizontal' ? (props.width ?? '100%') : (props.width ?? 1),

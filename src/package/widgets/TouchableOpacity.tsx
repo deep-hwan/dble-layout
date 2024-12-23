@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { cx } from '@emotion/css';
 import { css } from '@emotion/react';
-import React, { ComponentPropsWithoutRef, useMemo } from 'react';
+import React, { ComponentPropsWithoutRef, useCallback, useMemo } from 'react';
 import { backgroundStylesProps } from '../styles/bgStylesProps';
 import { borderStylesProps } from '../styles/borderStylesProps';
 import { flexStylesProps } from '../styles/flexStylesProps';
@@ -14,6 +14,7 @@ import { transformStylesProps } from '../styles/transformStylesProps';
 import { typographyStylesProps } from '../styles/typographyStylesProps';
 import { TouchableOpacitPropsType, TouchableOpacityElementsType, TouchableOpacityType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
+import useRender from '../utils/useRender';
 
 const TouchableOpacity = React.memo(
   <T extends TouchableOpacityElementsType = 'div'>({
@@ -57,6 +58,8 @@ const TouchableOpacity = React.memo(
     css: cssProp,
     ...rest
   }: TouchableOpacitPropsType<T> & ComponentPropsWithoutRef<T>) => {
+useRender()
+
     const pPs = {
       txtSize,
       txtWeight,
@@ -86,6 +89,13 @@ const TouchableOpacity = React.memo(
     };
 
     const Component = as || 'div';
+
+    const handleClick = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (rest?.onClick) rest?.onClick(event as any);
+      },
+      [rest?.onClick],
+    );
 
     //
     // extended props styles
@@ -157,9 +167,9 @@ const TouchableOpacity = React.memo(
       () =>
         css({
           '&:hover': ExtendedStyles(_hover || {}),
-          '&:focus': ExtendedStyles({ ..._focus, opacity: _focus?.opacity ?? 0.75 } || {}),
-          '&:active': ExtendedStyles({ ..._active, opacity: _active?.opacity ?? 0.75 } || {}),
-          '&:disabled': ExtendedStyles({ ..._disabled, txtColor: _disabled?.txtColor ?? '#aaa' } || {}),
+          '&:focus': ExtendedStyles({ ..._focus, opacity: _focus?.opacity ?? 0.75 }),
+          '&:active': ExtendedStyles({ ..._active, opacity: _active?.opacity ?? 0.75 }),
+          '&:disabled': ExtendedStyles({ ..._disabled, txtColor: _disabled?.txtColor ?? '#aaa' }),
         }),
       [_hover, _focus, _active, _disabled],
     );
@@ -198,7 +208,7 @@ const TouchableOpacity = React.memo(
     const combinedClassName = cx('dble-touchableOpacity', className);
 
     return (
-      <Component className={combinedClassName} css={combinedStyles} {...(rest as any)}>
+      <Component className={combinedClassName} css={combinedStyles} onClick={handleClick} {...(rest as any)}>
         {children}
       </Component>
     );

@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { ForwardedRef, forwardRef, memo, useMemo } from 'react';
 import { SpacingPropsType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
+import useRender from '../utils/useRender';
 
 const SizeTheme = ({ direction, size }: Pick<SpacingPropsType, 'direction' | 'size'>) => ({
   width: direction === 'row' ? `${size}px` : '100%',
@@ -15,6 +16,8 @@ const Spacing = memo(
     { direction = 'column', size, mq, ...props }: SpacingPropsType,
     ref?: ForwardedRef<HTMLDivElement>,
   ) {
+useRender()
+
     const baseStyle = useMemo(() => {
       const sizeTheme = SizeTheme({ direction, size });
       return css({

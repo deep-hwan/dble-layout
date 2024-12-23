@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { cx } from '@emotion/css';
 import { css } from '@emotion/react';
-import React, { ComponentPropsWithoutRef, useMemo } from 'react';
+import React, { ComponentPropsWithoutRef, useCallback, useMemo } from 'react';
 import { borderStylesProps } from '../styles/borderStylesProps';
 import { flexStylesProps } from '../styles/flexStylesProps';
 import { gradientStylesProps } from '../styles/gradientStylesProps';
@@ -13,6 +13,7 @@ import { transformStylesProps } from '../styles/transformStylesProps';
 import { typographyStylesProps } from '../styles/typographyStylesProps';
 import { ButtonPropsType, ButtonType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
+import useRender from '../utils/useRender';
 
 const Button = React.memo(
   ({
@@ -55,6 +56,8 @@ const Button = React.memo(
     css: cssProp,
     ...rest
   }: ButtonPropsType & ComponentPropsWithoutRef<'button'>) => {
+    useRender()
+    
     const pPs = {
       txtSize,
       txtWeight,
@@ -83,7 +86,14 @@ const Button = React.memo(
       rotate,
     };
 
-    console.log(mq);
+   
+
+    const handleClick = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (rest?.onClick) rest?.onClick(event);
+      },
+      [rest?.onClick],
+    );
 
     //
     // extended props styles
@@ -154,12 +164,14 @@ const Button = React.memo(
     const pseudoStyles = useMemo(
       () =>
         css({
-          '&:hover': ExtendedStyles({ ..._hover, opacity: _hover?.opacity ?? 0.9 } || {}),
+          '&:hover': ExtendedStyles({ ..._hover, opacity: _hover?.opacity ?? 0.9 }),
           '&:focus': ExtendedStyles(_focus || {}),
-          '&:active': ExtendedStyles({ ..._active, opacity: _active?.opacity ?? 0.75 } || {}),
-          '&:disabled': ExtendedStyles(
-            { ..._disabled, backgroundFill: '#f0f0f0', txtColor: _disabled?.txtColor ?? '#aaa' } || {},
-          ),
+          '&:active': ExtendedStyles({ ..._active, opacity: _active?.opacity ?? 0.75 }),
+          '&:disabled': ExtendedStyles({
+            ..._disabled,
+            backgroundFill: '#f0f0f0',
+            txtColor: _disabled?.txtColor ?? '#aaa',
+          }),
         }),
       [_hover, _focus, _active, _disabled],
     );
@@ -205,7 +217,7 @@ const Button = React.memo(
     const combinedClassName = cx('dble-button', className);
 
     return (
-      <button className={combinedClassName} css={combinedStyles} {...(rest as any)}>
+      <button className={combinedClassName} css={combinedStyles} onClick={handleClick} {...(rest as any)}>
         {children}
       </button>
     );

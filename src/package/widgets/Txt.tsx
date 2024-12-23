@@ -13,6 +13,7 @@ import { transformStylesProps } from '../styles/transformStylesProps';
 import { typographyStylesProps } from '../styles/typographyStylesProps';
 import { TxtElementType, TxtPropsType, TxtType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
+import useRender from '../utils/useRender';
 
 const Txt = React.memo(
   <T extends TxtElementType = 'p'>({
@@ -53,6 +54,8 @@ const Txt = React.memo(
     css: cssProp,
     ...rest
   }: TxtPropsType<T> & ComponentPropsWithoutRef<T>) => {
+useRender()
+
     const pPs = {
       txtSize,
       txtWeight,

@@ -1,54 +1,55 @@
 {
-  "name": "package-name",
-  "version": "0.0.1",
+  "name": "dble-test",
+  "version": "0.0.9",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "dist/types/index.d.ts",
   "browser": "dist/index.umd.js",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js",
-      "types": "./dist/types/index.d.ts",
       "default": "./dist/index.es.js"
+    },
+    "./ssr": {
+      "import": "./dist-ssr/index.es.js",
+      "require": "./dist-ssr/index.cjs.js"
     }
   },
   "files": [
     "dist",
+    "dist-ssr",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vite build --config vite.ssr.config.ts",
+    "build:ssr": "vite build --config vite.ssr.config.ts",
     "prepublishOnly": "npm run build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.6",
+    "@babel/runtime": "^7.26.0",
     "@emotion/css": "^11.13.5",
-    "@emotion/react": "^11.13.5",
-    "@eslint/js": "^8.50.0",
-    "@types/node": "^18.17.19",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^8.50.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.9",
+    "@emotion/react": "^11.14.0",
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
     "prettier": ">=2.0.0",
-    "react": ">=17.0.0",
-    "react-dom": ">=17.0.0",
-    "typescript": "^5.2.2",
-    "vite": "*",
-    "vite-plugin-dts": "^4.2.2"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vite-plugin-dts": "^4.4.0",
+    "vite-plugin-ssr": "^0.4.142"
   },
   "peerDependencies": {
-    "prettier": ">=2.0.0",
-    "react": ">=17.0.0",
-    "react-dom": ">=17.0.0",
-    "vite": "*"
+    "prettier": ">=2.0.0"
   },
   "packageManager": "yarn@4.5.0",
   "description": "패키지 설명 내용 ....",
@@ -62,5 +63,11 @@
   ],
   "author": "deep",
   "license": "MIT",
-  "homepage": "https://www.deepfactory.kr/"
+  "homepage": "https://www.deepfactory.kr/",
+  "devDependencies": {
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4"
+  },
+  "type": "module"
 }

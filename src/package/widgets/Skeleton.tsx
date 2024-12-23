@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { ForwardedRef, forwardRef, memo, useMemo } from 'react';
 import { SkeletonPropsType, SkeletonType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
+import useRender from '../utils/useRender';
 
 const Skeleton = memo(
   forwardRef(
@@ -19,6 +20,8 @@ const Skeleton = memo(
       }: SkeletonPropsType,
       ref: ForwardedRef<HTMLDivElement>,
     ) => {
+useRender()
+
       const loadAnimation = `
       @keyframes load {
         100% {

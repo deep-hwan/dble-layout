@@ -14,6 +14,7 @@ import { spaceStylesProps } from '../styles/spaceStylesProps';
 import { transformStylesProps } from '../styles/transformStylesProps';
 import { LayerPropsType, LayerType, LayoutElementType } from '../types';
 import { mediaScreenSize } from '../utils/mediaScreenSize';
+import useRender from '../utils/useRender';
 
 const Layer = React.memo(
   <T extends LayoutElementType = 'div'>({
@@ -47,6 +48,8 @@ const Layer = React.memo(
     css: cssProp,
     ...rest
   }: LayerPropsType<T> & ComponentPropsWithoutRef<T>) => {
+    useRender()
+    
     const pPs = {
       display,
       sizes,
