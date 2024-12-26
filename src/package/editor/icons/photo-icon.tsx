@@ -3,7 +3,7 @@
 export function PhotoIcon({ fill = '#555' }: { fill?: string }) {
   return (
     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <g clip-path='url(#clip0_122_18)'>
+      <g clipPath='url(#clip0_122_18)'>
         <path
           d='M10.1236 8.2473C10.0581 8.31276 10.0654 8.41458 10.1381 8.47276L15.8909 12.6037C15.9636 12.2909 16 11.9709 16 11.6437V9.81821L12.2618 7.04003C11.9781 6.82912 11.5854 6.85094 11.3236 7.09821L10.1236 8.2473Z'
           fill={fill}

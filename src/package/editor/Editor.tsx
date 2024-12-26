@@ -1,229 +1,223 @@
 /** @jsxImportSource @emotion/react */
-import React, { HTMLAttributes, useEffect, useRef, useState } from 'react';
-import { BoldIcon } from './icons/bold-icon';
-import { CheckedIcon } from './icons/checked-icon';
-import { ItalicIcon } from './icons/italic-icon';
-import { PhotoIcon } from './icons/photo-icon';
-import { UploadIcon } from './icons/upload-icon';
-import { UrlIcon } from './icons/url-icon';
+import React, { BlockquoteHTMLAttributes, HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
+import { ColorPalette } from './component/ColorPalette';
+import { TextBoldTab } from './component/TextBoldTab';
+import { TextItalicTab } from './component/TextItalicTab';
+import { TextSizeSelect } from './component/TextSizeSelect';
+import { TextUrlTab, UrlInput } from './component/TextUrlTab';
+import { UploadPhotoTab } from './component/UploadPhotoTab';
 
-type EditorProps = {
-  editorProps?: HTMLAttributes<HTMLDivElement>;
-  palette?: string[];
+interface EditorProps extends BlockquoteHTMLAttributes<HTMLQuoteElement> {
+  selectTextSizes?: number[];
+  primaryTextSize?: number;
   primaryTextColor?: string;
+
+  colorPalette?: string[];
+
   activeColor?: string;
-};
+
+  onWrite: (content: any) => void;
+}
 
 export default function Editor({
-  editorProps,
-  palette,
+  selectTextSizes = [12, 14, 15, 18, 26],
+  primaryTextSize = 15,
   primaryTextColor = '#59595A',
+
+  colorPalette,
+
   activeColor = '#59595a',
+  onWrite,
   ...props
 }: EditorProps) {
-  const editorRef = useRef<HTMLDivElement>(null);
-  const tabsRef = useRef<HTMLDivElement>(null);
-  const [fontSize, setFontSize] = useState(15);
+  const [write, setWrite] = useState<string>('');
+
+  const editorRef = useRef<HTMLQuoteElement>(null);
+  const toolContainerRef = useRef<HTMLDivElement>(null);
+
+  const [textSize, setTextSize] = useState<number>(
+    typeof primaryTextSize === 'number' && !isNaN(primaryTextSize) ? primaryTextSize : 15,
+  );
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUrl, setIsUrl] = useState(false);
   const [url, setUrl] = useState('');
   const [color, setColor] = useState('#59595A');
+  const [isComposing, setIsComposing] = useState(false);
 
-  const handleOnNowColor = (color: string) => {
-    setColor(color);
-  };
+  const handleOnNowColor = (color: string) => setColor(color);
 
+  //
+  //
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        tabsRef.current &&
-        !tabsRef.current.contains(event.target as Node) &&
+        toolContainerRef.current &&
+        !toolContainerRef.current.contains(event.target as Node) &&
         !(event.target as HTMLElement).classList.contains('editor-url-tab')
-      ) {
+      )
         setIsUrl(false);
-      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [tabsRef]);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [toolContainerRef]);
+
+  //
+  //
+  useEffect(() => {
+    if (editorRef.current) {
+      editorRef.current.focus();
+      editorRef.current.innerHTML = write;
+    }
+  }, []);
+
+  const handleCompositionStart = () => {
+    setIsComposing(true);
+  };
+
+  const handleCompositionUpdate = () => {
+    if (editorRef.current) {
+      const content = editorRef.current.innerHTML;
+      onWrite(content);
+    }
+  };
+
+  const handleCompositionEnd = () => {
+    setIsComposing(false);
+    handleInput();
+  };
+
+  const handleInput = useCallback(() => {
+    if (editorRef.current && !isComposing) {
+      const selection = window.getSelection();
+      const range = selection?.getRangeAt(0);
+      const parentElement = range?.startContainer.parentElement;
+
+      // If the parent element is not a <p> or is the editor itself, wrap the text in a <p>
+      if (parentElement === editorRef.current || parentElement?.tagName !== 'P') {
+        const p = document.createElement('p');
+        p.style.fontSize = `${textSize}px`;
+        p.style.margin = '0';
+
+        // Collect all text nodes and wrap them in a <p>
+        const textNodes = Array.from(editorRef.current.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
+
+        textNodes.forEach(node => {
+          const newP = p.cloneNode() as HTMLParagraphElement;
+          newP.textContent = node.textContent;
+          node.parentNode?.replaceChild(newP, node);
+        });
+
+        // If there are no text nodes, ensure the current text is wrapped
+        if (textNodes.length === 0 && range?.startContainer.nodeType === Node.TEXT_NODE) {
+          const textContent = range.startContainer.textContent || '';
+          p.textContent = textContent;
+          range.startContainer.parentNode?.replaceChild(p, range.startContainer);
+        }
+
+        // Restore cursor position
+        const newRange = document.createRange();
+        newRange.setStart(p.firstChild!, p.firstChild?.textContent?.length || 0);
+        newRange.collapse(true);
+        selection?.removeAllRanges();
+        selection?.addRange(newRange);
+      }
+
+      // Update content
+      const content = editorRef.current.innerHTML;
+      onWrite(content);
+    }
+  }, [onWrite, textSize, isComposing]);
+
+  const applyFontSizeToNewText = () => {
+    // if (editorRef.current) {
+    //   const selection = window.getSelection();
+    //   if (selection && selection.rangeCount > 0) {
+    //     const range = selection.getRangeAt(0);
+    //     const parentElement = range.startContainer.parentElement;
+    //     // Check if the selection is collapsed and within a <div> with the same fontSize
+    //     if (selection.isCollapsed && parentElement && parentElement.style.fontSize === `${textSize}px`) {
+    //       // Append the new text to the existing <div>
+    //       const newTextNode = document.createTextNode(selection.toString());
+    //       range.insertNode(newTextNode);
+    //       range.setStartAfter(newTextNode);
+    //       range.collapse(true);
+    //     } else {
+    //       // Create a new <div> with the specified fontSize
+    //       const selectedText = range.extractContents();
+    //       const newDiv = document.createElement('div');
+    //       newDiv.style.fontSize = `${textSize}px`;
+    //       newDiv.appendChild(selectedText);
+    //       range.insertNode(newDiv);
+    //       range.setStartAfter(newDiv);
+    //       range.collapse(true);
+    //     }
+    //     selection.removeAllRanges();
+    //     selection.addRange(range);
+    //   }
+    // }
+  };
+
+  // useEffect(() => {
+  //   document.addEventListener('input', applyFontSizeToNewText);
+  //   return () => {
+  //     document.removeEventListener('input', applyFontSizeToNewText);
+  //   };
+  // }, [textSize]);
 
   return (
     <div css={{ width: '100%', height: '100%' }}>
-      <div
+      <EditorInput
         ref={editorRef}
+        onInput={handleInput}
+        onCompositionStart={handleCompositionStart}
+        onCompositionUpdate={handleCompositionUpdate}
+        onCompositionEnd={handleCompositionEnd}
         contentEditable
-        // onKeyDown={handleKeyDown}
-        {...editorProps}
-        css={{
-          appearance: 'none',
-          outline: 'none',
-          border: 'none',
-          width: '100%',
-          height: '100%',
-        }}
+        suppressContentEditableWarning
+        {...props}
       />
 
-      <div css={{ width: '100%', height: 1, background: '#eee', margin: '10px 0' }} />
+      <Divider />
 
-      <Flex ref={tabsRef} gap={10} css={{ width: '100%', flexDirection: 'column' }}>
-        <div
-          className='editor-url-input'
-          css={{
-            width: '100%',
-            height: isUrl ? 44 : 0,
-            borderRadius: 13,
-            padding: '0 12px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            overflow: 'hidden',
-            transition: '0.2s ease-in-out',
-            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.14)',
-          }}
-        >
-          {isUrl && (
-            <>
-              <input
-                type='text'
-                placeholder='url ...'
-                value={url}
-                onChange={e => setUrl(e.target.value)}
-                css={{ width: '100%', height: '100%', appearance: 'none', outline: 'none', border: 'none' }}
-              />
+      <Flex
+        className='editor-tool-container'
+        ref={toolContainerRef}
+        gap={10}
+        css={{ width: '100%', flexDirection: 'column' }}
+      >
+        <UrlInput activeColor={activeColor} isUrl={isUrl} value={url} onChange={e => setUrl(e.target.value)} />
 
-              <button
-                css={{
-                  border: 'none',
-                  outline: 'none',
-                  whiteSpace: 'nowrap',
-                  backgroundColor: 'transparent',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <UploadIcon fill={`${activeColor}E6`} />
-              </button>
-            </>
-          )}
-        </div>
-
-        <Flex gap={10} css={{ width: '100%', justifyContent: 'space-between' }}>
-          <Flex className='editer-inputs' gap={2}>
-            <input
-              className='editor-textSize-input'
-              type='text'
-              placeholder='-'
-              value={fontSize}
-              onChange={e => {
-                let value = Number(e.target.value.replace(/\D/g, ''));
-                if (value > 80) value = 80;
-                setFontSize(value);
-              }}
-              onBlur={() => {
-                if (fontSize < 5) setFontSize(5);
-              }}
-              css={{
-                ...boxSize(33),
-                textAlign: 'center',
-                outline: 'none',
-                fontSize: '0.875rem',
-                appearance: 'none',
-                borderRadius: 10,
-                border: '1px solid #E2E2E2',
-                marginRight: 5,
-              }}
+        <Flex className='editor-tool-tabs' gap={10} css={{ width: '100%', justifyContent: 'space-between' }}>
+          <Flex className='editer-tools' gap={2}>
+            <TextSizeSelect
+              textSize={textSize}
+              setTextSize={setTextSize}
+              selectTextSizes={selectTextSizes}
+              primaryTextColor={primaryTextColor}
             />
 
-            <Tab className='editor-bold-tab' activeColor={activeColor} onClick={() => setIsBold(!isBold)}>
-              <BoldIcon fill={isBold ? activeColor : '#CCCCCC'} />
-            </Tab>
+            <TextBoldTab activeColor={activeColor} isBold={isBold} setIsBold={setIsBold} />
 
-            <Tab className='editor-italic-tab' activeColor={activeColor} onClick={() => setIsItalic(!isItalic)}>
-              <ItalicIcon fill={isItalic ? activeColor : '#CCCCCC'} />
-            </Tab>
+            <TextItalicTab activeColor={activeColor} isItalic={isItalic} setIsItalic={setIsItalic} />
 
-            <Tab
-              className='editor-photo-tab'
-              activeColor={activeColor}
-              onClick={() => document.getElementById('fileInput')?.click()}
-            >
-              <PhotoIcon fill={'#CCCCCC'} />
-              <input
-                type='file'
-                id='fileInput'
-                accept='image/*'
-                style={{ display: 'none' }}
-                onChange={e => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    console.log('File uploaded:', file);
-                  }
-                }}
-              />
-            </Tab>
+            <UploadPhotoTab activeColor={activeColor} onPhotoChange={file => console.log('file', file)} />
 
-            <Tab className='editor-url-tab' activeColor={activeColor} onClick={() => setIsUrl(!isUrl)}>
-              <UrlIcon fill={isUrl ? activeColor : '#CCCCCC'} />
-            </Tab>
+            <TextUrlTab activeColor={activeColor} isUrl={isUrl} setIsUrl={setIsUrl} />
           </Flex>
 
-          {!!palette && palette?.length > 0 && (
-            <Flex className='editor-color-platte' gap={2}>
-              {[primaryTextColor, ...(palette || [])]?.map(thisColor => (
-                <div
-                  className='editor-color-item'
-                  css={{
-                    padding: 4,
-                    borderRadius: 1000,
-                    backgroundColor: color === thisColor ? `${thisColor}22` : 'transparent',
-                    transition: '0.25s ease-in-out',
-
-                    '&:hover': {
-                      backgroundColor: `${thisColor}33`,
-                    },
-                  }}
-                >
-                  <div
-                    className='editor-color-picker'
-                    css={{
-                      ...boxSize(20),
-                      background: thisColor,
-                      borderRadius: 100,
-                      cursor: 'pointer',
-                    }}
-                    onClick={() => handleOnNowColor(thisColor)}
-                  >
-                    {color === thisColor && <CheckedIcon />}
-                  </div>
-                </div>
-              ))}
-            </Flex>
-          )}
+          <ColorPalette
+            colorPalette={colorPalette}
+            primaryTextColor={primaryTextColor}
+            color={color}
+            handleOnNowColor={handleOnNowColor}
+          />
         </Flex>
       </Flex>
     </div>
   );
 }
-
-const boxSize = (size: number) => {
-  return {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: size,
-    minWidth: size,
-    maxWidth: size,
-    height: size,
-    minHeight: size,
-    maxHeight: size,
-  };
-};
 
 const Flex = React.forwardRef<HTMLDivElement, { gap?: number } & HTMLAttributes<HTMLDivElement>>(
   ({ children, gap = 6, ...props }, ref) => {
@@ -235,19 +229,27 @@ const Flex = React.forwardRef<HTMLDivElement, { gap?: number } & HTMLAttributes<
   },
 );
 
-const Tab = React.memo(
-  ({ children, activeColor, ...props }: { activeColor?: string } & HTMLAttributes<HTMLDivElement>) => (
-    <div
-      css={{
-        ...boxSize(30),
-        cursor: 'pointer',
-        transition: '0.25s ease-in-out',
-        borderRadius: 10,
-        '&:hover': { backgroundColor: `${activeColor}0D` },
-      }}
+const Divider = () => <div css={{ width: '100%', height: 1, background: '#eee', margin: '10px 0' }} />;
+
+const EditorInput = React.forwardRef<HTMLQuoteElement, BlockquoteHTMLAttributes<HTMLQuoteElement>>((props, ref) => {
+  return (
+    <blockquote
+      className='editor'
+      ref={ref}
+      translate='no'
       {...props}
-    >
-      {children}
-    </div>
-  ),
-);
+      css={{
+        minHeight: 30,
+        appearance: 'none',
+        outline: 'none',
+        border: 'none',
+        width: '100%',
+        height: '100%',
+        '&:empty:before': {
+          content: 'attr(placeholder)',
+          color: '#999',
+        },
+      }}
+    />
+  );
+});
