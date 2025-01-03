@@ -1,75 +1,91 @@
 {
   "name": "dble-test",
-  "version": "0.0.9",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
-  "types": "dist/types/index.d.ts",
-  "browser": "dist/index.umd.js",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
-      "default": "./dist/index.es.js"
-    },
-    "./ssr": {
-      "import": "./dist-ssr/index.es.js",
-      "require": "./dist-ssr/index.cjs.js"
-    }
-  },
+  "version": "1.5.0",
+  "private": false,
   "files": [
     "dist",
-    "dist-ssr",
-    "README.md",
-    "LICENSE"
+    "README.md"
   ],
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build && vite build --config vite.ssr.config.ts",
-    "build:ssr": "vite build --config vite.ssr.config.ts",
-    "prepublishOnly": "npm run build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+  "main": "dist/package/index.js",
+  "module": "dist/package/index.js",
+  "types": "dist/package/index.d.ts",
+  "browser": "./browser/specific/main.js",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.0",
     "@emotion/css": "^11.13.5",
     "@emotion/react": "^11.14.0",
-    "@eslint/js": "^9.17.0",
-    "@types/dompurify": "^3.0.5",
-    "@types/node": "^22.10.2",
-    "dompurify": "^3.2.3",
-    "eslint": "^9.17.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.16",
-    "prettier": ">=2.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.5",
-    "vite-plugin-dts": "^4.4.0",
-    "vite-plugin-ssr": "^0.4.142"
+    "@testing-library/jest-dom": "^6.3.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.6",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "dble-test": "^1.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-flatlist-ui": "^1.1.4",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "vite": "^5.0.12",
+    "web-vitals": "^3.5.1"
   },
-  "peerDependencies": {
-    "prettier": ">=2.0.0"
+  "exports": {
+    ".": {
+      "import": "./dist/package/index.js",
+      "require": "./dist/package/index.js",
+      "default": "./dist/package/index.js"
+    }
   },
-  "packageManager": "yarn@4.5.0",
-  "description": "패키지 설명 내용 ....",
+  "scripts": {
+    "dev": "vite",
+    "clean": "rimraf dist",
+    "compile": "npm run clean && cross-env NODE_ENV=production babel src/lib --out-dir dist --copy-files",
+    "start": "react-scripts start",
+    "build": "tsc && vite build --base=./",
+    "build:cjs": "babel src --out-dir dist/cjs --copy-files --env-name cjs",
+    "build:esm": "babel src --out-dir dist/esm --copy-files --env-name esm",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "prepare": "rimraf dist && mkdir dist && tsc"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "This method is very similar to FlatList in React-Native. Try FlatList in React.js right now",
   "repository": {
     "type": "git",
-    "url": "https://github.com/deep-hwan/npm-react-typescript-package-template"
+    "url": "https://github.com/deep-hwan/react-flatlist-ui"
   },
   "keywords": [
     "typescript",
-    "Reactjs"
+    "Reactjs",
+    "react-flatlist",
+    "react-native-flatlist",
+    "flatlist-react",
+    "flatlist"
   ],
   "author": "deep",
-  "license": "MIT",
-  "homepage": "https://www.deepfactory.kr/",
+  "license": "ISC",
   "devDependencies": {
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "@vitejs/plugin-react": "^4.3.4"
-  },
-  "type": "module"
+    "vite-plugin-dts": "^3.7.2"
+  }
 }

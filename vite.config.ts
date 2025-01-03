@@ -1,34 +1,26 @@
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
+import * as path from "path";
+
+import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      entryRoot: 'src/package',
-      outDir: 'dist/types',
-      staticImport: true,
-      insertTypesEntry: true,
-    }),
-  ],
   build: {
-    outDir: 'dist',
     lib: {
-      entry: 'src/package/index.tsx',
-      name: 'test-t-package',
-      fileName: format => `index.${format}.js`,
-      formats: ['es', 'cjs', 'umd'],
+      entry: path.resolve(__dirname, "src/package/index.tsx"),
+      name: "index",
+      fileName: "index",
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: ["react"],
       output: {
         globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'react/jsx-runtime': 'jsxRuntime',
+          react: "React",
         },
       },
     },
+    commonjsOptions: {
+      esmExternals: ["react"],
+    },
   },
+  plugins: [dts()],
 });

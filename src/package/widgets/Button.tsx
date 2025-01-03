@@ -1,19 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import { cx } from '@emotion/css';
-import { css } from '@emotion/react';
-import React, { ComponentPropsWithoutRef, useCallback, useMemo } from 'react';
-import { borderStylesProps } from '../styles/borderStylesProps';
-import { flexStylesProps } from '../styles/flexStylesProps';
-import { gradientStylesProps } from '../styles/gradientStylesProps';
-import { positionStylesProps } from '../styles/positionStylesProps';
-import { screenSizeStylesProps } from '../styles/screenSizeStylesProps';
-import { shadowStylesProps } from '../styles/shadowStylesProps';
-import { spaceStylesProps } from '../styles/spaceStylesProps';
-import { transformStylesProps } from '../styles/transformStylesProps';
-import { typographyStylesProps } from '../styles/typographyStylesProps';
-import { ButtonPropsType, ButtonType } from '../types';
-import { mediaScreenSize } from '../utils/mediaScreenSize';
-import useRender from '../utils/useRender';
+import { cx } from "@emotion/css";
+import { css } from "@emotion/react";
+import React, { ComponentPropsWithoutRef, useCallback, useMemo } from "react";
+import { borderStylesProps } from "../styles/borderStylesProps";
+import { flexStylesProps } from "../styles/flexStylesProps";
+import { gradientStylesProps } from "../styles/gradientStylesProps";
+import { positionStylesProps } from "../styles/positionStylesProps";
+import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
+import { shadowStylesProps } from "../styles/shadowStylesProps";
+import { spaceStylesProps } from "../styles/spaceStylesProps";
+import { transformStylesProps } from "../styles/transformStylesProps";
+import { typographyStylesProps } from "../styles/typographyStylesProps";
+import { ButtonPropsType, ButtonType } from "../types";
+import { mediaScreenSize } from "../utils/mediaScreenSize";
+import useRender from "../utils/useRender";
 
 const Button = React.memo(
   ({
@@ -46,8 +46,8 @@ const Button = React.memo(
     rotate,
     zIndex,
     cursor,
-    userSelect = 'none',
-    transition = { time: 0.2, type: 'ease-in-out' },
+    userSelect = "none",
+    transition = { time: 0.2, type: "ease-in-out" },
     _hover,
     _focus,
     _active,
@@ -55,9 +55,9 @@ const Button = React.memo(
     mq = {},
     css: cssProp,
     ...rest
-  }: ButtonPropsType & ComponentPropsWithoutRef<'button'>) => {
-    useRender()
-    
+  }: ButtonPropsType & ComponentPropsWithoutRef<"button">) => {
+    useRender();
+
     const pPs = {
       txtSize,
       txtWeight,
@@ -86,13 +86,11 @@ const Button = React.memo(
       rotate,
     };
 
-   
-
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         if (rest?.onClick) rest?.onClick(event);
       },
-      [rest?.onClick],
+      [rest?.onClick]
     );
 
     //
@@ -114,14 +112,22 @@ const Button = React.memo(
           ellipsis: props.ellipsis,
           txtDecoration: props.txtDecoration,
         }),
-        ...((props.display === 'flex' || !props.display) && flexStylesProps(props.flex)),
+        ...((props.display === "flex" || !props.display) &&
+          flexStylesProps(props.flex)),
         ...screenSizeStylesProps(props.sizes),
         ...positionStylesProps({ position: props.position }),
         ...spaceStylesProps({ padding: props.padding, margin: props.margin }),
-        ...borderStylesProps({ border: props.border, borderRadius: props.borderRadius }),
+        ...borderStylesProps({
+          border: props.border,
+          borderRadius: props.borderRadius,
+        }),
         ...gradientStylesProps(props.gradient),
         ...shadowStylesProps(props.shadow),
-        ...transformStylesProps({ axis: props.axis, scale: props.scale, rotate: props.rotate }),
+        ...transformStylesProps({
+          axis: props.axis,
+          scale: props.scale,
+          rotate: props.rotate,
+        }),
       };
     };
 
@@ -130,33 +136,38 @@ const Button = React.memo(
     const baseStyle = useMemo(
       () =>
         css({
-          cursor: 'disabled' in rest && rest.disabled ? 'default' : (cursor ?? 'pointer'),
-          transition: `all ${transition.time || 0.25}s ${transition.type || 'ease-in-out'}`,
-          display: 'inline-block',
-          listStyle: 'none',
-          outline: 'none',
+          cursor:
+            "disabled" in rest && rest.disabled
+              ? "default"
+              : cursor ?? "pointer",
+          transition: `all ${transition.time || 0.25}s ${
+            transition.type || "ease-in-out"
+          }`,
+          display: "inline-block",
+          listStyle: "none",
+          outline: "none",
           zIndex,
           userSelect,
           borderWidth: 0,
         }),
-      [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect],
+      [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]
     );
 
     //
     // media-query styles
     const mediaStyles = useMemo(
       () =>
-        mediaScreenSize.map(size => {
+        mediaScreenSize.map((size) => {
           const breakpointKey = `w${size}` as keyof typeof mq;
           const styles = mq?.[breakpointKey];
 
           return css`
             @media (max-width: ${size}px) {
-              ${styles ? ExtendedStyles(styles) : ''}
+              ${styles ? ExtendedStyles(styles) : ""}
             }
           `;
         }),
-      [mq],
+      [mq]
     );
 
     //
@@ -164,16 +175,22 @@ const Button = React.memo(
     const pseudoStyles = useMemo(
       () =>
         css({
-          '&:hover': ExtendedStyles({ ..._hover, opacity: _hover?.opacity ?? 0.9 }),
-          '&:focus': ExtendedStyles(_focus || {}),
-          '&:active': ExtendedStyles({ ..._active, opacity: _active?.opacity ?? 0.75 }),
-          '&:disabled': ExtendedStyles({
+          "&:hover": ExtendedStyles({
+            ..._hover,
+            opacity: _hover?.opacity ?? 0.9,
+          }),
+          "&:focus": ExtendedStyles(_focus || {}),
+          "&:active": ExtendedStyles({
+            ..._active,
+            opacity: _active?.opacity ?? 0.75,
+          }),
+          "&:disabled": ExtendedStyles({
             ..._disabled,
-            backgroundFill: '#f0f0f0',
-            txtColor: _disabled?.txtColor ?? '#aaa',
+            backgroundFill: "#f0f0f0",
+            txtColor: _disabled?.txtColor ?? "#aaa",
           }),
         }),
-      [_hover, _focus, _active, _disabled],
+      [_hover, _focus, _active, _disabled]
     );
 
     //
@@ -183,45 +200,57 @@ const Button = React.memo(
         ${baseStyle}
         ${ExtendedStyles({
           ...pPs,
-          display: pPs.display ?? 'flex',
+          display: pPs.display ?? "flex",
           flex:
-            pPs.display === 'flex' || !pPs.display
+            pPs.display === "flex" || !pPs.display
               ? {
                   ...pPs.flex,
-                  direction: pPs.flex?.direction ?? 'column',
-                  align: pPs.flex?.align ?? 'center',
-                  crossAlign: pPs.flex?.crossAlign ?? 'center',
+                  direction: pPs.flex?.direction ?? "column",
+                  align: pPs.flex?.align ?? "center",
+                  crossAlign: pPs.flex?.crossAlign ?? "center",
                 }
               : undefined,
-          position: { ...pPs.position, type: pPs.position?.type ?? 'relative' },
-          padding: { ...pPs.padding, vertical: pPs.padding?.vertical ?? 14, horizontal: pPs.padding?.horizontal ?? 24 },
-          backgroundFill: pPs.backgroundFill ?? '#5b94f0',
-          gradient: { ...pPs.gradient, type: pPs.gradient?.type ?? 'linear' } as any,
+          position: { ...pPs.position, type: pPs.position?.type ?? "relative" },
+          padding: {
+            ...pPs.padding,
+            vertical: pPs.padding?.vertical ?? 14,
+            horizontal: pPs.padding?.horizontal ?? 24,
+          },
+          backgroundFill: pPs.backgroundFill ?? "#5b94f0",
+          gradient: {
+            ...pPs.gradient,
+            type: pPs.gradient?.type ?? "linear",
+          } as any,
           border: {
             ...pPs.border,
             stroke: pPs.border?.stroke ?? 0,
-            color: pPs.border?.color ?? 'transparent',
+            color: pPs.border?.color ?? "transparent",
           } as any,
           borderRadius: pPs.borderRadius ?? 16,
-          whiteSpace: pPs.whiteSpace ?? 'pre-line',
+          whiteSpace: pPs.whiteSpace ?? "pre-line",
           txtSize: pPs.txtSize ?? 15,
-          txtColor: pPs.txtColor ?? '#fbfbfb',
+          txtColor: pPs.txtColor ?? "#fbfbfb",
         })}
     ${mediaStyles}
     ${pseudoStyles}
     ${cssProp}
       `,
-      [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp],
+      [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]
     );
 
-    const combinedClassName = cx('dble-button', className);
+    const combinedClassName = cx("dble-button", className);
 
     return (
-      <button className={combinedClassName} css={combinedStyles} onClick={handleClick} {...(rest as any)}>
+      <button
+        className={combinedClassName}
+        css={combinedStyles}
+        onClick={handleClick}
+        {...(rest as any)}
+      >
         {children}
       </button>
     );
-  },
+  }
 );
 
 export { Button };
