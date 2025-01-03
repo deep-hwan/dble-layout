@@ -1,6 +1,6 @@
 {
   "name": "dble-test",
-  "version": "1.5.0",
+  "version": "2.2.0",
   "private": false,
   "files": [
     "dist",
@@ -24,11 +24,11 @@
     "@types/node": "^20.11.6",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "dble-test": "^1.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-flatlist-ui": "^1.1.4",
     "react-scripts": "5.0.1",
+    "rollup-plugin-visualizer": "^5.13.1",
     "typescript": "^4.9.5",
     "vite": "^5.0.12",
     "web-vitals": "^3.5.1"

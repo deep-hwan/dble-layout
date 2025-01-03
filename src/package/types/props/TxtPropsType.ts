@@ -1,16 +1,30 @@
-import { ElementType } from 'react';
-import { BackgroundType } from '../piece/BackgroundType';
-import { BorderType } from '../piece/BorderType';
-import { GradientType } from '../piece/GradientType';
-import { MediaQueryType } from '../piece/MediaQueryType';
-import { PositionType } from '../piece/PositionType';
-import { ScreenSizeType } from '../piece/ScreenSizeType';
-import { ShadowType } from '../piece/ShadowType';
-import { TrafficType } from '../piece/TrafficType';
-import { TypographyType } from '../piece/TypographyType';
-import { ElementPropsType } from './ExtendedElementPropsType';
+import { ElementType } from "react";
+import { BackgroundType } from "../piece/BackgroundType";
+import { BorderType } from "../piece/BorderType";
+import { GradientType } from "../piece/GradientType";
+import { MediaQueryType } from "../piece/MediaQueryType";
+import { PositionType } from "../piece/PositionType";
+import { ScreenSizeType } from "../piece/ScreenSizeType";
+import { ShadowType } from "../piece/ShadowType";
+import { TrafficType } from "../piece/TrafficType";
+import { TypographyType } from "../piece/TypographyType";
+import { ElementPropsType } from "./ExtendedElementPropsType";
 
-export type TxtElementType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'strong' | 'b' | 'i' | 'p' | 'span' | 'div';
+export type TxtElementType =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "strong"
+  | "b"
+  | "i"
+  | "p"
+  | "span"
+  | "div"
+  | "li"
+  | "label";
 
 export interface TxtType extends TypographyType {
   sizes?: ScreenSizeType;
@@ -28,7 +42,9 @@ export interface TxtType extends TypographyType {
   axis?: { x?: string | number; y?: string | number };
 }
 
-export interface TxtPropsType<T extends ElementType = 'p'> extends ElementPropsType, TxtType {
+export interface TxtPropsType<T extends ElementType = "p">
+  extends ElementPropsType,
+    TxtType {
   as?: T;
   mq?: MediaQueryType<TxtType>;
   _hover?: Partial<TxtType>;

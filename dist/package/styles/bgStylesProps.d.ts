@@ -11,9 +11,9 @@ declare const backgroundStylesProps: (props?: BackgroundType) => {
     backgroundColor: string | undefined;
     backgroundRepeat: "repeat-x" | "repeat-y" | "repeat" | "space" | "round" | "no-repeat" | undefined;
     backgroundSize: string | undefined;
-    backgroundPosition: "string" | "left" | "right" | "top" | "bottom" | "center" | undefined;
+    backgroundPosition: "string" | "top" | "bottom" | "center" | "left" | "right" | undefined;
     backgroundImage: string | undefined;
-    backgroundClip: "initial" | "inherit" | "border-box" | "padding-box" | "content-box" | undefined;
+    backgroundClip: "border-box" | "padding-box" | "content-box" | "initial" | "inherit" | undefined;
     filter: string | undefined;
 };
 export { backgroundStylesProps };

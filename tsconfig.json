@@ -20,11 +20,11 @@
     "outDir": "./dist"
   },
   "include": [
-    "./src/lib/**/*.tsx",
-    "./src/lib/**/*.ts",
-    "./src/package/**/*.tsx",
-    "./src/package/**/*.ts",
-    "./src/*"
+    "src/lib/**/*.ts",
+    "src/lib/**/*.tsx",
+    "src/package/**/*.ts",
+    "src/package/**/*.tsx",
+    "src/*"
   ],
   "exclude": ["node_modules"]
 }

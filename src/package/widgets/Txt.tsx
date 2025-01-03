@@ -202,7 +202,7 @@ const Txt = React.memo(
     const combinedClassName = cx("dble-txt", className);
 
     return (
-      <Component className={combinedClassName} css={combinedStyles} {...rest}>
+      <Component className={combinedClassName} css={combinedStyles} {...rest as any}>
         {children}
       </Component>
     );

@@ -19,9 +19,9 @@ declare const gridStylesProps: (props?: GridType) => {
     gridAutoFlow: "row" | "column" | "dense" | "row dense" | "column dense" | undefined;
     gridAutoColumns: string | undefined;
     gridAutoRows: string | undefined;
-    justifyItems: "start" | "end" | "center" | "stretch" | undefined;
-    alignItems: "start" | "end" | "center" | "stretch" | undefined;
-    justifyContent: "start" | "end" | "center" | "stretch" | "space-between" | "space-around" | undefined;
-    alignContent: "start" | "end" | "center" | "stretch" | "space-between" | "space-around" | undefined;
+    justifyItems: "center" | "start" | "end" | "stretch" | undefined;
+    alignItems: "center" | "start" | "end" | "stretch" | undefined;
+    justifyContent: "center" | "start" | "end" | "stretch" | "space-between" | "space-around" | undefined;
+    alignContent: "center" | "start" | "end" | "stretch" | "space-between" | "space-around" | undefined;
 };
 export { gridStylesProps };
