@@ -1,4 +1,5 @@
-import React, { ComponentPropsWithoutRef } from 'react';
-import { LayerPropsType, LayoutElementType } from '../types';
-declare const Layer: React.MemoExoticComponent<(<T extends LayoutElementType = "div">({ as, children, className, display, sizes, flex, grid, position, padding, margin, borderRadius, border, background, gradient, opacity, shadow, axis, scale, rotate, zIndex, cursor, userSelect, transition, _hover, _focus, _active, mq, css: cssProp, ...rest }: LayerPropsType<T> & React.PropsWithoutRef<React.ComponentProps<T>>) => import("@emotion/react/jsx-runtime").JSX.Element)>;
-export { Layer };
+import React from "react";
+import { LayerPropsType } from "../types";
+import { LayoutElementType } from "../types/piece/LayoutElementType";
+declare const _default: React.MemoExoticComponent<React.ForwardRefExoticComponent<(LayerPropsType<LayoutElementType> & (Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>, "ref"> | Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> | Omit<React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>, "ref"> | Omit<React.DetailedHTMLProps<React.OlHTMLAttributes<HTMLOListElement>, HTMLOListElement>, "ref"> | Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>, "ref">)) & React.RefAttributes<HTMLElement>>>;
+export default _default;

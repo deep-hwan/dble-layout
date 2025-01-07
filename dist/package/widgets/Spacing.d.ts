@@ -1,4 +1,4 @@
-/// <reference types="react" />
-import { SpacingPropsType } from '../types';
-declare const Spacing: import("react").MemoExoticComponent<import("react").ForwardRefExoticComponent<SpacingPropsType & import("react").RefAttributes<HTMLDivElement>>>;
-export { Spacing };
+import React from "react";
+import { SpacingPropsType } from "../types";
+declare const _default: React.MemoExoticComponent<React.ForwardRefExoticComponent<SpacingPropsType & React.RefAttributes<HTMLDivElement>>>;
+export default _default;

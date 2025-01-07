@@ -1,31 +1,18 @@
-import { ElementType } from 'react';
-import { BackgroundType } from '../piece/BackgroundType';
-import { BorderType } from '../piece/BorderType';
-import { FlexType } from '../piece/FlexType';
-import { GradientType } from '../piece/GradientType';
-import { GridType } from '../piece/GridType';
-import { MediaQueryType } from '../piece/MediaQueryType';
-import { PositionType } from '../piece/PositionType';
-import { ScreenSizeType } from '../piece/ScreenSizeType';
-import { ShadowType } from '../piece/ShadowType';
-import { TrafficType } from '../piece/TrafficType';
-import { ElementPropsType } from './ExtendedElementPropsType';
-
-export type LayoutElementType =
-  | 'div'
-  | 'main'
-  | 'section'
-  | 'article'
-  | 'header'
-  | 'footer'
-  | 'aside'
-  | 'nav'
-  | 'ul'
-  | 'ol'
-  | 'li';
+import { ElementType } from "react";
+import { BackgroundType } from "../piece/BackgroundType";
+import { BorderType } from "../piece/BorderType";
+import { FlexType } from "../piece/FlexType";
+import { GradientType } from "../piece/GradientType";
+import { GridType } from "../piece/GridType";
+import { MediaQueryType } from "../piece/MediaQueryType";
+import { PositionType } from "../piece/PositionType";
+import { ScreenSizeType } from "../piece/ScreenSizeType";
+import { ShadowType } from "../piece/ShadowType";
+import { TrafficType } from "../piece/TrafficType";
+import { ElementPropsType } from "./ExtendedElementPropsType";
 
 export interface LayerType {
-  display?: 'flex' | 'grid' | 'none';
+  display?: "flex" | "grid" | "none";
   sizes?: ScreenSizeType;
   flex?: FlexType;
   grid?: GridType;
@@ -43,7 +30,9 @@ export interface LayerType {
   axis?: { x?: string | number; y?: string | number };
 }
 
-export interface LayerPropsType<T extends ElementType> extends ElementPropsType, LayerType {
+export interface LayerPropsType<T extends ElementType>
+  extends ElementPropsType,
+    LayerType {
   as?: T;
   mq?: MediaQueryType<LayerType>;
   _hover?: Partial<LayerType>;

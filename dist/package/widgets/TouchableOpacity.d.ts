@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef } from 'react';
-import { TouchableOpacitPropsType, TouchableOpacityElementsType } from '../types';
-declare const TouchableOpacity: React.MemoExoticComponent<(<T extends TouchableOpacityElementsType = "div">({ as, children, className, txtSize, txtWeight, txtAlign, txtColor, txtShadow, txtTransform, txtDecoration, lineHeight, whiteSpace, ellipsis, display, sizes, flex, position, padding, margin, borderRadius, border, background, opacity, gradient, shadow, axis, scale, rotate, zIndex, cursor, userSelect, transition, _hover, _focus, _active, _disabled, mq, css: cssProp, ...rest }: TouchableOpacitPropsType<T> & React.PropsWithoutRef<React.ComponentProps<T>>) => import("@emotion/react/jsx-runtime").JSX.Element)>;
-export { TouchableOpacity };
+import React from "react";
+import { TouchableOpacitPropsType, TouchableOpacityElementsType } from "../types";
+declare const _default: React.MemoExoticComponent<React.ForwardRefExoticComponent<(TouchableOpacitPropsType<TouchableOpacityElementsType> & (Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref"> | Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> | Omit<React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>, "ref"> | Omit<React.DetailedHTMLProps<React.OlHTMLAttributes<HTMLOListElement>, HTMLOListElement>, "ref"> | Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>, "ref"> | Omit<React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, "ref">)) & React.RefAttributes<"a" | "button" | "div" | "li" | "ol" | "ul">>>;
+export default _default;

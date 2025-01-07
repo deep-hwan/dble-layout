@@ -38,35 +38,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Divider = void 0;
 var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 /** @jsxImportSource @emotion/react */
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
-var react_2 = require("react");
+var react_2 = __importDefault(require("react"));
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
-var useRender_1 = __importDefault(require("../utils/useRender"));
-exports.Divider = (0, react_2.memo)((0, react_2.forwardRef)(function Solid(_a, ref) {
-    var _b = _a.direction, direction = _b === void 0 ? 'horizontal' : _b, width = _a.width, height = _a.height, _c = _a.color, color = _c === void 0 ? '#e9e9e9' : _c, spacing = _a.spacing, mq = _a.mq, props = __rest(_a, ["direction", "width", "height", "color", "spacing", "mq"]);
-    (0, useRender_1.default)();
+var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
+    var _b = _a.direction, direction = _b === void 0 ? "horizontal" : _b, width = _a.width, height = _a.height, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, spacing = _a.spacing, mq = _a.mq, props = __rest(_a, ["direction", "width", "height", "color", "spacing", "mq"]);
     var Types = function (props) {
         var _a, _b, _c, _d;
         return ({
-            width: direction === 'horizontal' ? ((_a = props.width) !== null && _a !== void 0 ? _a : '100%') : ((_b = props.width) !== null && _b !== void 0 ? _b : 1),
-            height: direction === 'vertical' ? ((_c = props.height) !== null && _c !== void 0 ? _c : '100%') : ((_d = props.height) !== null && _d !== void 0 ? _d : 1),
+            width: direction === "horizontal" ? (_a = props.width) !== null && _a !== void 0 ? _a : "100%" : (_b = props.width) !== null && _b !== void 0 ? _b : 1,
+            height: direction === "vertical" ? (_c = props.height) !== null && _c !== void 0 ? _c : "100%" : (_d = props.height) !== null && _d !== void 0 ? _d : 1,
         });
     };
-    var getSpacing = function (spacing, type) { var _a, _b; return (_b = (_a = spacing === null || spacing === void 0 ? void 0 : spacing.all) !== null && _a !== void 0 ? _a : spacing === null || spacing === void 0 ? void 0 : spacing[type]) !== null && _b !== void 0 ? _b : spacing === null || spacing === void 0 ? void 0 : spacing[type === 'vertical' ? 'top' : 'left']; };
+    var getSpacing = function (spacing, type) {
+        var _a, _b;
+        return (_b = (_a = spacing === null || spacing === void 0 ? void 0 : spacing.all) !== null && _a !== void 0 ? _a : spacing === null || spacing === void 0 ? void 0 : spacing[type]) !== null && _b !== void 0 ? _b : spacing === null || spacing === void 0 ? void 0 : spacing[type === "vertical" ? "top" : "left"];
+    };
     var DividerStyle = function (props) {
-        return (0, react_1.css)(__assign({ backgroundColor: props.color, transition: '0.25s ease-in-out', marginTop: getSpacing(props.spacing, 'vertical'), marginBottom: getSpacing(props.spacing, 'vertical'), marginLeft: getSpacing(props.spacing, 'horizontal'), marginRight: getSpacing(props.spacing, 'horizontal') }, Types({ width: props.width, height: props.height })));
+        return (0, react_1.css)(__assign({ backgroundColor: props.color, transition: "0.25s ease-in-out", marginTop: getSpacing(props.spacing, "vertical"), marginBottom: getSpacing(props.spacing, "vertical"), marginLeft: getSpacing(props.spacing, "horizontal"), marginRight: getSpacing(props.spacing, "horizontal") }, Types({ width: props.width, height: props.height })));
     };
     var mediaStyles = mediaScreenSize_1.mediaScreenSize.map(function (size) {
         var breakpointKey = "w".concat(size);
         var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
         return styles
-            ? (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "], ["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "])), size, DividerStyle(styles)) : '';
+            ? (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "], ["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "])), size, DividerStyle(styles)) : "";
     });
-    var combinedClassName = (0, css_1.cx)('dble-divider', props.className);
-    return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: __spreadArray([DividerStyle({ direction: direction, width: width, height: height, spacing: spacing, color: color })], mediaStyles, true) }, props)));
-}));
+    var combinedClassName = (0, css_1.cx)("dble-divider", props.className);
+    return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: __spreadArray([
+            DividerStyle({ direction: direction, width: width, height: height, spacing: spacing, color: color })
+        ], mediaStyles, true) }, props)));
+});
+exports.default = react_2.default.memo(Divider);
 var templateObject_1;

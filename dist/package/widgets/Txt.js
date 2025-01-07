@@ -48,11 +48,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Txt = void 0;
 var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 /** @jsxImportSource @emotion/react */
 var css_1 = require("@emotion/css");
@@ -68,10 +64,8 @@ var spaceStylesProps_1 = require("../styles/spaceStylesProps");
 var transformStylesProps_1 = require("../styles/transformStylesProps");
 var typographyStylesProps_1 = require("../styles/typographyStylesProps");
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
-var useRender_1 = __importDefault(require("../utils/useRender"));
-var Txt = react_2.default.memo(function (_a) {
+var Txt = react_2.default.forwardRef(function (_a, ref) {
     var as = _a.as, children = _a.children, className = _a.className, txtSize = _a.txtSize, txtWeight = _a.txtWeight, txtAlign = _a.txtAlign, txtColor = _a.txtColor, txtShadow = _a.txtShadow, txtTransform = _a.txtTransform, txtDecoration = _a.txtDecoration, lineHeight = _a.lineHeight, whiteSpace = _a.whiteSpace, ellipsis = _a.ellipsis, sizes = _a.sizes, position = _a.position, padding = _a.padding, margin = _a.margin, borderRadius = _a.borderRadius, border = _a.border, background = _a.background, opacity = _a.opacity, gradient = _a.gradient, shadow = _a.shadow, axis = _a.axis, scale = _a.scale, rotate = _a.rotate, zIndex = _a.zIndex, cursor = _a.cursor, userSelect = _a.userSelect, _b = _a.transition, transition = _b === void 0 ? { time: 0.25, type: "ease-in-out" } : _b, _hover = _a._hover, _focus = _a._focus, _active = _a._active, _c = _a.mq, mq = _c === void 0 ? {} : _c, cssProp = _a.css, rest = __rest(_a, ["as", "children", "className", "txtSize", "txtWeight", "txtAlign", "txtColor", "txtShadow", "txtTransform", "txtDecoration", "lineHeight", "whiteSpace", "ellipsis", "sizes", "position", "padding", "margin", "borderRadius", "border", "background", "opacity", "gradient", "shadow", "axis", "scale", "rotate", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "mq", "css"]);
-    (0, useRender_1.default)();
     var pPs = {
         txtSize: txtSize,
         txtWeight: txtWeight,
@@ -162,7 +156,7 @@ var Txt = react_2.default.memo(function (_a) {
         return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { sizes: __assign({}, pPs.sizes), gradient: __assign(__assign({}, pPs.gradient), { type: (_b = (_a = pPs.gradient) === null || _a === void 0 ? void 0 : _a.type) !== null && _b !== void 0 ? _b : "linear" }), border: __assign(__assign({}, pPs.border), { stroke: (_d = (_c = pPs.border) === null || _c === void 0 ? void 0 : _c.stroke) !== null && _d !== void 0 ? _d : 0, color: (_f = (_e = pPs.border) === null || _e === void 0 ? void 0 : _e.color) !== null && _f !== void 0 ? _f : "transparent", shape: (_h = (_g = pPs.border) === null || _g === void 0 ? void 0 : _g.shape) !== null && _h !== void 0 ? _h : "solid" }), txtSize: (_j = pPs.txtSize) !== null && _j !== void 0 ? _j : 15, txtColor: (_k = pPs.txtColor) !== null && _k !== void 0 ? _k : "#5d5d5f", whiteSpace: (_l = pPs.whiteSpace) !== null && _l !== void 0 ? _l : "pre-line" })), mediaStyles, pseudoStyles, cssProp);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]);
     var combinedClassName = (0, css_1.cx)("dble-txt", className);
-    return ((0, jsx_runtime_1.jsx)(Component, __assign({ className: combinedClassName, css: combinedStyles }, rest, { children: children })));
+    return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: combinedStyles }, rest, { children: children })));
 });
-exports.Txt = Txt;
+exports.default = react_2.default.memo(Txt);
 var templateObject_1, templateObject_2;

@@ -48,9 +48,6 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Button = void 0;
 var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
@@ -68,10 +65,8 @@ var spaceStylesProps_1 = require("../styles/spaceStylesProps");
 var transformStylesProps_1 = require("../styles/transformStylesProps");
 var typographyStylesProps_1 = require("../styles/typographyStylesProps");
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
-var useRender_1 = __importDefault(require("../utils/useRender"));
-var Button = react_2.default.memo(function (_a) {
+var Button = react_2.default.memo(react_2.default.forwardRef(function (_a, ref) {
     var children = _a.children, className = _a.className, txtSize = _a.txtSize, txtWeight = _a.txtWeight, txtAlign = _a.txtAlign, txtColor = _a.txtColor, txtShadow = _a.txtShadow, txtTransform = _a.txtTransform, txtDecoration = _a.txtDecoration, lineHeight = _a.lineHeight, whiteSpace = _a.whiteSpace, ellipsis = _a.ellipsis, display = _a.display, sizes = _a.sizes, flex = _a.flex, position = _a.position, padding = _a.padding, margin = _a.margin, borderRadius = _a.borderRadius, border = _a.border, backgroundFill = _a.backgroundFill, opacity = _a.opacity, gradient = _a.gradient, shadow = _a.shadow, axis = _a.axis, scale = _a.scale, rotate = _a.rotate, zIndex = _a.zIndex, cursor = _a.cursor, _b = _a.userSelect, userSelect = _b === void 0 ? "none" : _b, _c = _a.transition, transition = _c === void 0 ? { time: 0.2, type: "ease-in-out" } : _c, _hover = _a._hover, _focus = _a._focus, _active = _a._active, _disabled = _a._disabled, _d = _a.mq, mq = _d === void 0 ? {} : _d, cssProp = _a.css, rest = __rest(_a, ["children", "className", "txtSize", "txtWeight", "txtAlign", "txtColor", "txtShadow", "txtTransform", "txtDecoration", "lineHeight", "whiteSpace", "ellipsis", "display", "sizes", "flex", "position", "padding", "margin", "borderRadius", "border", "backgroundFill", "opacity", "gradient", "shadow", "axis", "scale", "rotate", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "_disabled", "mq", "css"]);
-    (0, useRender_1.default)();
     var pPs = {
         txtSize: txtSize,
         txtWeight: txtWeight,
@@ -142,14 +137,21 @@ var Button = react_2.default.memo(function (_a) {
             userSelect: userSelect,
             borderWidth: 0,
         });
-    }, [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]);
+    }, [
+        cursor,
+        rest.onClick,
+        rest.onMouseEnter,
+        transition,
+        zIndex,
+        userSelect,
+    ]);
     //
     // media-query styles
     var mediaStyles = (0, react_2.useMemo)(function () {
         return mediaScreenSize_1.mediaScreenSize.map(function (size) {
             var breakpointKey = "w".concat(size);
             var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
-            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "], ["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "])), size, styles ? ExtendedStyles(styles) : "");
+            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n              @media (max-width: ", "px) {\n                ", "\n              }\n            "], ["\n              @media (max-width: ", "px) {\n                ", "\n              }\n            "])), size, styles ? ExtendedStyles(styles) : "");
         });
     }, [mq]);
     //
@@ -167,11 +169,11 @@ var Button = react_2.default.memo(function (_a) {
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { display: (_a = pPs.display) !== null && _a !== void 0 ? _a : "flex", flex: pPs.display === "flex" || !pPs.display
+        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n          ", "\n          ", "\n    ", "\n    ", "\n    ", "\n        "], ["\n          ", "\n          ", "\n    ", "\n    ", "\n    ", "\n        "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { display: (_a = pPs.display) !== null && _a !== void 0 ? _a : "flex", flex: pPs.display === "flex" || !pPs.display
                 ? __assign(__assign({}, pPs.flex), { direction: (_c = (_b = pPs.flex) === null || _b === void 0 ? void 0 : _b.direction) !== null && _c !== void 0 ? _c : "column", align: (_e = (_d = pPs.flex) === null || _d === void 0 ? void 0 : _d.align) !== null && _e !== void 0 ? _e : "center", crossAlign: (_g = (_f = pPs.flex) === null || _f === void 0 ? void 0 : _f.crossAlign) !== null && _g !== void 0 ? _g : "center" }) : undefined, position: __assign(__assign({}, pPs.position), { type: (_j = (_h = pPs.position) === null || _h === void 0 ? void 0 : _h.type) !== null && _j !== void 0 ? _j : "relative" }), padding: __assign(__assign({}, pPs.padding), { vertical: (_l = (_k = pPs.padding) === null || _k === void 0 ? void 0 : _k.vertical) !== null && _l !== void 0 ? _l : 14, horizontal: (_o = (_m = pPs.padding) === null || _m === void 0 ? void 0 : _m.horizontal) !== null && _o !== void 0 ? _o : 24 }), backgroundFill: (_p = pPs.backgroundFill) !== null && _p !== void 0 ? _p : "#5b94f0", gradient: __assign(__assign({}, pPs.gradient), { type: (_r = (_q = pPs.gradient) === null || _q === void 0 ? void 0 : _q.type) !== null && _r !== void 0 ? _r : "linear" }), border: __assign(__assign({}, pPs.border), { stroke: (_t = (_s = pPs.border) === null || _s === void 0 ? void 0 : _s.stroke) !== null && _t !== void 0 ? _t : 0, color: (_v = (_u = pPs.border) === null || _u === void 0 ? void 0 : _u.color) !== null && _v !== void 0 ? _v : "transparent" }), borderRadius: (_w = pPs.borderRadius) !== null && _w !== void 0 ? _w : 16, whiteSpace: (_x = pPs.whiteSpace) !== null && _x !== void 0 ? _x : "pre-line", txtSize: (_y = pPs.txtSize) !== null && _y !== void 0 ? _y : 15, txtColor: (_z = pPs.txtColor) !== null && _z !== void 0 ? _z : "#fbfbfb" })), mediaStyles, pseudoStyles, cssProp);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]);
     var combinedClassName = (0, css_1.cx)("dble-button", className);
-    return ((0, jsx_runtime_1.jsx)("button", __assign({ className: combinedClassName, css: combinedStyles, onClick: handleClick }, rest, { children: children })));
-});
+    return ((0, jsx_runtime_1.jsx)("button", __assign({ ref: ref, className: combinedClassName, css: combinedStyles, onClick: handleClick }, rest, { children: children })));
+}));
 exports.Button = Button;
 var templateObject_1, templateObject_2;

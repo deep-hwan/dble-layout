@@ -13,49 +13,49 @@ import { transformStylesProps } from "../styles/transformStylesProps";
 import { typographyStylesProps } from "../styles/typographyStylesProps";
 import { TxtElementType, TxtPropsType, TxtType } from "../types";
 import { mediaScreenSize } from "../utils/mediaScreenSize";
-import useRender from "../utils/useRender";
 
-const Txt = React.memo(
-  <T extends TxtElementType = "p">({
-    as,
-    children,
-    className,
-    txtSize,
-    txtWeight,
-    txtAlign,
-    txtColor,
-    txtShadow,
-    txtTransform,
-    txtDecoration,
-    lineHeight,
-    whiteSpace,
-    ellipsis,
-    sizes,
-    position,
-    padding,
-    margin,
-    borderRadius,
-    border,
-    background,
-    opacity,
-    gradient,
-    shadow,
-    axis,
-    scale,
-    rotate,
-    zIndex,
-    cursor,
-    userSelect,
-    transition = { time: 0.25, type: "ease-in-out" },
-    _hover,
-    _focus,
-    _active,
-    mq = {},
-    css: cssProp,
-    ...rest
-  }: TxtPropsType<T> & ComponentPropsWithoutRef<T>) => {
-    useRender();
-
+const Txt = React.forwardRef(
+  <T extends TxtElementType = "p">(
+    {
+      as,
+      children,
+      className,
+      txtSize,
+      txtWeight,
+      txtAlign,
+      txtColor,
+      txtShadow,
+      txtTransform,
+      txtDecoration,
+      lineHeight,
+      whiteSpace,
+      ellipsis,
+      sizes,
+      position,
+      padding,
+      margin,
+      borderRadius,
+      border,
+      background,
+      opacity,
+      gradient,
+      shadow,
+      axis,
+      scale,
+      rotate,
+      zIndex,
+      cursor,
+      userSelect,
+      transition = { time: 0.25, type: "ease-in-out" },
+      _hover,
+      _focus,
+      _active,
+      mq = {},
+      css: cssProp,
+      ...rest
+    }: TxtPropsType<T> & ComponentPropsWithoutRef<T>,
+    ref: React.Ref<T>
+  ) => {
     const pPs = {
       txtSize,
       txtWeight,
@@ -202,11 +202,16 @@ const Txt = React.memo(
     const combinedClassName = cx("dble-txt", className);
 
     return (
-      <Component className={combinedClassName} css={combinedStyles} {...rest as any}>
+      <Component
+        ref={ref}
+        className={combinedClassName}
+        css={combinedStyles}
+        {...(rest as any)}
+      >
         {children}
       </Component>
     );
   }
 );
 
-export { Txt };
+export default React.memo(Txt);

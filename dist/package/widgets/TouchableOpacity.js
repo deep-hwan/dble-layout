@@ -48,11 +48,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TouchableOpacity = void 0;
 var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 /** @jsxImportSource @emotion/react */
 var css_1 = require("@emotion/css");
@@ -69,10 +65,8 @@ var spaceStylesProps_1 = require("../styles/spaceStylesProps");
 var transformStylesProps_1 = require("../styles/transformStylesProps");
 var typographyStylesProps_1 = require("../styles/typographyStylesProps");
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
-var useRender_1 = __importDefault(require("../utils/useRender"));
-var TouchableOpacity = react_2.default.memo(function (_a) {
-    var as = _a.as, children = _a.children, className = _a.className, txtSize = _a.txtSize, txtWeight = _a.txtWeight, txtAlign = _a.txtAlign, txtColor = _a.txtColor, txtShadow = _a.txtShadow, txtTransform = _a.txtTransform, txtDecoration = _a.txtDecoration, lineHeight = _a.lineHeight, whiteSpace = _a.whiteSpace, ellipsis = _a.ellipsis, display = _a.display, sizes = _a.sizes, flex = _a.flex, position = _a.position, padding = _a.padding, margin = _a.margin, borderRadius = _a.borderRadius, border = _a.border, background = _a.background, opacity = _a.opacity, gradient = _a.gradient, shadow = _a.shadow, axis = _a.axis, scale = _a.scale, rotate = _a.rotate, zIndex = _a.zIndex, cursor = _a.cursor, _b = _a.userSelect, userSelect = _b === void 0 ? 'none' : _b, _c = _a.transition, transition = _c === void 0 ? { time: 0.2, type: 'ease-in-out' } : _c, _hover = _a._hover, _focus = _a._focus, _active = _a._active, _disabled = _a._disabled, _d = _a.mq, mq = _d === void 0 ? {} : _d, cssProp = _a.css, rest = __rest(_a, ["as", "children", "className", "txtSize", "txtWeight", "txtAlign", "txtColor", "txtShadow", "txtTransform", "txtDecoration", "lineHeight", "whiteSpace", "ellipsis", "display", "sizes", "flex", "position", "padding", "margin", "borderRadius", "border", "background", "opacity", "gradient", "shadow", "axis", "scale", "rotate", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "_disabled", "mq", "css"]);
-    (0, useRender_1.default)();
+var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
+    var as = _a.as, children = _a.children, className = _a.className, txtSize = _a.txtSize, txtWeight = _a.txtWeight, txtAlign = _a.txtAlign, txtColor = _a.txtColor, txtShadow = _a.txtShadow, txtTransform = _a.txtTransform, txtDecoration = _a.txtDecoration, lineHeight = _a.lineHeight, whiteSpace = _a.whiteSpace, ellipsis = _a.ellipsis, display = _a.display, sizes = _a.sizes, flex = _a.flex, position = _a.position, padding = _a.padding, margin = _a.margin, borderRadius = _a.borderRadius, border = _a.border, background = _a.background, opacity = _a.opacity, gradient = _a.gradient, shadow = _a.shadow, axis = _a.axis, scale = _a.scale, rotate = _a.rotate, zIndex = _a.zIndex, cursor = _a.cursor, _b = _a.userSelect, userSelect = _b === void 0 ? "none" : _b, _c = _a.transition, transition = _c === void 0 ? { time: 0.2, type: "ease-in-out" } : _c, _hover = _a._hover, _focus = _a._focus, _active = _a._active, _disabled = _a._disabled, _d = _a.mq, mq = _d === void 0 ? {} : _d, cssProp = _a.css, rest = __rest(_a, ["as", "children", "className", "txtSize", "txtWeight", "txtAlign", "txtColor", "txtShadow", "txtTransform", "txtDecoration", "lineHeight", "whiteSpace", "ellipsis", "display", "sizes", "flex", "position", "padding", "margin", "borderRadius", "border", "background", "opacity", "gradient", "shadow", "axis", "scale", "rotate", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "_disabled", "mq", "css"]);
     var pPs = {
         txtSize: txtSize,
         txtWeight: txtWeight,
@@ -100,7 +94,7 @@ var TouchableOpacity = react_2.default.memo(function (_a) {
         scale: scale,
         rotate: rotate,
     };
-    var Component = as || 'div';
+    var Component = as || "div";
     var handleClick = (0, react_2.useCallback)(function (event) {
         if (rest === null || rest === void 0 ? void 0 : rest.onClick)
             rest === null || rest === void 0 ? void 0 : rest.onClick(event);
@@ -119,17 +113,27 @@ var TouchableOpacity = react_2.default.memo(function (_a) {
             whiteSpace: props.whiteSpace,
             ellipsis: props.ellipsis,
             txtDecoration: props.txtDecoration,
-        })), ((props.display === 'flex' || !props.display) && (0, flexStylesProps_1.flexStylesProps)(props.flex))), (0, screenSizeStylesProps_1.screenSizeStylesProps)(props.sizes)), (0, positionStylesProps_1.positionStylesProps)({ position: props.position })), (0, spaceStylesProps_1.spaceStylesProps)({ padding: props.padding, margin: props.margin })), (0, borderStylesProps_1.borderStylesProps)({ border: props.border, borderRadius: props.borderRadius })), (0, bgStylesProps_1.backgroundStylesProps)(props.background)), (0, gradientStylesProps_1.gradientStylesProps)(props.gradient)), (0, shadowStylesProps_1.shadowStylesProps)(props.shadow)), (0, transformStylesProps_1.transformStylesProps)({ axis: props.axis, scale: props.scale, rotate: props.rotate }));
+        })), ((props.display === "flex" || !props.display) &&
+            (0, flexStylesProps_1.flexStylesProps)(props.flex))), (0, screenSizeStylesProps_1.screenSizeStylesProps)(props.sizes)), (0, positionStylesProps_1.positionStylesProps)({ position: props.position })), (0, spaceStylesProps_1.spaceStylesProps)({ padding: props.padding, margin: props.margin })), (0, borderStylesProps_1.borderStylesProps)({
+            border: props.border,
+            borderRadius: props.borderRadius,
+        })), (0, bgStylesProps_1.backgroundStylesProps)(props.background)), (0, gradientStylesProps_1.gradientStylesProps)(props.gradient)), (0, shadowStylesProps_1.shadowStylesProps)(props.shadow)), (0, transformStylesProps_1.transformStylesProps)({
+            axis: props.axis,
+            scale: props.scale,
+            rotate: props.rotate,
+        }));
     };
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
         return (0, react_1.css)({
-            cursor: 'disabled' in rest && rest.disabled ? 'default' : (cursor !== null && cursor !== void 0 ? cursor : 'pointer'),
-            transition: "all ".concat(transition.time || 0.2, "s ").concat(transition.type || 'ease-in-out'),
-            display: 'inline-block',
-            listStyle: 'none',
-            outline: 'none',
+            cursor: "disabled" in rest && rest.disabled
+                ? "default"
+                : cursor !== null && cursor !== void 0 ? cursor : "pointer",
+            transition: "all ".concat(transition.time || 0.2, "s ").concat(transition.type || "ease-in-out"),
+            display: "inline-block",
+            listStyle: "none",
+            outline: "none",
             zIndex: zIndex,
             userSelect: userSelect,
             borderWidth: 0,
@@ -141,7 +145,7 @@ var TouchableOpacity = react_2.default.memo(function (_a) {
         return mediaScreenSize_1.mediaScreenSize.map(function (size) {
             var breakpointKey = "w".concat(size);
             var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
-            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "], ["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "])), size, styles ? ExtendedStyles(styles) : '');
+            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "], ["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "])), size, styles ? ExtendedStyles(styles) : "");
         });
     }, [mq]);
     //
@@ -149,21 +153,21 @@ var TouchableOpacity = react_2.default.memo(function (_a) {
     var pseudoStyles = (0, react_2.useMemo)(function () {
         var _a, _b, _c;
         return (0, react_1.css)({
-            '&:hover': ExtendedStyles(_hover || {}),
-            '&:focus': ExtendedStyles(__assign(__assign({}, _focus), { opacity: (_a = _focus === null || _focus === void 0 ? void 0 : _focus.opacity) !== null && _a !== void 0 ? _a : 0.75 })),
-            '&:active': ExtendedStyles(__assign(__assign({}, _active), { opacity: (_b = _active === null || _active === void 0 ? void 0 : _active.opacity) !== null && _b !== void 0 ? _b : 0.75 })),
-            '&:disabled': ExtendedStyles(__assign(__assign({}, _disabled), { txtColor: (_c = _disabled === null || _disabled === void 0 ? void 0 : _disabled.txtColor) !== null && _c !== void 0 ? _c : '#aaa' })),
+            "&:hover": ExtendedStyles(_hover || {}),
+            "&:focus": ExtendedStyles(__assign(__assign({}, _focus), { opacity: (_a = _focus === null || _focus === void 0 ? void 0 : _focus.opacity) !== null && _a !== void 0 ? _a : 0.75 })),
+            "&:active": ExtendedStyles(__assign(__assign({}, _active), { opacity: (_b = _active === null || _active === void 0 ? void 0 : _active.opacity) !== null && _b !== void 0 ? _b : 0.75 })),
+            "&:disabled": ExtendedStyles(__assign(__assign({}, _disabled), { txtColor: (_c = _disabled === null || _disabled === void 0 ? void 0 : _disabled.txtColor) !== null && _c !== void 0 ? _c : "#aaa" })),
         });
     }, [_hover, _focus, _active, _disabled]);
     //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { display: (_a = pPs.display) !== null && _a !== void 0 ? _a : 'flex', flex: pPs.display === 'flex' || !pPs.display
-                ? __assign(__assign({}, pPs.flex), { direction: (_c = (_b = pPs.flex) === null || _b === void 0 ? void 0 : _b.direction) !== null && _c !== void 0 ? _c : 'column' }) : undefined, position: __assign(__assign({}, pPs.position), { type: (_e = (_d = pPs.position) === null || _d === void 0 ? void 0 : _d.type) !== null && _e !== void 0 ? _e : 'relative' }), gradient: __assign(__assign({}, pPs.gradient), { type: (_g = (_f = pPs.gradient) === null || _f === void 0 ? void 0 : _f.type) !== null && _g !== void 0 ? _g : 'linear' }), border: __assign(__assign({}, pPs.border), { stroke: (_j = (_h = pPs.border) === null || _h === void 0 ? void 0 : _h.stroke) !== null && _j !== void 0 ? _j : 0, color: (_l = (_k = pPs.border) === null || _k === void 0 ? void 0 : _k.color) !== null && _l !== void 0 ? _l : 'transparent', shape: (_o = (_m = pPs.border) === null || _m === void 0 ? void 0 : _m.shape) !== null && _o !== void 0 ? _o : 'solid' }), txtSize: (_p = pPs.txtSize) !== null && _p !== void 0 ? _p : 14, txtColor: (_q = pPs.txtColor) !== null && _q !== void 0 ? _q : '#5b94f0', whiteSpace: (_r = pPs.whiteSpace) !== null && _r !== void 0 ? _r : 'pre-line' })), mediaStyles, pseudoStyles, cssProp);
+        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { display: (_a = pPs.display) !== null && _a !== void 0 ? _a : "flex", flex: pPs.display === "flex" || !pPs.display
+                ? __assign(__assign({}, pPs.flex), { direction: (_c = (_b = pPs.flex) === null || _b === void 0 ? void 0 : _b.direction) !== null && _c !== void 0 ? _c : "column" }) : undefined, position: __assign(__assign({}, pPs.position), { type: (_e = (_d = pPs.position) === null || _d === void 0 ? void 0 : _d.type) !== null && _e !== void 0 ? _e : "relative" }), gradient: __assign(__assign({}, pPs.gradient), { type: (_g = (_f = pPs.gradient) === null || _f === void 0 ? void 0 : _f.type) !== null && _g !== void 0 ? _g : "linear" }), border: __assign(__assign({}, pPs.border), { stroke: (_j = (_h = pPs.border) === null || _h === void 0 ? void 0 : _h.stroke) !== null && _j !== void 0 ? _j : 0, color: (_l = (_k = pPs.border) === null || _k === void 0 ? void 0 : _k.color) !== null && _l !== void 0 ? _l : "transparent", shape: (_o = (_m = pPs.border) === null || _m === void 0 ? void 0 : _m.shape) !== null && _o !== void 0 ? _o : "solid" }), txtSize: (_p = pPs.txtSize) !== null && _p !== void 0 ? _p : 14, txtColor: (_q = pPs.txtColor) !== null && _q !== void 0 ? _q : "#5b94f0", whiteSpace: (_r = pPs.whiteSpace) !== null && _r !== void 0 ? _r : "pre-line" })), mediaStyles, pseudoStyles, cssProp);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]);
-    var combinedClassName = (0, css_1.cx)('dble-touchableOpacity', className);
-    return ((0, jsx_runtime_1.jsx)(Component, __assign({ className: combinedClassName, css: combinedStyles, onClick: handleClick }, rest, { children: children })));
+    var combinedClassName = (0, css_1.cx)("dble-touchableOpacity", className);
+    return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: combinedStyles, onClick: handleClick }, rest, { children: children })));
 });
-exports.TouchableOpacity = TouchableOpacity;
+exports.default = react_2.default.memo(TouchableOpacity);
 var templateObject_1, templateObject_2;
