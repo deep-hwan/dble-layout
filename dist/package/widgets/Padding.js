@@ -116,7 +116,7 @@ var Padding = react_2.default.forwardRef(function (props, ref) {
         return mediaScreenSize_1.mediaScreenSize.map(function (size) {
             var breakpointKey = "w".concat(size);
             var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
-            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "], ["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "])), size, styles ? ExtendedStyles(styles) : "");
+            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "], ["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "])), size, styles ? ExtendedStyles(styles) : "");
         });
     }, [mq]);
     //
@@ -132,7 +132,7 @@ var Padding = react_2.default.forwardRef(function (props, ref) {
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n    display: flex;\n        flex-direction: column;\n        align-items: start;\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n    display: flex;\n        flex-direction: column;\n        align-items: start;\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { width: (_a = pPs.width) !== null && _a !== void 0 ? _a : "100%" })), mediaStyles, pseudoStyles);
+        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n      ", "\n      ", "\n    ", "\n    ", "\n    display: flex;\n      flex-direction: column;\n      align-items: start;\n    "], ["\n      ", "\n      ", "\n    ", "\n    ", "\n    display: flex;\n      flex-direction: column;\n      align-items: start;\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { width: (_a = pPs.width) !== null && _a !== void 0 ? _a : "100%" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
     var combinedClassName = (0, css_1.cx)("dble-padding", className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));

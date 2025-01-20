@@ -14,8 +14,11 @@ import { typographyStylesProps } from "../styles/typographyStylesProps";
 import { TxtElementType, TxtPropsType, TxtType } from "../types";
 import { mediaScreenSize } from "../utils/mediaScreenSize";
 
-const Txt = React.forwardRef(
-  <T extends TxtElementType = "p">(
+const Txt = React.forwardRef<
+  HTMLElement,
+  TxtPropsType<TxtElementType> & ComponentPropsWithoutRef<TxtElementType>
+>(
+  (
     {
       as,
       children,
@@ -53,8 +56,8 @@ const Txt = React.forwardRef(
       mq = {},
       css: cssProp,
       ...rest
-    }: TxtPropsType<T> & ComponentPropsWithoutRef<T>,
-    ref: React.Ref<T>
+    },
+    ref
   ) => {
     const pPs = {
       txtSize,

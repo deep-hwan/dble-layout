@@ -8,161 +8,160 @@ import { LayoutElementType } from "../types/piece/LayoutElementType";
 import { PaddingPropsType, PaddingType } from "../types/props/PaddingPropsType";
 import { mediaScreenSize } from "../utils/mediaScreenSize";
 
-const Padding = React.forwardRef(
-  <T extends LayoutElementType = "div">(
-    props: PaddingPropsType<T> & ComponentPropsWithoutRef<T>,
-    ref: React.Ref<T>
-  ) => {
-    const {
-      as,
-      children,
-      className,
-      width,
-      maxWidth,
-      minWidth,
-      height,
-      maxHeight,
-      minHeight,
-      all,
-      horizontal,
-      vertical,
-      top,
-      bottom,
-      left,
-      right,
-      zIndex,
-      cursor,
-      transition = { time: 0.25, type: "ease-in-out" },
-      _hover,
-      _focus,
-      _active,
-      mq = {},
-      css: cssProp,
-      ...rest
-    } = props;
+const Padding = React.forwardRef<
+  HTMLElement,
+  PaddingPropsType<LayoutElementType> &
+    ComponentPropsWithoutRef<LayoutElementType>
+>((props, ref) => {
+  const {
+    as,
+    children,
+    className,
+    width,
+    maxWidth,
+    minWidth,
+    height,
+    maxHeight,
+    minHeight,
+    all,
+    horizontal,
+    vertical,
+    top,
+    bottom,
+    left,
+    right,
+    zIndex,
+    cursor,
+    transition = { time: 0.25, type: "ease-in-out" },
+    _hover,
+    _focus,
+    _active,
+    mq = {},
+    css: cssProp,
+    ...rest
+  } = props;
 
-    const pPs = {
-      width,
-      maxWidth,
-      minWidth,
-      height,
-      maxHeight,
-      minHeight,
-      all,
-      horizontal,
-      vertical,
-      top,
-      bottom,
-      left,
-      right,
+  const pPs = {
+    width,
+    maxWidth,
+    minWidth,
+    height,
+    maxHeight,
+    minHeight,
+    all,
+    horizontal,
+    vertical,
+    top,
+    bottom,
+    left,
+    right,
+  };
+
+  const Component = as || "div";
+
+  //
+  // extended props styles
+  const ExtendedStyles = (props: PaddingType) => {
+    return {
+      display: "flex",
+      ...screenSizeStylesProps({
+        width: props.width,
+        maxWidth: props.maxWidth,
+        minWidth: props.minWidth,
+        height: props.height,
+        maxHeight: props.maxHeight,
+        minHeight: props.minHeight,
+      }),
+      ...spaceStylesProps({
+        padding: {
+          all: props.all,
+          horizontal: props.horizontal,
+          vertical: props.vertical,
+          top: props.top,
+          bottom: props.bottom,
+          left: props.left,
+          right: props.right,
+        },
+      }),
     };
+  };
 
-    const Component = as || "div";
+  //
+  // base style
+  const baseStyle = useMemo(
+    () =>
+      css({
+        cursor: cursor
+          ? cursor
+          : (rest.onClick || rest.onMouseEnter) && "pointer",
+        transition: `all ${transition.time || 0.25}s ${
+          transition.type || "ease-in-out"
+        }`,
+        listStyle: "none",
+        outline: "none",
+        zIndex,
+      }),
+    [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex]
+  );
 
-    //
-    // extended props styles
-    const ExtendedStyles = (props: PaddingType) => {
-      return {
-        display: "flex",
-        ...screenSizeStylesProps({
-          width: props.width,
-          maxWidth: props.maxWidth,
-          minWidth: props.minWidth,
-          height: props.height,
-          maxHeight: props.maxHeight,
-          minHeight: props.minHeight,
-        }),
-        ...spaceStylesProps({
-          padding: {
-            all: props.all,
-            horizontal: props.horizontal,
-            vertical: props.vertical,
-            top: props.top,
-            bottom: props.bottom,
-            left: props.left,
-            right: props.right,
-          },
-        }),
-      };
-    };
+  //
+  // media-query styles
+  const mediaStyles = useMemo(
+    () =>
+      mediaScreenSize.map((size) => {
+        const breakpointKey = `w${size}` as keyof typeof mq;
+        const styles = mq?.[breakpointKey];
 
-    //
-    // base style
-    const baseStyle = useMemo(
-      () =>
-        css({
-          cursor: cursor
-            ? cursor
-            : (rest.onClick || rest.onMouseEnter) && "pointer",
-          transition: `all ${transition.time || 0.25}s ${
-            transition.type || "ease-in-out"
-          }`,
-          listStyle: "none",
-          outline: "none",
-          zIndex,
-        }),
-      [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex]
-    );
+        return css`
+          @media (max-width: ${size}px) {
+            ${styles ? ExtendedStyles(styles) : ""}
+          }
+        `;
+      }),
+    [mq]
+  );
 
-    //
-    // media-query styles
-    const mediaStyles = useMemo(
-      () =>
-        mediaScreenSize.map((size) => {
-          const breakpointKey = `w${size}` as keyof typeof mq;
-          const styles = mq?.[breakpointKey];
+  //
+  // pseudos
+  const pseudoStyles = useMemo(
+    () =>
+      css({
+        "&:hover": ExtendedStyles(_hover || {}),
+        "&:focus": ExtendedStyles(_focus || {}),
+        "&:active": ExtendedStyles(_active || {}),
+      }),
+    [_hover, _focus, _active]
+  );
 
-          return css`
-            @media (max-width: ${size}px) {
-              ${styles ? ExtendedStyles(styles) : ""}
-            }
-          `;
-        }),
-      [mq]
-    );
-
-    //
-    // pseudos
-    const pseudoStyles = useMemo(
-      () =>
-        css({
-          "&:hover": ExtendedStyles(_hover || {}),
-          "&:focus": ExtendedStyles(_focus || {}),
-          "&:active": ExtendedStyles(_active || {}),
-        }),
-      [_hover, _focus, _active]
-    );
-
-    //
-    // combined styles
-    const combinedStyles = useMemo(
-      () => css`
-        ${baseStyle}
-        ${ExtendedStyles({
-          ...pPs,
-          width: pPs.width ?? "100%",
-        })}
+  //
+  // combined styles
+  const combinedStyles = useMemo(
+    () => css`
+      ${baseStyle}
+      ${ExtendedStyles({
+        ...pPs,
+        width: pPs.width ?? "100%",
+      })}
     ${mediaStyles}
     ${pseudoStyles}
     display: flex;
-        flex-direction: column;
-        align-items: start;
-      `,
-      [baseStyle, pPs, mediaStyles, pseudoStyles]
-    );
+      flex-direction: column;
+      align-items: start;
+    `,
+    [baseStyle, pPs, mediaStyles, pseudoStyles]
+  );
 
-    const combinedClassName = cx("dble-padding", className);
-    return (
-      <Component
-        ref={ref}
-        className={combinedClassName}
-        css={css([combinedStyles, cssProp])}
-        {...(rest as any)}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
+  const combinedClassName = cx("dble-padding", className);
+  return (
+    <Component
+      ref={ref}
+      className={combinedClassName}
+      css={css([combinedStyles, cssProp])}
+      {...(rest as any)}
+    >
+      {children}
+    </Component>
+  );
+});
 
 export default React.memo(Padding);

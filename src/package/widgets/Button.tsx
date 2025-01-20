@@ -15,7 +15,10 @@ import { ButtonPropsType, ButtonType } from "../types";
 import { mediaScreenSize } from "../utils/mediaScreenSize";
 
 const Button = React.memo(
-  React.forwardRef(
+  React.forwardRef<
+    HTMLElement,
+    ButtonPropsType & ComponentPropsWithoutRef<"button">
+  >(
     (
       {
         children,
@@ -56,8 +59,8 @@ const Button = React.memo(
         mq = {},
         css: cssProp,
         ...rest
-      }: ButtonPropsType & ComponentPropsWithoutRef<"button">,
-      ref: React.Ref<HTMLElement>
+      },
+      ref
     ) => {
       const pPs = {
         txtSize,

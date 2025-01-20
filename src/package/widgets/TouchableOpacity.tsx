@@ -19,8 +19,12 @@ import {
 } from "../types";
 import { mediaScreenSize } from "../utils/mediaScreenSize";
 
-const TouchableOpacity = React.forwardRef(
-  <T extends TouchableOpacityElementsType = "div">(
+const TouchableOpacity = React.forwardRef<
+  HTMLElement,
+  TouchableOpacitPropsType<TouchableOpacityElementsType> &
+    ComponentPropsWithoutRef<TouchableOpacityElementsType>
+>(
+  (
     {
       as,
       children,
@@ -61,8 +65,8 @@ const TouchableOpacity = React.forwardRef(
       mq = {},
       css: cssProp,
       ...rest
-    }: TouchableOpacitPropsType<T> & ComponentPropsWithoutRef<T>,
-    ref: React.Ref<T>
+    },
+    ref
   ) => {
     const pPs = {
       txtSize,

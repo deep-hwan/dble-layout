@@ -1,16 +1,19 @@
 import { useRef } from "react";
-import { Button, Flex, Layer, Padding, TouchableOpacity, Txt } from "./package";
+import {
+  Button,
+  Flex,
+  Layer,
+  Padding,
+  Skeleton,
+  TouchableOpacity,
+  Txt,
+} from "./package";
 
 export default function App() {
   const ref = useRef(null);
-  const tabRef = useRef(null);
-  const ttRef = useRef(null);
-
-  console.log("tt", ttRef.current);
-  // useEffect(() => {
-  //   console.log("layer", ref.current);
-  //   console.log("tabRef", tabRef.current);
-  // }, []);
+  const tabRef = useRef<HTMLButtonElement>(null);
+  const ttRef = useRef<HTMLDivElement>(null);
+  const skRef = useRef<HTMLDivElement>(null);
 
   return (
     <Layer
@@ -21,11 +24,14 @@ export default function App() {
       background={{ fill: "#000" }}
     >
       <Padding all={40} _hover={{ all: 200 }}>
-        <Flex align="center" gap={50}>
+        <Flex align="center" gap={50} ref={ttRef}>
+          <Skeleton ref={skRef} height={50} />
           <Txt txtColor="#fff">asd</Txt>
           <Txt txtColor="#fff">hh</Txt>
-          <TouchableOpacity color="#fff">11</TouchableOpacity>
-          <Button ref={tabRef}>Tab</Button>
+          <TouchableOpacity ref={tabRef} color="#fff">
+            TouchableOpacity
+          </TouchableOpacity>
+          <Button>Tab</Button>
           <Txt css={{ padding: 20, fontSize: 30 }}>1</Txt>
         </Flex>
       </Padding>

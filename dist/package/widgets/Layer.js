@@ -120,7 +120,7 @@ var Layer = react_2.default.forwardRef(function (props, ref) {
         return mediaScreenSize_1.mediaScreenSize.map(function (size) {
             var breakpointKey = "w".concat(size);
             var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
-            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "], ["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "])), size, styles ? ExtendedStyles(styles) : "");
+            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "], ["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "])), size, styles ? ExtendedStyles(styles) : "");
         });
     }, [mq]);
     //
@@ -136,7 +136,7 @@ var Layer = react_2.default.forwardRef(function (props, ref) {
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { display: (_a = pPs.display) !== null && _a !== void 0 ? _a : "flex", sizes: __assign(__assign({}, pPs.sizes), { width: (_c = (_b = pPs.sizes) === null || _b === void 0 ? void 0 : _b.width) !== null && _c !== void 0 ? _c : "100%" }), flex: pPs.display === "flex" || !pPs.display
+        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n      ", "\n      ", "\n    ", "\n    ", "\n    "], ["\n      ", "\n      ", "\n    ", "\n    ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { display: (_a = pPs.display) !== null && _a !== void 0 ? _a : "flex", sizes: __assign(__assign({}, pPs.sizes), { width: (_c = (_b = pPs.sizes) === null || _b === void 0 ? void 0 : _b.width) !== null && _c !== void 0 ? _c : "100%" }), flex: pPs.display === "flex" || !pPs.display
                 ? __assign(__assign({}, pPs.flex), { direction: (_e = (_d = pPs.flex) === null || _d === void 0 ? void 0 : _d.direction) !== null && _e !== void 0 ? _e : "column" }) : undefined, position: __assign(__assign({}, pPs.position), { type: (_g = (_f = pPs.position) === null || _f === void 0 ? void 0 : _f.type) !== null && _g !== void 0 ? _g : "relative" }), gradient: __assign(__assign({}, pPs.gradient), { type: (_j = (_h = pPs.gradient) === null || _h === void 0 ? void 0 : _h.type) !== null && _j !== void 0 ? _j : "linear" }), border: __assign(__assign({}, pPs.border), { stroke: (_l = (_k = pPs.border) === null || _k === void 0 ? void 0 : _k.stroke) !== null && _l !== void 0 ? _l : 0, color: (_o = (_m = pPs.border) === null || _m === void 0 ? void 0 : _m.color) !== null && _o !== void 0 ? _o : "transparent", shape: (_q = (_p = pPs.border) === null || _p === void 0 ? void 0 : _p.shape) !== null && _q !== void 0 ? _q : "solid" }) })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
     var combinedClassName = (0, css_1.cx)("dble-layer", className);
