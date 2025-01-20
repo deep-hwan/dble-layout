@@ -127,10 +127,10 @@ var Grid = react_2.default.forwardRef(function (props, ref) {
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a, _b;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { sizes: __assign(__assign({}, pPs.sizes), { width: (_b = (_a = pPs.sizes) === null || _a === void 0 ? void 0 : _a.width) !== null && _b !== void 0 ? _b : "100%" }) })), mediaStyles, pseudoStyles, cssProp);
-    }, [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]);
+        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { sizes: __assign(__assign({}, pPs.sizes), { width: (_b = (_a = pPs.sizes) === null || _a === void 0 ? void 0 : _a.width) !== null && _b !== void 0 ? _b : "100%" }) })), mediaStyles, pseudoStyles);
+    }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
     var combinedClassName = (0, css_1.cx)("dble-flex", className);
-    return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: combinedStyles }, rest, { children: children })));
+    return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });
 exports.default = react_2.default.memo(Grid);
 var templateObject_1, templateObject_2;

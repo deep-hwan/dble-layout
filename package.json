@@ -1,6 +1,6 @@
 {
-  "name": "dble-test",
-  "version": "2.2.3",
+  "name": "dble-widget",
+  "version": "0.0.2",
   "private": false,
   "files": [
     "dist",
@@ -70,7 +70,7 @@
       "last 1 safari version"
     ]
   },
-  "description": "This method is very similar to FlatList in React-Native. Try FlatList in React.js right now",
+  "description": "reactjs component library widgets",
   "repository": {
     "type": "git",
     "url": "https://github.com/deep-hwan/react-flatlist-ui"
@@ -78,13 +78,14 @@
   "keywords": [
     "typescript",
     "Reactjs",
-    "react-flatlist",
-    "react-native-flatlist",
-    "flatlist-react",
-    "flatlist"
+    "react-component",
+    "nextjs",
+    "widget",
+    "design-component"
   ],
   "author": "deep",
   "license": "ISC",
+  "homepage": "https://www.dbleui.com",
   "devDependencies": {
     "vite-plugin-dts": "^3.7.2"
   }

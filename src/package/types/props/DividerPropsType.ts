@@ -1,9 +1,10 @@
-import { MediaQueryType } from '../piece/MediaQueryType';
-import { TrafficType } from '../piece/TrafficType';
+import { CSSObject } from "@emotion/react";
+import { MediaQueryType } from "../piece/MediaQueryType";
+import { TrafficType } from "../piece/TrafficType";
 
 // Divider
 export interface DividerType {
-  direction?: 'horizontal' | 'vertical';
+  direction?: "horizontal" | "vertical";
   width?: number | string;
   height?: number | string;
   color?: string;
@@ -11,8 +12,12 @@ export interface DividerType {
 }
 
 export interface DividerPropsType
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'size' | 'direction' | 'color'>,
+  extends Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      "children" | "size" | "direction" | "color"
+    >,
     DividerType {
   children?: never[];
   mq?: MediaQueryType<DividerType>;
+  css?: CSSObject;
 }

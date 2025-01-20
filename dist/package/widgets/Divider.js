@@ -45,7 +45,7 @@ var react_1 = require("@emotion/react");
 var react_2 = __importDefault(require("react"));
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
 var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
-    var _b = _a.direction, direction = _b === void 0 ? "horizontal" : _b, width = _a.width, height = _a.height, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, spacing = _a.spacing, mq = _a.mq, props = __rest(_a, ["direction", "width", "height", "color", "spacing", "mq"]);
+    var _b = _a.direction, direction = _b === void 0 ? "horizontal" : _b, width = _a.width, height = _a.height, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, spacing = _a.spacing, mq = _a.mq, cssProp = _a.css, props = __rest(_a, ["direction", "width", "height", "color", "spacing", "mq", "css"]);
     var Types = function (props) {
         var _a, _b, _c, _d;
         return ({
@@ -67,9 +67,11 @@ var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
             ? (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "], ["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "])), size, DividerStyle(styles)) : "";
     });
     var combinedClassName = (0, css_1.cx)("dble-divider", props.className);
-    return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: __spreadArray([
+    return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)(__spreadArray(__spreadArray([
             DividerStyle({ direction: direction, width: width, height: height, spacing: spacing, color: color })
-        ], mediaStyles, true) }, props)));
+        ], mediaStyles, true), [
+            cssProp,
+        ], false)) }, props)));
 });
 exports.default = react_2.default.memo(Divider);
 var templateObject_1;

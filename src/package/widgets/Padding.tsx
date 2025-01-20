@@ -2,36 +2,36 @@
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { ComponentPropsWithoutRef, useMemo } from "react";
-import { gridStylesProps } from "../styles/gridStylesProps";
 import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
+import { spaceStylesProps } from "../styles/spaceStylesProps";
 import { LayoutElementType } from "../types/piece/LayoutElementType";
-import { GridPropsType, GridType } from "../types/props/GridPropsType";
+import { PaddingPropsType, PaddingType } from "../types/props/PaddingPropsType";
 import { mediaScreenSize } from "../utils/mediaScreenSize";
 
-const Grid = React.forwardRef(
+const Padding = React.forwardRef(
   <T extends LayoutElementType = "div">(
-    props: GridPropsType<T> & ComponentPropsWithoutRef<T>,
+    props: PaddingPropsType<T> & ComponentPropsWithoutRef<T>,
     ref: React.Ref<T>
   ) => {
     const {
       as,
       children,
       className,
-      templateColumns,
-      templateRows,
-      templateAreas,
-      gap,
-      autoFlow,
-      autoColumns,
-      autoRows,
-      justifyItems,
-      alignItems,
-      justifyContent,
-      alignContent,
-      sizes,
+      width,
+      maxWidth,
+      minWidth,
+      height,
+      maxHeight,
+      minHeight,
+      all,
+      horizontal,
+      vertical,
+      top,
+      bottom,
+      left,
+      right,
       zIndex,
       cursor,
-      userSelect,
       transition = { time: 0.25, type: "ease-in-out" },
       _hover,
       _focus,
@@ -42,40 +42,46 @@ const Grid = React.forwardRef(
     } = props;
 
     const pPs = {
-      sizes,
-      templateColumns,
-      templateRows,
-      templateAreas,
-      gap,
-      autoFlow,
-      autoColumns,
-      autoRows,
-      justifyItems,
-      alignItems,
-      justifyContent,
-      alignContent,
+      width,
+      maxWidth,
+      minWidth,
+      height,
+      maxHeight,
+      minHeight,
+      all,
+      horizontal,
+      vertical,
+      top,
+      bottom,
+      left,
+      right,
     };
 
     const Component = as || "div";
 
     //
     // extended props styles
-    const ExtendedStyles = (props: GridType) => {
+    const ExtendedStyles = (props: PaddingType) => {
       return {
-        display: "grid",
-        ...screenSizeStylesProps(props.sizes),
-        ...gridStylesProps({
-          templateColumns: props.templateColumns,
-          templateRows: props.templateRows,
-          templateAreas: props.templateAreas,
-          gap: props.gap,
-          autoFlow: props.autoFlow,
-          autoColumns: props.autoColumns,
-          autoRows: props.autoRows,
-          justifyItems: props.justifyItems,
-          alignItems: props.alignItems,
-          justifyContent: props.justifyContent,
-          alignContent: props.alignContent,
+        display: "flex",
+        ...screenSizeStylesProps({
+          width: props.width,
+          maxWidth: props.maxWidth,
+          minWidth: props.minWidth,
+          height: props.height,
+          maxHeight: props.maxHeight,
+          minHeight: props.minHeight,
+        }),
+        ...spaceStylesProps({
+          padding: {
+            all: props.all,
+            horizontal: props.horizontal,
+            vertical: props.vertical,
+            top: props.top,
+            bottom: props.bottom,
+            left: props.left,
+            right: props.right,
+          },
         }),
       };
     };
@@ -94,9 +100,8 @@ const Grid = React.forwardRef(
           listStyle: "none",
           outline: "none",
           zIndex,
-          userSelect,
         }),
-      [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]
+      [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex]
     );
 
     //
@@ -135,15 +140,18 @@ const Grid = React.forwardRef(
         ${baseStyle}
         ${ExtendedStyles({
           ...pPs,
-          sizes: { ...pPs.sizes, width: pPs.sizes?.width ?? "100%" },
+          width: pPs.width ?? "100%",
         })}
     ${mediaStyles}
     ${pseudoStyles}
+    display: flex;
+        flex-direction: column;
+        align-items: start;
       `,
       [baseStyle, pPs, mediaStyles, pseudoStyles]
     );
 
-    const combinedClassName = cx("dble-flex", className);
+    const combinedClassName = cx("dble-padding", className);
     return (
       <Component
         ref={ref}
@@ -157,4 +165,4 @@ const Grid = React.forwardRef(
   }
 );
 
-export default React.memo(Grid);
+export default React.memo(Padding);

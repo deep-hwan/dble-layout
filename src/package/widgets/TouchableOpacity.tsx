@@ -231,9 +231,8 @@ const TouchableOpacity = React.forwardRef(
         })}
     ${mediaStyles}
     ${pseudoStyles}
-    ${cssProp}
       `,
-      [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]
+      [baseStyle, pPs, mediaStyles, pseudoStyles]
     );
 
     const combinedClassName = cx("dble-touchableOpacity", className);
@@ -242,7 +241,7 @@ const TouchableOpacity = React.forwardRef(
       <Component
         ref={ref}
         className={combinedClassName}
-        css={combinedStyles}
+        css={css([combinedStyles, cssProp])}
         onClick={handleClick}
         {...(rest as any)}
       >

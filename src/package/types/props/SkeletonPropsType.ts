@@ -1,4 +1,5 @@
-import { MediaQueryType } from '../piece/MediaQueryType';
+import { CSSObject } from "@emotion/react";
+import { MediaQueryType } from "../piece/MediaQueryType";
 
 export interface SkeletonType {
   width?: number;
@@ -9,8 +10,12 @@ export interface SkeletonType {
 }
 
 export interface SkeletonPropsType
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'size' | 'direction' | 'color'>,
+  extends Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      "children" | "size" | "direction" | "color"
+    >,
     SkeletonType {
   children?: never[];
   mq?: MediaQueryType<SkeletonType>;
+  css?: CSSObject;
 }

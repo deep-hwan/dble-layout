@@ -54,45 +54,47 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
-var flexStylesProps_1 = require("../styles/flexStylesProps");
 var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
+var spaceStylesProps_1 = require("../styles/spaceStylesProps");
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
-var Flex = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, flex = props.flex, direction = props.direction, isReverse = props.isReverse, align = props.align, crossAlign = props.crossAlign, gap = props.gap, order = props.order, grow = props.grow, shrink = props.shrink, basis = props.basis, alignContent = props.alignContent, alignSelf = props.alignSelf, wrap = props.wrap, sizes = props.sizes, zIndex = props.zIndex, cursor = props.cursor, userSelect = props.userSelect, _a = props.transition, transition = _a === void 0 ? { time: 0.25, type: "ease-in-out" } : _a, _hover = props._hover, _focus = props._focus, _active = props._active, _b = props.mq, mq = _b === void 0 ? {} : _b, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "flex", "direction", "isReverse", "align", "crossAlign", "gap", "order", "grow", "shrink", "basis", "alignContent", "alignSelf", "wrap", "sizes", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "mq", "css"]);
+var Padding = react_2.default.forwardRef(function (props, ref) {
+    var as = props.as, children = props.children, className = props.className, width = props.width, maxWidth = props.maxWidth, minWidth = props.minWidth, height = props.height, maxHeight = props.maxHeight, minHeight = props.minHeight, all = props.all, horizontal = props.horizontal, vertical = props.vertical, top = props.top, bottom = props.bottom, left = props.left, right = props.right, zIndex = props.zIndex, cursor = props.cursor, _a = props.transition, transition = _a === void 0 ? { time: 0.25, type: "ease-in-out" } : _a, _hover = props._hover, _focus = props._focus, _active = props._active, _b = props.mq, mq = _b === void 0 ? {} : _b, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "width", "maxWidth", "minWidth", "height", "maxHeight", "minHeight", "all", "horizontal", "vertical", "top", "bottom", "left", "right", "zIndex", "cursor", "transition", "_hover", "_focus", "_active", "mq", "css"]);
     var pPs = {
-        sizes: sizes,
-        flex: flex,
-        direction: direction,
-        isReverse: isReverse,
-        align: align,
-        crossAlign: crossAlign,
-        gap: gap,
-        order: order,
-        grow: grow,
-        shrink: shrink,
-        basis: basis,
-        alignContent: alignContent,
-        alignSelf: alignSelf,
-        wrap: wrap,
+        width: width,
+        maxWidth: maxWidth,
+        minWidth: minWidth,
+        height: height,
+        maxHeight: maxHeight,
+        minHeight: minHeight,
+        all: all,
+        horizontal: horizontal,
+        vertical: vertical,
+        top: top,
+        bottom: bottom,
+        left: left,
+        right: right,
     };
     var Component = as || "div";
     //
     // extended props styles
     var ExtendedStyles = function (props) {
-        return __assign(__assign({ display: "flex" }, (0, screenSizeStylesProps_1.screenSizeStylesProps)(props.sizes)), (0, flexStylesProps_1.flexStylesProps)({
-            flex: props.flex,
-            direction: props.direction,
-            isReverse: props.isReverse,
-            align: props.align,
-            crossAlign: props.crossAlign,
-            gap: props.gap,
-            order: props.order,
-            grow: props.grow,
-            shrink: props.shrink,
-            basis: props.basis,
-            alignContent: props.alignContent,
-            alignSelf: props.alignSelf,
-            wrap: props.wrap,
+        return __assign(__assign({ display: "flex" }, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
+            width: props.width,
+            maxWidth: props.maxWidth,
+            minWidth: props.minWidth,
+            height: props.height,
+            maxHeight: props.maxHeight,
+            minHeight: props.minHeight,
+        })), (0, spaceStylesProps_1.spaceStylesProps)({
+            padding: {
+                all: props.all,
+                horizontal: props.horizontal,
+                vertical: props.vertical,
+                top: props.top,
+                bottom: props.bottom,
+                left: props.left,
+                right: props.right,
+            },
         }));
     };
     //
@@ -106,9 +108,8 @@ var Flex = react_2.default.forwardRef(function (props, ref) {
             listStyle: "none",
             outline: "none",
             zIndex: zIndex,
-            userSelect: userSelect,
         });
-    }, [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]);
+    }, [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex]);
     //
     // media-query styles
     var mediaStyles = (0, react_2.useMemo)(function () {
@@ -130,11 +131,11 @@ var Flex = react_2.default.forwardRef(function (props, ref) {
     //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
-        var _a, _b, _c;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { sizes: __assign(__assign({}, pPs.sizes), { width: (_b = (_a = pPs.sizes) === null || _a === void 0 ? void 0 : _a.width) !== null && _b !== void 0 ? _b : "100%" }), direction: (_c = pPs.direction) !== null && _c !== void 0 ? _c : "column" })), mediaStyles, pseudoStyles);
+        var _a;
+        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n    display: flex;\n        flex-direction: column;\n        align-items: start;\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n    display: flex;\n        flex-direction: column;\n        align-items: start;\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { width: (_a = pPs.width) !== null && _a !== void 0 ? _a : "100%" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
-    var combinedClassName = (0, css_1.cx)("dble-flex", className);
+    var combinedClassName = (0, css_1.cx)("dble-padding", className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });
-exports.default = react_2.default.memo(Flex);
+exports.default = react_2.default.memo(Padding);
 var templateObject_1, templateObject_2;

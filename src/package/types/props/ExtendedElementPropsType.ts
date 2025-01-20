@@ -1,10 +1,11 @@
+import { CSSObject } from "@emotion/react";
 import { CursorType } from "../piece/CursorType";
 import { TransitionType } from "../piece/TransitionType";
 
 // Element
 interface ExtendedElementType {
   children: React.ReactNode;
-  css?: any;
+  css?: CSSObject;
   zIndex?: number;
   transition?: TransitionType;
   cursor?: CursorType;

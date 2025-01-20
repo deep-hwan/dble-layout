@@ -14,7 +14,7 @@ const SizeTheme = ({
 });
 
 const Spacing = React.forwardRef(function Spacing(
-  { direction = "column", size, mq, ...props }: SpacingPropsType,
+  { direction = "column", size, mq, css: cssProp, ...props }: SpacingPropsType,
   ref?: React.Ref<HTMLDivElement>
 ) {
   const baseStyle = useMemo(() => {
@@ -50,7 +50,7 @@ const Spacing = React.forwardRef(function Spacing(
     <div
       ref={ref}
       className={combinedClassName}
-      css={[baseStyle, ...mediaStyles]}
+      css={[baseStyle, ...mediaStyles, cssProp]}
       {...props}
     />
   );

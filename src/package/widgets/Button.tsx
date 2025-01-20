@@ -244,9 +244,8 @@ const Button = React.memo(
           })}
     ${mediaStyles}
     ${pseudoStyles}
-    ${cssProp}
         `,
-        [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]
+        [baseStyle, pPs, mediaStyles, pseudoStyles]
       );
 
       const combinedClassName = cx("dble-button", className);
@@ -255,7 +254,7 @@ const Button = React.memo(
         <button
           ref={ref}
           className={combinedClassName}
-          css={combinedStyles}
+          css={css([combinedStyles, cssProp])}
           onClick={handleClick}
           {...(rest as any)}
         >

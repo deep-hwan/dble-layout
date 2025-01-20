@@ -146,9 +146,8 @@ const Flex = React.forwardRef(
         })}
     ${mediaStyles}
     ${pseudoStyles}
-    ${cssProp}
       `,
-      [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]
+      [baseStyle, pPs, mediaStyles, pseudoStyles]
     );
 
     const combinedClassName = cx("dble-flex", className);
@@ -156,7 +155,7 @@ const Flex = React.forwardRef(
       <Component
         ref={ref}
         className={combinedClassName}
-        css={combinedStyles}
+        css={css([combinedStyles, cssProp])}
         {...(rest as any)}
       >
         {children}

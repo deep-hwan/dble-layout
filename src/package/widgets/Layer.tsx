@@ -181,9 +181,8 @@ const Layer = React.forwardRef(
         })}
     ${mediaStyles}
     ${pseudoStyles}
-    ${cssProp}
       `,
-      [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]
+      [baseStyle, pPs, mediaStyles, pseudoStyles]
     );
 
     const combinedClassName = cx("dble-layer", className);
@@ -192,7 +191,7 @@ const Layer = React.forwardRef(
       <Component
         ref={ref} // Use the callback ref
         className={combinedClassName}
-        css={combinedStyles}
+        css={css([combinedStyles, cssProp])}
         {...(rest as any)}
       >
         {children}

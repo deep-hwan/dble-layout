@@ -72,7 +72,7 @@ var SizeTheme = function (_a) {
     });
 };
 var Spacing = react_2.default.forwardRef(function Spacing(_a, ref) {
-    var _b = _a.direction, direction = _b === void 0 ? "column" : _b, size = _a.size, mq = _a.mq, props = __rest(_a, ["direction", "size", "mq"]);
+    var _b = _a.direction, direction = _b === void 0 ? "column" : _b, size = _a.size, mq = _a.mq, cssProp = _a.css, props = __rest(_a, ["direction", "size", "mq", "css"]);
     var baseStyle = (0, react_2.useMemo)(function () {
         var sizeTheme = SizeTheme({ direction: direction, size: size });
         return (0, react_1.css)(__assign({ display: "flex", transition: "0.2s ease-in-out" }, sizeTheme));
@@ -88,7 +88,7 @@ var Spacing = react_2.default.forwardRef(function Spacing(_a, ref) {
         });
     }, [mq, direction]);
     var combinedClassName = (0, css_1.cx)("dble-spacing", props.className);
-    return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: __spreadArray([baseStyle], mediaStyles, true) }, props)));
+    return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: __spreadArray(__spreadArray([baseStyle], mediaStyles, true), [cssProp], false) }, props)));
 });
 exports.default = react_2.default.memo(Spacing);
 var templateObject_1;

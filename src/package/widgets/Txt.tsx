@@ -194,9 +194,8 @@ const Txt = React.forwardRef(
         })}
     ${mediaStyles}
     ${pseudoStyles}
-    ${cssProp}
       `,
-      [baseStyle, pPs, mediaStyles, pseudoStyles, cssProp]
+      [baseStyle, pPs, mediaStyles, pseudoStyles]
     );
 
     const combinedClassName = cx("dble-txt", className);
@@ -205,7 +204,7 @@ const Txt = React.forwardRef(
       <Component
         ref={ref}
         className={combinedClassName}
-        css={combinedStyles}
+        css={css([combinedStyles, cssProp])}
         {...(rest as any)}
       >
         {children}

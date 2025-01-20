@@ -14,6 +14,7 @@ const Skeleton = React.forwardRef(
       primaryColor = "#e2e2e2",
       moveColor = "#f5f5f5",
       mq,
+      css: cssProp,
       ...props
     }: SkeletonPropsType,
     ref: ForwardedRef<HTMLDivElement>
@@ -72,7 +73,7 @@ const Skeleton = React.forwardRef(
         <div
           ref={ref}
           className={combinedClassName}
-          css={[
+          css={css([
             baseStyle,
             ExtendedStyles({
               width,
@@ -82,7 +83,8 @@ const Skeleton = React.forwardRef(
               moveColor,
             }),
             ...mediaStyles,
-          ]}
+            cssProp,
+          ])}
           {...props}
         />
       </>

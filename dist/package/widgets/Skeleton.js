@@ -65,7 +65,7 @@ var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
 var Skeleton = react_2.default.forwardRef(function (_a, ref) {
-    var width = _a.width, _b = _a.height, height = _b === void 0 ? 20 : _b, _c = _a.borderRadius, borderRadius = _c === void 0 ? 8 : _c, _d = _a.primaryColor, primaryColor = _d === void 0 ? "#e2e2e2" : _d, _e = _a.moveColor, moveColor = _e === void 0 ? "#f5f5f5" : _e, mq = _a.mq, props = __rest(_a, ["width", "height", "borderRadius", "primaryColor", "moveColor", "mq"]);
+    var width = _a.width, _b = _a.height, height = _b === void 0 ? 20 : _b, _c = _a.borderRadius, borderRadius = _c === void 0 ? 8 : _c, _d = _a.primaryColor, primaryColor = _d === void 0 ? "#e2e2e2" : _d, _e = _a.moveColor, moveColor = _e === void 0 ? "#f5f5f5" : _e, mq = _a.mq, cssProp = _a.css, props = __rest(_a, ["width", "height", "borderRadius", "primaryColor", "moveColor", "mq", "css"]);
     var loadAnimation = "\n      @keyframes load {\n        100% {\n          background-position: -100% 0;\n        }\n      }\n    ";
     var baseStyle = (0, react_2.useMemo)(function () {
         return (0, react_1.css)({
@@ -100,7 +100,7 @@ var Skeleton = react_2.default.forwardRef(function (_a, ref) {
         });
     }, [mq, ExtendedStyles]);
     var combinedClassName = (0, css_1.cx)("dble-skeleton", props.className);
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("style", { children: loadAnimation }), (0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: __spreadArray([
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("style", { children: loadAnimation }), (0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)(__spreadArray(__spreadArray([
                     baseStyle,
                     ExtendedStyles({
                         width: width,
@@ -109,7 +109,9 @@ var Skeleton = react_2.default.forwardRef(function (_a, ref) {
                         primaryColor: primaryColor,
                         moveColor: moveColor,
                     })
-                ], mediaStyles, true) }, props))] }));
+                ], mediaStyles, true), [
+                    cssProp,
+                ], false)) }, props))] }));
 });
 exports.default = react_2.default.memo(Skeleton);
 var templateObject_1;

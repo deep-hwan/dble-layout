@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Button, Flex, Grid, Layer, TouchableOpacity, Txt } from "./package";
+import { Button, Flex, Layer, Padding, TouchableOpacity, Txt } from "./package";
 
 export default function App() {
   const ref = useRef(null);
@@ -19,34 +19,16 @@ export default function App() {
       flex={{ flex: 1 }}
       sizes={{ width: "100%", height: "100vh" }}
       background={{ fill: "#000" }}
-      padding={{ all: 20 }}
     >
-      <Flex align="center">
-        <Txt txtColor="#fff">asd</Txt>
-        <Txt txtColor="#fff">hh</Txt>
-        <TouchableOpacity color="#fff">11</TouchableOpacity>
-        <Button ref={tabRef}>Tab</Button>
-      </Flex>
-
-      <Grid sizes={{ maxWidth: 200 }} templateColumns="repeat(3, 1fr)" gap={20}>
-        <Flex>
-          <Txt>1</Txt>
-          <Txt>2</Txt>
-          <Txt>3</Txt>
+      <Padding all={40} _hover={{ all: 200 }}>
+        <Flex align="center" gap={50}>
+          <Txt txtColor="#fff">asd</Txt>
+          <Txt txtColor="#fff">hh</Txt>
+          <TouchableOpacity color="#fff">11</TouchableOpacity>
+          <Button ref={tabRef}>Tab</Button>
+          <Txt css={{ padding: 20, fontSize: 30 }}>1</Txt>
         </Flex>
-
-        <Flex>
-          <Txt>1</Txt>
-          <Txt>2</Txt>
-          <Txt>3</Txt>
-        </Flex>
-
-        <Flex>
-          <Txt>1</Txt>
-          <Txt>2</Txt>
-          <Txt>3</Txt>
-        </Flex>
-      </Grid>
+      </Padding>
     </Layer>
   );
 }

@@ -13,6 +13,7 @@ const Divider = React.forwardRef(function Solid(
     color = "#e9e9e9",
     spacing,
     mq,
+    css: cssProp,
     ...props
   }: DividerPropsType,
   ref?: ForwardedRef<HTMLDivElement>
@@ -61,10 +62,11 @@ const Divider = React.forwardRef(function Solid(
     <div
       ref={ref}
       className={combinedClassName}
-      css={[
+      css={css([
         DividerStyle({ direction, width, height, spacing, color }),
         ...mediaStyles,
-      ]}
+        cssProp,
+      ])}
       {...props}
     />
   );

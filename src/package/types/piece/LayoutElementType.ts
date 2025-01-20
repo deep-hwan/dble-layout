@@ -9,4 +9,5 @@ export type LayoutElementType =
   | "nav"
   | "ul"
   | "ol"
-  | "li";
+  | "li"
+  | "address";
