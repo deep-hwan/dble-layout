@@ -3,6 +3,7 @@ export type LayoutElementType =
   | "main"
   | "section"
   | "article"
+  | "form"
   | "header"
   | "footer"
   | "aside"
