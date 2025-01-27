@@ -30,6 +30,7 @@ export interface BackgroundType {
       | "groove"
       | "ridge";
   };
+  shadow?: { x?: number; y?: number; blur?: number; color?: string };
 }
 
 export interface BackgroundPropsType<T extends ElementType>

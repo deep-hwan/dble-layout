@@ -54,9 +54,10 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
+var shadowStylesProps_1 = require("../styles/shadowStylesProps");
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
 var Background = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, width = props.width, maxWidth = props.maxWidth, minWidth = props.minWidth, height = props.height, maxHeight = props.maxHeight, minHeight = props.minHeight, fill = props.fill, border = props.border, zIndex = props.zIndex, _a = props.transition, transition = _a === void 0 ? { time: 0.25, type: "ease-in-out" } : _a, _hover = props._hover, _focus = props._focus, _active = props._active, _b = props.mq, mq = _b === void 0 ? {} : _b, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "width", "maxWidth", "minWidth", "height", "maxHeight", "minHeight", "fill", "border", "zIndex", "transition", "_hover", "_focus", "_active", "mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, width = props.width, maxWidth = props.maxWidth, minWidth = props.minWidth, height = props.height, maxHeight = props.maxHeight, minHeight = props.minHeight, fill = props.fill, border = props.border, shadow = props.shadow, zIndex = props.zIndex, _a = props.transition, transition = _a === void 0 ? { time: 0.25, type: "ease-in-out" } : _a, _hover = props._hover, _focus = props._focus, _active = props._active, _b = props.mq, mq = _b === void 0 ? {} : _b, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "width", "maxWidth", "minWidth", "height", "maxHeight", "minHeight", "fill", "border", "shadow", "zIndex", "transition", "_hover", "_focus", "_active", "mq", "css"]);
     var pPs = {
         width: width,
         maxWidth: maxWidth,
@@ -66,6 +67,7 @@ var Background = react_2.default.forwardRef(function (props, ref) {
         minHeight: minHeight,
         fill: fill,
         border: border,
+        shadow: shadow,
     };
     var Component = as || "div";
     var borderStylesProps = function (border) {
@@ -91,7 +93,7 @@ var Background = react_2.default.forwardRef(function (props, ref) {
     //
     // extended props styles
     var ExtendedStyles = function (props) {
-        return __assign({ width: props === null || props === void 0 ? void 0 : props.width, maxWidth: props === null || props === void 0 ? void 0 : props.maxWidth, minWidth: props === null || props === void 0 ? void 0 : props.minWidth, height: props === null || props === void 0 ? void 0 : props.height, maxHeight: props === null || props === void 0 ? void 0 : props.maxHeight, minHeight: props === null || props === void 0 ? void 0 : props.minHeight, backgroundColor: props.fill }, borderStylesProps(props === null || props === void 0 ? void 0 : props.border));
+        return __assign(__assign({ width: props === null || props === void 0 ? void 0 : props.width, maxWidth: props === null || props === void 0 ? void 0 : props.maxWidth, minWidth: props === null || props === void 0 ? void 0 : props.minWidth, height: props === null || props === void 0 ? void 0 : props.height, maxHeight: props === null || props === void 0 ? void 0 : props.maxHeight, minHeight: props === null || props === void 0 ? void 0 : props.minHeight, backgroundColor: props.fill }, borderStylesProps(props === null || props === void 0 ? void 0 : props.border)), (0, shadowStylesProps_1.shadowStylesProps)(props.shadow));
     };
     //
     // base style

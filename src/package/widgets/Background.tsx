@@ -2,6 +2,7 @@
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { ComponentPropsWithoutRef, useMemo } from "react";
+import { shadowStylesProps } from "../styles/shadowStylesProps";
 import { LayoutElementType } from "../types/piece/LayoutElementType";
 import {
   BackgroundPropsType,
@@ -26,6 +27,7 @@ const Background = React.forwardRef<
     minHeight,
     fill,
     border,
+    shadow,
     zIndex,
     transition = { time: 0.25, type: "ease-in-out" },
     _hover,
@@ -45,6 +47,7 @@ const Background = React.forwardRef<
     minHeight,
     fill,
     border,
+    shadow,
   };
 
   const Component = as || "div";
@@ -88,7 +91,9 @@ const Background = React.forwardRef<
       maxHeight: props?.maxHeight,
       minHeight: props?.minHeight,
       backgroundColor: props.fill,
+
       ...borderStylesProps(props?.border),
+      ...shadowStylesProps(props.shadow),
     };
   };
 

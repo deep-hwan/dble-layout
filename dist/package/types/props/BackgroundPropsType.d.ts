@@ -21,6 +21,12 @@ export interface BackgroundType {
         color?: string;
         shape?: "solid" | "dotted" | "dashed" | "double" | "outset" | "inset" | "groove" | "ridge";
     };
+    shadow?: {
+        x?: number;
+        y?: number;
+        blur?: number;
+        color?: string;
+    };
 }
 export interface BackgroundPropsType<T extends ElementType> extends BackgroundType {
     as?: T;
