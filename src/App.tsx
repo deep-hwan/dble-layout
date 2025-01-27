@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import {
+  Background,
   Button,
   Flex,
   Layer,
@@ -25,6 +26,11 @@ export default function App() {
     >
       <Padding all={40} _hover={{ all: 200 }}>
         <Flex align="center" gap={50} ref={ttRef}>
+          <Background fill="#fff" border={{ radius: "20px 30px" }}>
+            <Padding all={20}>
+              <Txt txtSize={50}>asdasd</Txt>
+            </Padding>
+          </Background>
           <Skeleton ref={skRef} height={50} />
           <Txt txtColor="#fff">asd</Txt>
           <Txt txtColor="#fff">hh</Txt>

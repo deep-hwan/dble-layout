@@ -1,6 +1,7 @@
 import { ElementType } from "react";
 import { MediaQueryType } from "../piece/MediaQueryType";
-import { ElementPropsType } from "./ExtendedElementPropsType";
+import { TransitionType } from "../piece/TransitionType";
+import { CSSObject } from "@emotion/react";
 
 export interface PaddingType {
   width?: number | string;
@@ -19,10 +20,12 @@ export interface PaddingType {
   right?: number | string;
 }
 
-export interface PaddingPropsType<T extends ElementType>
-  extends Omit<ElementPropsType, "userSelect">,
-    PaddingType {
+export interface PaddingPropsType<T extends ElementType> extends PaddingType {
   as?: T;
+  children: React.ReactNode;
+  css?: CSSObject;
+  zIndex?: number;
+  transition?: TransitionType;
   mq?: MediaQueryType<PaddingType>;
   _hover?: Partial<PaddingType>;
   _focus?: Partial<PaddingType>;

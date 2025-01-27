@@ -90,6 +90,7 @@ const Flex = React.forwardRef<
   const baseStyle = useMemo(
     () =>
       css({
+        position: "relative",
         cursor: cursor
           ? cursor
           : (rest.onClick || rest.onMouseEnter) && "pointer",

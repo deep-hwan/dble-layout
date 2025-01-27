@@ -1,0 +1,4 @@
+import React from "react";
+import { TouchableOpacitPropsType, TouchableOpacityElementsType } from "../types";
+declare const _default: React.MemoExoticComponent<React.ForwardRefExoticComponent<(TouchableOpacitPropsType<TouchableOpacityElementsType> & (Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> | Omit<React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>, "ref"> | Omit<React.DetailedHTMLProps<React.OlHTMLAttributes<HTMLOListElement>, HTMLOListElement>, "ref"> | Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>, "ref"> | Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, "ref"> | Omit<React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, "ref">)) & React.RefAttributes<HTMLElement>>>;
+export default _default;

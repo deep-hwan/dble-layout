@@ -31,7 +31,6 @@ const Padding = React.forwardRef<
     left,
     right,
     zIndex,
-    cursor,
     transition = { time: 0.25, type: "ease-in-out" },
     _hover,
     _focus,
@@ -91,9 +90,6 @@ const Padding = React.forwardRef<
   const baseStyle = useMemo(
     () =>
       css({
-        cursor: cursor
-          ? cursor
-          : (rest.onClick || rest.onMouseEnter) && "pointer",
         transition: `all ${transition.time || 0.25}s ${
           transition.type || "ease-in-out"
         }`,
@@ -101,7 +97,7 @@ const Padding = React.forwardRef<
         outline: "none",
         zIndex,
       }),
-    [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex]
+    [rest.onClick, rest.onMouseEnter, transition, zIndex]
   );
 
   //
