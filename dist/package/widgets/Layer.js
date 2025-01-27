@@ -107,7 +107,7 @@ var Layer = react_2.default.forwardRef(function (props, ref) {
             cursor: cursor
                 ? cursor
                 : (rest.onClick || rest.onMouseEnter) && "pointer",
-            transition: "all ".concat(transition.time || 0.25, "s ").concat(transition.type || "ease-in-out"),
+            transition: "all ".concat(transition.time, "s ").concat(transition.type),
             listStyle: "none",
             outline: "none",
             zIndex: zIndex,

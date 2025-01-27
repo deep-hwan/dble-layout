@@ -57,7 +57,7 @@ var react_2 = __importStar(require("react"));
 var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
 var Position = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, type = props.type, top = props.top, bottom = props.bottom, left = props.left, right = props.right, axis = props.axis, sizes = props.sizes, zIndex = props.zIndex, _a = props.transition, transition = _a === void 0 ? { time: 0.25, type: "ease-in-out" } : _a, _hover = props._hover, _focus = props._focus, _active = props._active, _b = props.mq, mq = _b === void 0 ? {} : _b, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "type", "top", "bottom", "left", "right", "axis", "sizes", "zIndex", "transition", "_hover", "_focus", "_active", "mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, type = props.type, top = props.top, bottom = props.bottom, left = props.left, right = props.right, axis = props.axis, sizes = props.sizes, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props.mq, mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "type", "top", "bottom", "left", "right", "axis", "sizes", "zIndex", "transition", "_hover", "_focus", "_active", "mq", "css"]);
     var pPs = {
         type: type,
         top: top,
@@ -80,7 +80,9 @@ var Position = react_2.default.forwardRef(function (props, ref) {
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
         return (0, react_1.css)({
-            transition: "all ".concat(transition.time, "s ").concat(transition.type),
+            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.time) && (transition === null || transition === void 0 ? void 0 : transition.time) > 0
+                ? "all ".concat(transition.time, "s ").concat(transition.type)
+                : undefined,
             listStyle: "none",
             outline: "none",
             zIndex: zIndex,

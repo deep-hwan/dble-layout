@@ -111,9 +111,7 @@ const Layer = React.forwardRef<
         cursor: cursor
           ? cursor
           : (rest.onClick || rest.onMouseEnter) && "pointer",
-        transition: `all ${transition.time || 0.25}s ${
-          transition.type || "ease-in-out"
-        }`,
+        transition: `all ${transition.time}s ${transition.type}`,
         listStyle: "none",
         outline: "none",
         zIndex,

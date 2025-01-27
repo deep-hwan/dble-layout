@@ -27,7 +27,7 @@ const Position = React.forwardRef<
     axis,
     sizes,
     zIndex,
-    transition = { time: 0.25, type: "ease-in-out" },
+    transition,
     _hover,
     _focus,
     _active,
@@ -72,7 +72,10 @@ const Position = React.forwardRef<
   const baseStyle = useMemo(
     () =>
       css({
-        transition: `all ${transition.time}s ${transition.type}`,
+        transition:
+          transition && transition?.time && transition?.time > 0
+            ? `all ${transition.time}s ${transition.type}`
+            : undefined,
         listStyle: "none",
         outline: "none",
         zIndex,

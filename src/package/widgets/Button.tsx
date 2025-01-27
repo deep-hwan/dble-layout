@@ -144,9 +144,7 @@ const Button = React.memo(
               "disabled" in rest && rest.disabled
                 ? "default"
                 : cursor ?? "pointer",
-            transition: `all ${transition.time || 0.25}s ${
-              transition.type || "ease-in-out"
-            }`,
+            transition: `all ${transition.time}s ${transition.type}`,
             display: "inline-block",
             listStyle: "none",
             outline: "none",

@@ -130,7 +130,7 @@ var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
             cursor: "disabled" in rest && rest.disabled
                 ? "default"
                 : cursor !== null && cursor !== void 0 ? cursor : "pointer",
-            transition: "all ".concat(transition.time || 0.2, "s ").concat(transition.type || "ease-in-out"),
+            transition: "all ".concat(transition.time, "s ").concat(transition.type),
             display: "inline-block",
             listStyle: "none",
             outline: "none",

@@ -58,7 +58,7 @@ var gridStylesProps_1 = require("../styles/gridStylesProps");
 var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
 var Grid = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, templateColumns = props.templateColumns, templateRows = props.templateRows, templateAreas = props.templateAreas, gap = props.gap, autoFlow = props.autoFlow, autoColumns = props.autoColumns, autoRows = props.autoRows, justifyItems = props.justifyItems, alignItems = props.alignItems, justifyContent = props.justifyContent, alignContent = props.alignContent, sizes = props.sizes, zIndex = props.zIndex, cursor = props.cursor, userSelect = props.userSelect, _a = props.transition, transition = _a === void 0 ? { time: 0.25, type: "ease-in-out" } : _a, _hover = props._hover, _focus = props._focus, _active = props._active, _b = props.mq, mq = _b === void 0 ? {} : _b, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "templateColumns", "templateRows", "templateAreas", "gap", "autoFlow", "autoColumns", "autoRows", "justifyItems", "alignItems", "justifyContent", "alignContent", "sizes", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, templateColumns = props.templateColumns, templateRows = props.templateRows, templateAreas = props.templateAreas, gap = props.gap, autoFlow = props.autoFlow, autoColumns = props.autoColumns, autoRows = props.autoRows, justifyItems = props.justifyItems, alignItems = props.alignItems, justifyContent = props.justifyContent, alignContent = props.alignContent, sizes = props.sizes, zIndex = props.zIndex, cursor = props.cursor, userSelect = props.userSelect, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props.mq, mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "templateColumns", "templateRows", "templateAreas", "gap", "autoFlow", "autoColumns", "autoRows", "justifyItems", "alignItems", "justifyContent", "alignContent", "sizes", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "mq", "css"]);
     var pPs = {
         sizes: sizes,
         templateColumns: templateColumns,
@@ -99,7 +99,9 @@ var Grid = react_2.default.forwardRef(function (props, ref) {
             cursor: cursor
                 ? cursor
                 : (rest.onClick || rest.onMouseEnter) && "pointer",
-            transition: "all ".concat(transition.time || 0.25, "s ").concat(transition.type || "ease-in-out"),
+            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.time) && (transition === null || transition === void 0 ? void 0 : transition.time) > 0
+                ? "all ".concat(transition.time, "s ").concat(transition.type)
+                : undefined,
             listStyle: "none",
             outline: "none",
             zIndex: zIndex,

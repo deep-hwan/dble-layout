@@ -58,7 +58,7 @@ var flexStylesProps_1 = require("../styles/flexStylesProps");
 var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
 var Flex = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, flex = props.flex, direction = props.direction, isReverse = props.isReverse, align = props.align, crossAlign = props.crossAlign, gap = props.gap, order = props.order, grow = props.grow, shrink = props.shrink, basis = props.basis, alignContent = props.alignContent, alignSelf = props.alignSelf, wrap = props.wrap, sizes = props.sizes, zIndex = props.zIndex, cursor = props.cursor, userSelect = props.userSelect, _a = props.transition, transition = _a === void 0 ? { time: 0.25, type: "ease-in-out" } : _a, _hover = props._hover, _focus = props._focus, _active = props._active, _b = props.mq, mq = _b === void 0 ? {} : _b, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "flex", "direction", "isReverse", "align", "crossAlign", "gap", "order", "grow", "shrink", "basis", "alignContent", "alignSelf", "wrap", "sizes", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, flex = props.flex, direction = props.direction, isReverse = props.isReverse, align = props.align, crossAlign = props.crossAlign, gap = props.gap, order = props.order, grow = props.grow, shrink = props.shrink, basis = props.basis, alignContent = props.alignContent, alignSelf = props.alignSelf, wrap = props.wrap, sizes = props.sizes, zIndex = props.zIndex, cursor = props.cursor, userSelect = props.userSelect, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props.mq, mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "flex", "direction", "isReverse", "align", "crossAlign", "gap", "order", "grow", "shrink", "basis", "alignContent", "alignSelf", "wrap", "sizes", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "mq", "css"]);
     var pPs = {
         sizes: sizes,
         flex: flex,
@@ -103,7 +103,9 @@ var Flex = react_2.default.forwardRef(function (props, ref) {
             cursor: cursor
                 ? cursor
                 : (rest.onClick || rest.onMouseEnter) && "pointer",
-            transition: "all ".concat(transition.time || 0.25, "s ").concat(transition.type || "ease-in-out"),
+            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.time) && (transition === null || transition === void 0 ? void 0 : transition.time) > 0
+                ? "all ".concat(transition.time, "s ").concat(transition.type)
+                : undefined,
             listStyle: "none",
             outline: "none",
             zIndex: zIndex,

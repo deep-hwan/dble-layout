@@ -57,7 +57,7 @@ var react_2 = __importStar(require("react"));
 var shadowStylesProps_1 = require("../styles/shadowStylesProps");
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
 var Background = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, width = props.width, maxWidth = props.maxWidth, minWidth = props.minWidth, height = props.height, maxHeight = props.maxHeight, minHeight = props.minHeight, fill = props.fill, border = props.border, shadow = props.shadow, zIndex = props.zIndex, _a = props.transition, transition = _a === void 0 ? { time: 0.25, type: "ease-in-out" } : _a, _hover = props._hover, _focus = props._focus, _active = props._active, _b = props.mq, mq = _b === void 0 ? {} : _b, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "width", "maxWidth", "minWidth", "height", "maxHeight", "minHeight", "fill", "border", "shadow", "zIndex", "transition", "_hover", "_focus", "_active", "mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, width = props.width, maxWidth = props.maxWidth, minWidth = props.minWidth, height = props.height, maxHeight = props.maxHeight, minHeight = props.minHeight, fill = props.fill, border = props.border, shadow = props.shadow, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props.mq, mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "width", "maxWidth", "minWidth", "height", "maxHeight", "minHeight", "fill", "border", "shadow", "zIndex", "transition", "_hover", "_focus", "_active", "mq", "css"]);
     var pPs = {
         width: width,
         maxWidth: maxWidth,
@@ -100,7 +100,9 @@ var Background = react_2.default.forwardRef(function (props, ref) {
     var baseStyle = (0, react_2.useMemo)(function () {
         return (0, react_1.css)({
             position: "relative",
-            transition: "all ".concat(transition.time, "s ").concat(transition.type),
+            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.time) && (transition === null || transition === void 0 ? void 0 : transition.time) > 0
+                ? "all ".concat(transition.time, "s ").concat(transition.type)
+                : undefined,
             listStyle: "none",
             outline: "none",
             zIndex: zIndex,

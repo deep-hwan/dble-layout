@@ -33,7 +33,7 @@ const Flex = React.forwardRef<
     zIndex,
     cursor,
     userSelect,
-    transition = { time: 0.25, type: "ease-in-out" },
+    transition,
     _hover,
     _focus,
     _active,
@@ -94,9 +94,10 @@ const Flex = React.forwardRef<
         cursor: cursor
           ? cursor
           : (rest.onClick || rest.onMouseEnter) && "pointer",
-        transition: `all ${transition.time || 0.25}s ${
-          transition.type || "ease-in-out"
-        }`,
+        transition:
+          transition && transition?.time && transition?.time > 0
+            ? `all ${transition.time}s ${transition.type}`
+            : undefined,
         listStyle: "none",
         outline: "none",
         zIndex,

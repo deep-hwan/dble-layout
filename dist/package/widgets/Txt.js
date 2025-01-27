@@ -123,7 +123,7 @@ var Txt = react_2.default.forwardRef(function (_a, ref) {
             cursor: cursor
                 ? cursor
                 : (rest.onClick || rest.onMouseEnter) && "pointer",
-            transition: "all ".concat(transition.time || 0.25, "s ").concat(transition.type || "ease-in-out"),
+            transition: "all ".concat(transition.time, "s ").concat(transition.type),
             display: "inline-block",
             listStyle: "none",
             outline: "none",
