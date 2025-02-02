@@ -150,6 +150,7 @@ const TouchableOpacity = React.forwardRef<
     const baseStyle = useMemo(
       () =>
         css({
+          position: "relative",
           cursor:
             "disabled" in rest && rest.disabled
               ? "default"

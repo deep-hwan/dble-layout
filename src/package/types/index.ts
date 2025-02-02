@@ -5,5 +5,6 @@ export * from "./props/ExtendedElementPropsType";
 export * from "./props/LayerPropsType";
 export * from "./props/SkeletonPropsType";
 export * from "./props/SpacingPropsType";
+export * from "./props/TextPropsType";
 export * from "./props/TouchableOpacitPropsType";
 export * from "./props/TxtPropsType";

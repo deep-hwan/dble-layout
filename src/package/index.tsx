@@ -10,6 +10,7 @@ import Skeleton from "./widgets/Skeleton";
 import Spacing from "./widgets/Spacing";
 import TouchableOpacity from "./widgets/TouchableOpacity";
 import Txt from "./widgets/Txt";
+import Text from "./widgets/Text";
 
 export {
   Background,
@@ -24,4 +25,5 @@ export {
   Spacing,
   TouchableOpacity,
   Txt,
+  Text,
 };

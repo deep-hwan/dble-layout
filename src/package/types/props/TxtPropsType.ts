@@ -8,7 +8,7 @@ import { ScreenSizeType } from "../piece/ScreenSizeType";
 import { ShadowType } from "../piece/ShadowType";
 import { TrafficType } from "../piece/TrafficType";
 import { TypographyType } from "../piece/TypographyType";
-import { ElementPropsType } from "./ExtendedElementPropsType";
+import { ExtendedElementType } from "./ExtendedElementPropsType";
 
 export type TxtElementType =
   | "h1"
@@ -43,7 +43,10 @@ export interface TxtType extends TypographyType {
 }
 
 export interface TxtPropsType<T extends ElementType = "p">
-  extends ElementPropsType,
+  extends Omit<
+      ExtendedElementType,
+      "size" | "sizes" | "color" | "title" | "hidden"
+    >,
     TxtType {
   as?: T;
   mq?: MediaQueryType<TxtType>;

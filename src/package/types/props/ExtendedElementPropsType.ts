@@ -17,4 +17,4 @@ type ElementPropsType = Omit<
   "size" | "sizes" | "color" | "title" | "hidden"
 >;
 
-export type { ElementPropsType };
+export type { ElementPropsType, ExtendedElementType };
