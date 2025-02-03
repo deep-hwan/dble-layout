@@ -18,8 +18,6 @@ export interface BackgroundType
   maxH?: number | string;
   minH?: number | string;
 
-  isDisplay?: boolean;
-
   // background
   fill?: string;
   imageFill?: {

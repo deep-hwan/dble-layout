@@ -1,6 +1,6 @@
 {
   "name": "dble-layout",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "private": false,
   "files": [
     "dist",

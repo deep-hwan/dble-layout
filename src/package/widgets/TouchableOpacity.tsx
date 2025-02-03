@@ -35,7 +35,6 @@ const TouchableOpacity = React.forwardRef<
       minH,
 
       // flex
-      display,
       direction,
       isReverse,
       align,
@@ -89,7 +88,6 @@ const TouchableOpacity = React.forwardRef<
       minH,
 
       //
-      display,
       direction,
       isReverse,
       align,
@@ -134,7 +132,6 @@ const TouchableOpacity = React.forwardRef<
       props: TouchableOpacityType & { as?: TouchableOpacityType }
     ) => {
       return {
-        display: props.display,
         ...screenSizeStylesProps({
           width: props.w,
           maxWidth: props.maxW,
@@ -205,8 +202,8 @@ const TouchableOpacity = React.forwardRef<
     const pseudoStyles = useMemo(
       () =>
         css({
-          "&:hover": ExtendedStyles(_hover || {}),
-          "&:focus": ExtendedStyles(_focus || {}),
+          "&:hover": ExtendedStyles({ ..._hover }),
+          "&:focus": ExtendedStyles({ ..._focus }),
           "&:active": ExtendedStyles({
             ..._active,
             opacity: _active?.opacity ?? 0.75,
@@ -226,7 +223,6 @@ const TouchableOpacity = React.forwardRef<
         ${baseStyle}
         ${ExtendedStyles({
           ...pPs,
-          display: pPs.display ?? "flex",
           direction: pPs.direction ?? "row",
           txtSize: pPs.txtSize ?? 15,
           txtColor: pPs.txtColor ?? "#5b94f0",

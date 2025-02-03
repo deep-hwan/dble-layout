@@ -27,7 +27,6 @@ export interface TouchableOpacityType
   minH?: number | string;
 
   //flex
-  display?: "none" | "flex";
   direction?: "row" | "row-reverse" | "column" | "column-reverse";
   isReverse?: boolean; // flex-direction
   align?: "start" | "end" | "center" | "baseline" | "stretch"; // align-items

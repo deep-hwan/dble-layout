@@ -28,7 +28,6 @@ const Background = React.forwardRef<
     h,
     maxH,
     minH,
-    isDisplay,
     fill,
     imageFill,
     gradient,
@@ -57,7 +56,6 @@ const Background = React.forwardRef<
     h,
     maxH,
     minH,
-    isDisplay,
     fill,
     imageFill,
     gradient,
@@ -81,7 +79,6 @@ const Background = React.forwardRef<
       height: props?.h,
       maxHeight: props?.maxH,
       minHeight: props?.minH,
-      display: props.isDisplay ? "block" : "none",
       backgroundColor: props.fill,
       backgroundRepeat: props.imageFill?.repeat,
       backgroundSize: props.imageFill?.size,
@@ -132,9 +129,9 @@ const Background = React.forwardRef<
   const pseudoStyles = useMemo(
     () =>
       css({
-        "&:hover": ExtendedStyles(_hover || {}),
-        "&:focus": ExtendedStyles(_focus || {}),
-        "&:active": ExtendedStyles(_active || {}),
+        "&:hover": ExtendedStyles({ ..._hover }),
+        "&:focus": ExtendedStyles({ ..._focus }),
+        "&:active": ExtendedStyles({ ..._active }),
       }),
     [_hover, _focus, _active]
   );
@@ -147,7 +144,6 @@ const Background = React.forwardRef<
       ${ExtendedStyles({
         ...pPs,
         w: pPs.w ?? "100%",
-        isDisplay: pPs.isDisplay ?? true,
       })}
       ${mediaStyles}
       ${pseudoStyles}

@@ -19,13 +19,10 @@ export default function App() {
   const skRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Background
-      w="auto"
-      as="section"
-      isDisplay={false}
-      _mq={{ w600: { isDisplay: true }, w438: { isDisplay: false } }}
-    >
+    <Background w="auto" as="section">
       <Padding maxW={500} all={40} ref={ttRef}>
+        <TouchableOpacity>버튼이야</TouchableOpacity>
+
         <Flex
           as="ul"
           ref={ttRef}

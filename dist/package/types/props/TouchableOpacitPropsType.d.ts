@@ -16,7 +16,6 @@ export interface TouchableOpacityType extends Omit<HTMLAttributes<HTMLElement>, 
     h?: number | string;
     maxH?: number | string;
     minH?: number | string;
-    display?: "none" | "flex";
     direction?: "row" | "row-reverse" | "column" | "column-reverse";
     isReverse?: boolean;
     align?: "start" | "end" | "center" | "baseline" | "stretch";

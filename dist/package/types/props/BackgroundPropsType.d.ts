@@ -15,7 +15,6 @@ export interface BackgroundType extends Omit<HTMLAttributes<HTMLElement>, Exclud
     h?: number | string;
     maxH?: number | string;
     minH?: number | string;
-    isDisplay?: boolean;
     fill?: string;
     imageFill?: {
         url?: never | string;

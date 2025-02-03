@@ -67,13 +67,13 @@ var createMediaStyles_1 = require("../utils/createMediaStyles");
 var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
     var as = _a.as, children = _a.children, className = _a.className, w = _a.w, maxW = _a.maxW, minW = _a.minW, h = _a.h, maxH = _a.maxH, minH = _a.minH, 
     // flex
-    display = _a.display, direction = _a.direction, isReverse = _a.isReverse, align = _a.align, crossAlign = _a.crossAlign, gap = _a.gap, wrap = _a.wrap, 
+    direction = _a.direction, isReverse = _a.isReverse, align = _a.align, crossAlign = _a.crossAlign, gap = _a.gap, wrap = _a.wrap, 
     // typography
     txtSize = _a.txtSize, txtWeight = _a.txtWeight, txtAlign = _a.txtAlign, txtColor = _a.txtColor, txtShadow = _a.txtShadow, txtTransform = _a.txtTransform, lineHeight = _a.lineHeight, whiteSpace = _a.whiteSpace, 
     // padding
     padding = _a.padding, 
     // background
-    fill = _a.fill, gradient = _a.gradient, border = _a.border, shadow = _a.shadow, opacity = _a.opacity, scale = _a.scale, zIndex = _a.zIndex, cursor = _a.cursor, _b = _a.userSelect, userSelect = _b === void 0 ? "none" : _b, _c = _a.transition, transition = _c === void 0 ? { duration: 0.2, type: "ease-in-out" } : _c, _hover = _a._hover, _focus = _a._focus, _active = _a._active, _disabled = _a._disabled, _d = _a._mq, _mq = _d === void 0 ? {} : _d, disabled = _a.disabled, cssProp = _a.css, rest = __rest(_a, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "display", "direction", "isReverse", "align", "crossAlign", "gap", "wrap", "txtSize", "txtWeight", "txtAlign", "txtColor", "txtShadow", "txtTransform", "lineHeight", "whiteSpace", "padding", "fill", "gradient", "border", "shadow", "opacity", "scale", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "_disabled", "_mq", "disabled", "css"]);
+    fill = _a.fill, gradient = _a.gradient, border = _a.border, shadow = _a.shadow, opacity = _a.opacity, scale = _a.scale, zIndex = _a.zIndex, cursor = _a.cursor, _b = _a.userSelect, userSelect = _b === void 0 ? "none" : _b, _c = _a.transition, transition = _c === void 0 ? { duration: 0.2, type: "ease-in-out" } : _c, _hover = _a._hover, _focus = _a._focus, _active = _a._active, _disabled = _a._disabled, _d = _a._mq, _mq = _d === void 0 ? {} : _d, disabled = _a.disabled, cssProp = _a.css, rest = __rest(_a, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "direction", "isReverse", "align", "crossAlign", "gap", "wrap", "txtSize", "txtWeight", "txtAlign", "txtColor", "txtShadow", "txtTransform", "lineHeight", "whiteSpace", "padding", "fill", "gradient", "border", "shadow", "opacity", "scale", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "_disabled", "_mq", "disabled", "css"]);
     var pPs = {
         w: w,
         maxW: maxW,
@@ -82,7 +82,6 @@ var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
         maxH: maxH,
         minH: minH,
         //
-        display: display,
         direction: direction,
         isReverse: isReverse,
         align: align,
@@ -117,7 +116,7 @@ var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
     // extended props styles
     var ExtendedStyles = function (props) {
         var _a;
-        return __assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign({ display: props.display }, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
+        return __assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign({}, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
             width: props.w,
             maxWidth: props.maxW,
             minWidth: props.minW,
@@ -162,8 +161,8 @@ var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
     var pseudoStyles = (0, react_2.useMemo)(function () {
         var _a, _b;
         return (0, react_1.css)({
-            "&:hover": ExtendedStyles(_hover || {}),
-            "&:focus": ExtendedStyles(_focus || {}),
+            "&:hover": ExtendedStyles(__assign({}, _hover)),
+            "&:focus": ExtendedStyles(__assign({}, _focus)),
             "&:active": ExtendedStyles(__assign(__assign({}, _active), { opacity: (_a = _active === null || _active === void 0 ? void 0 : _active.opacity) !== null && _a !== void 0 ? _a : 0.75 })),
             "&:disabled": ExtendedStyles(__assign(__assign({}, _disabled), { txtColor: (_b = _disabled === null || _disabled === void 0 ? void 0 : _disabled.txtColor) !== null && _b !== void 0 ? _b : "#aaa" })),
         });
@@ -171,8 +170,8 @@ var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
     //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
-        var _a, _b, _c, _d;
-        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { display: (_a = pPs.display) !== null && _a !== void 0 ? _a : "flex", direction: (_b = pPs.direction) !== null && _b !== void 0 ? _b : "row", txtSize: (_c = pPs.txtSize) !== null && _c !== void 0 ? _c : 15, txtColor: (_d = pPs.txtColor) !== null && _d !== void 0 ? _d : "#5b94f0" })), mediaStyles, pseudoStyles);
+        var _a, _b, _c;
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { direction: (_a = pPs.direction) !== null && _a !== void 0 ? _a : "row", txtSize: (_b = pPs.txtSize) !== null && _b !== void 0 ? _b : 15, txtColor: (_c = pPs.txtColor) !== null && _c !== void 0 ? _c : "#5b94f0" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
     var combinedClassName = (0, css_1.cx)("dble-touchableOpacity".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]), onClick: disabled ? undefined : handleClick, disabled: disabled }, rest, { children: children })));
