@@ -19,7 +19,12 @@ export default function App() {
   const skRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Background w="auto" as="section">
+    <Background
+      w="auto"
+      as="section"
+      isDisplay={false}
+      _mq={{ w600: { isDisplay: true }, w438: { isDisplay: false } }}
+    >
       <Padding maxW={500} all={40} ref={ttRef}>
         <Flex
           as="ul"
@@ -78,16 +83,39 @@ export default function App() {
 
       <Spacing size={10} _mq={{ w1080: { size: 50 } }} />
 
-      <TouchableOpacity w="auto" gap={20} padding={{ all: 20 }} fill="#f0f0f0">
-        <Skeleton w={100} h={100} />
+      <Padding all={10}>
+        <TouchableOpacity
+          w="auto"
+          gap={20}
+          padding={{ all: 20 }}
+          fill="#f0f0f0"
+        >
+          <Skeleton w={100} h={100} />
 
-        <Background fill="#fff" w="auto">
-          <Flex w="auto" direction="column" align="start" gap={10}>
-            <Text>안녕</Text>
-            <Text>나의 이름은 정재환이고 나는 프론트엔드 개발자야</Text>
-          </Flex>
-        </Background>
-      </TouchableOpacity>
+          <Background fill="#fff" w="auto">
+            <Flex w="auto" direction="column" align="start" gap={10}>
+              <Text>안녕</Text>
+              <Text>나의 이름은 정재환이고 나는 프론트엔드 개발자야</Text>
+            </Flex>
+          </Background>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          w="auto"
+          gap={20}
+          padding={{ all: 20 }}
+          fill="#f0f0f0"
+        >
+          <Skeleton w={100} h={100} />
+
+          <Background fill="#fff" w="auto">
+            <Flex w="auto" direction="column" align="start" gap={10}>
+              <Text>안녕</Text>
+              <Text>나의 이름은 정재환이고 나는 프론트엔드 개발자야</Text>
+            </Flex>
+          </Background>
+        </TouchableOpacity>
+      </Padding>
     </Background>
   );
 }

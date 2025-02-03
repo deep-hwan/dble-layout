@@ -9,6 +9,7 @@ export interface DividerType {
   w?: number | string;
   h?: number | string;
   color?: string;
+  radius?: number | string;
   spacing?: TrafficType;
 }
 

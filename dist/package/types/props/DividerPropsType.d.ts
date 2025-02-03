@@ -8,6 +8,7 @@ export interface DividerType {
     w?: number | string;
     h?: number | string;
     color?: string;
+    radius?: number | string;
     spacing?: TrafficType;
 }
 export interface DividerPropsType extends Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "direction" | ExcludedProps>, DividerType {

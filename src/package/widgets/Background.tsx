@@ -2,6 +2,7 @@
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
+import { baseStylesProps } from "../styles/baseStylesProps";
 import { borderStylesProps } from "../styles/borderStylesProps";
 import { gradientStylesProps } from "../styles/gradientStylesProps";
 import { shadowStylesProps } from "../styles/shadowStylesProps";
@@ -27,6 +28,7 @@ const Background = React.forwardRef<
     h,
     maxH,
     minH,
+    isDisplay,
     fill,
     imageFill,
     gradient,
@@ -55,6 +57,7 @@ const Background = React.forwardRef<
     h,
     maxH,
     minH,
+    isDisplay,
     fill,
     imageFill,
     gradient,
@@ -78,6 +81,7 @@ const Background = React.forwardRef<
       height: props?.h,
       maxHeight: props?.maxH,
       minHeight: props?.minH,
+      display: props.isDisplay ? "block" : "none",
       backgroundColor: props.fill,
       backgroundRepeat: props.imageFill?.repeat,
       backgroundSize: props.imageFill?.size,
@@ -104,17 +108,14 @@ const Background = React.forwardRef<
     () =>
       css({
         position: "relative",
-        cursor: cursor
-          ? cursor
-          : (rest.onClick || rest.onMouseEnter) && "pointer",
-        transition:
-          transition && transition?.duration && transition?.duration > 0
-            ? `all ${transition.duration}s ${transition.type}`
-            : undefined,
-        listStyle: "none",
-        outline: "none",
-        zIndex,
-        userSelect,
+        ...baseStylesProps({
+          transition,
+          zIndex,
+          cursor,
+          userSelect,
+          onClick: rest.onClick,
+          onMouseEnter: rest.onMouseEnter,
+        }),
       }),
     [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]
   );
@@ -143,7 +144,11 @@ const Background = React.forwardRef<
   const combinedStyles = useMemo(
     () => css`
       ${baseStyle}
-      ${ExtendedStyles({ ...pPs, w: pPs.w ?? "100%" })}
+      ${ExtendedStyles({
+        ...pPs,
+        w: pPs.w ?? "100%",
+        isDisplay: pPs.isDisplay ?? true,
+      })}
       ${mediaStyles}
       ${pseudoStyles}
     `,

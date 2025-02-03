@@ -107,7 +107,12 @@ var Grid = react_2.default.forwardRef(function (props, ref) {
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)(__assign({ position: "relative" }, (0, baseStylesProps_1.baseStylesProps)({ transition: transition, zIndex: zIndex })));
+        return (0, react_1.css)(__assign({ position: "relative" }, (0, baseStylesProps_1.baseStylesProps)({
+            transition: transition,
+            zIndex: zIndex,
+            onClick: rest.onClick,
+            onMouseEnter: rest.onMouseEnter,
+        })));
     }, [rest.onClick, rest.onMouseEnter, transition, zIndex]);
     //
     // media-query styles

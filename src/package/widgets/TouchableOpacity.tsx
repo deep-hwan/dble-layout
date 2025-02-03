@@ -35,7 +35,7 @@ const TouchableOpacity = React.forwardRef<
       minH,
 
       // flex
-      flex,
+      display,
       direction,
       isReverse,
       align,
@@ -74,6 +74,7 @@ const TouchableOpacity = React.forwardRef<
       _active,
       _disabled,
       _mq = {},
+      disabled,
       css: cssProp,
       ...rest
     },
@@ -86,8 +87,9 @@ const TouchableOpacity = React.forwardRef<
       h,
       maxH,
       minH,
+
       //
-      flex,
+      display,
       direction,
       isReverse,
       align,
@@ -132,6 +134,7 @@ const TouchableOpacity = React.forwardRef<
       props: TouchableOpacityType & { as?: TouchableOpacityType }
     ) => {
       return {
+        display: props.display,
         ...screenSizeStylesProps({
           width: props.w,
           maxWidth: props.maxW,
@@ -142,7 +145,6 @@ const TouchableOpacity = React.forwardRef<
         }),
 
         ...flexStylesProps({
-          flex: props.flex,
           direction: props.direction,
           isReverse: props.isReverse,
           align: props.align,
@@ -179,8 +181,14 @@ const TouchableOpacity = React.forwardRef<
       () =>
         css({
           position: "relative",
-          ...baseStylesProps({ transition, zIndex, cursor, userSelect }),
-          display: "flex",
+          ...baseStylesProps({
+            transition,
+            zIndex,
+            cursor: disabled ? "default" : cursor,
+            userSelect,
+            onClick: rest.onClick,
+            onMouseEnter: rest.onMouseEnter,
+          }),
         }),
       [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]
     );
@@ -218,6 +226,7 @@ const TouchableOpacity = React.forwardRef<
         ${baseStyle}
         ${ExtendedStyles({
           ...pPs,
+          display: pPs.display ?? "flex",
           direction: pPs.direction ?? "row",
           txtSize: pPs.txtSize ?? 15,
           txtColor: pPs.txtColor ?? "#5b94f0",
@@ -238,7 +247,8 @@ const TouchableOpacity = React.forwardRef<
         ref={ref}
         className={combinedClassName}
         css={css([combinedStyles, cssProp])}
-        onClick={handleClick}
+        onClick={disabled ? undefined : handleClick}
+        disabled={disabled}
         {...(rest as any)}
       >
         {children}

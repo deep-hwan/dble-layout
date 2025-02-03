@@ -116,7 +116,13 @@ var Text = react_2.default.forwardRef(function (_a, ref) {
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)(__assign(__assign({}, (0, baseStylesProps_1.baseStylesProps)({ transition: transition, zIndex: zIndex, userSelect: userSelect })), { transition: "all ".concat(transition.duration, "s ").concat(transition.type) }));
+        return (0, react_1.css)(__assign({}, (0, baseStylesProps_1.baseStylesProps)({
+            transition: transition,
+            zIndex: zIndex,
+            userSelect: userSelect,
+            onClick: rest.onClick,
+            onMouseEnter: rest.onMouseEnter,
+        })));
     }, [rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]);
     //
     // media-query styles

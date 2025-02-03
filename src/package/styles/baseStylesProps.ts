@@ -14,8 +14,8 @@ export const baseStylesProps = ({
   transition?: TransitionType;
   zIndex?: number;
   userSelect?: string;
-  onClick?: () => void;
-  onMouseEnter?: () => void;
+  onClick?: any;
+  onMouseEnter?: any;
 }) => {
   return {
     zIndex,

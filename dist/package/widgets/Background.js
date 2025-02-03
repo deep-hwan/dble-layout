@@ -54,13 +54,14 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
+var baseStylesProps_1 = require("../styles/baseStylesProps");
 var borderStylesProps_1 = require("../styles/borderStylesProps");
 var gradientStylesProps_1 = require("../styles/gradientStylesProps");
 var shadowStylesProps_1 = require("../styles/shadowStylesProps");
 var transformStylesProps_1 = require("../styles/transformStylesProps");
 var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Background = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, fill = props.fill, imageFill = props.imageFill, gradient = props.gradient, border = props.border, shadow = props.shadow, blur = props.blur, opacity = props.opacity, scale = props.scale, rotate = props.rotate, zIndex = props.zIndex, transition = props.transition, cursor = props.cursor, userSelect = props.userSelect, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "fill", "imageFill", "gradient", "border", "shadow", "blur", "opacity", "scale", "rotate", "zIndex", "transition", "cursor", "userSelect", "_hover", "_focus", "_active", "_mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, isDisplay = props.isDisplay, fill = props.fill, imageFill = props.imageFill, gradient = props.gradient, border = props.border, shadow = props.shadow, blur = props.blur, opacity = props.opacity, scale = props.scale, rotate = props.rotate, zIndex = props.zIndex, transition = props.transition, cursor = props.cursor, userSelect = props.userSelect, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "isDisplay", "fill", "imageFill", "gradient", "border", "shadow", "blur", "opacity", "scale", "rotate", "zIndex", "transition", "cursor", "userSelect", "_hover", "_focus", "_active", "_mq", "css"]);
     var pPs = {
         w: w,
         maxW: maxW,
@@ -68,6 +69,7 @@ var Background = react_2.default.forwardRef(function (props, ref) {
         h: h,
         maxH: maxH,
         minH: minH,
+        isDisplay: isDisplay,
         fill: fill,
         imageFill: imageFill,
         gradient: gradient,
@@ -83,7 +85,7 @@ var Background = react_2.default.forwardRef(function (props, ref) {
     // extended props styles
     var ExtendedStyles = function (props) {
         var _a, _b, _c, _d, _e;
-        return __assign(__assign(__assign(__assign(__assign({ width: props === null || props === void 0 ? void 0 : props.w, maxWidth: props === null || props === void 0 ? void 0 : props.maxW, minWidth: props === null || props === void 0 ? void 0 : props.minW, height: props === null || props === void 0 ? void 0 : props.h, maxHeight: props === null || props === void 0 ? void 0 : props.maxH, minHeight: props === null || props === void 0 ? void 0 : props.minH, backgroundColor: props.fill, backgroundRepeat: (_a = props.imageFill) === null || _a === void 0 ? void 0 : _a.repeat, backgroundSize: (_b = props.imageFill) === null || _b === void 0 ? void 0 : _b.size, backgroundPosition: (_c = props.imageFill) === null || _c === void 0 ? void 0 : _c.position, backgroundImage: ((_d = props.imageFill) === null || _d === void 0 ? void 0 : _d.url)
+        return __assign(__assign(__assign(__assign(__assign({ width: props === null || props === void 0 ? void 0 : props.w, maxWidth: props === null || props === void 0 ? void 0 : props.maxW, minWidth: props === null || props === void 0 ? void 0 : props.minW, height: props === null || props === void 0 ? void 0 : props.h, maxHeight: props === null || props === void 0 ? void 0 : props.maxH, minHeight: props === null || props === void 0 ? void 0 : props.minH, display: props.isDisplay ? "block" : "none", backgroundColor: props.fill, backgroundRepeat: (_a = props.imageFill) === null || _a === void 0 ? void 0 : _a.repeat, backgroundSize: (_b = props.imageFill) === null || _b === void 0 ? void 0 : _b.size, backgroundPosition: (_c = props.imageFill) === null || _c === void 0 ? void 0 : _c.position, backgroundImage: ((_d = props.imageFill) === null || _d === void 0 ? void 0 : _d.url)
                 ? "url(".concat(props.imageFill.url, ")")
                 : undefined, backgroundClip: (_e = props.imageFill) === null || _e === void 0 ? void 0 : _e.clip, filter: !!props.blur ? "blur(".concat(props.blur, "px)") : undefined }, (0, gradientStylesProps_1.gradientStylesProps)(props.gradient)), (props.border && (0, borderStylesProps_1.borderStylesProps)(props.border))), (props.shadow && (0, shadowStylesProps_1.shadowStylesProps)(props.shadow))), (0, transformStylesProps_1.transformStylesProps)({
             scale: props.scale,
@@ -93,19 +95,14 @@ var Background = react_2.default.forwardRef(function (props, ref) {
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)({
-            position: "relative",
-            cursor: cursor
-                ? cursor
-                : (rest.onClick || rest.onMouseEnter) && "pointer",
-            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.duration) && (transition === null || transition === void 0 ? void 0 : transition.duration) > 0
-                ? "all ".concat(transition.duration, "s ").concat(transition.type)
-                : undefined,
-            listStyle: "none",
-            outline: "none",
+        return (0, react_1.css)(__assign({ position: "relative" }, (0, baseStylesProps_1.baseStylesProps)({
+            transition: transition,
             zIndex: zIndex,
+            cursor: cursor,
             userSelect: userSelect,
-        });
+            onClick: rest.onClick,
+            onMouseEnter: rest.onMouseEnter,
+        })));
     }, [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]);
     //
     // media-query styles
@@ -122,8 +119,8 @@ var Background = react_2.default.forwardRef(function (props, ref) {
     //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
-        var _a;
-        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : "100%" })), mediaStyles, pseudoStyles);
+        var _a, _b;
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : "100%", isDisplay: (_b = pPs.isDisplay) !== null && _b !== void 0 ? _b : true })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
     var combinedClassName = (0, css_1.cx)("dble-background".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));

@@ -131,8 +131,15 @@ const Button = React.memo(
         () =>
           css({
             position: "relative",
-            ...baseStylesProps({ transition, zIndex, cursor, userSelect }),
             display: "inline-block",
+            ...baseStylesProps({
+              transition,
+              zIndex,
+              cursor,
+              userSelect,
+              onClick: rest.onClick,
+              onMouseEnter: rest.onMouseEnter,
+            }),
           }),
         [
           cursor,

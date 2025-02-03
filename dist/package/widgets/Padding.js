@@ -54,6 +54,7 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
+var baseStylesProps_1 = require("../styles/baseStylesProps");
 var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
 var spaceStylesProps_1 = require("../styles/spaceStylesProps");
 var createMediaStyles_1 = require("../utils/createMediaStyles");
@@ -78,7 +79,7 @@ var Padding = react_2.default.forwardRef(function (props, ref) {
     //
     // extended props styles
     var ExtendedStyles = function (props) {
-        return __assign(__assign({ display: "flex" }, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
+        return __assign(__assign({}, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
             width: props.w,
             maxWidth: props.maxW,
             minWidth: props.minW,
@@ -100,14 +101,12 @@ var Padding = react_2.default.forwardRef(function (props, ref) {
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)({
-            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.duration) && (transition === null || transition === void 0 ? void 0 : transition.duration) > 0
-                ? "all ".concat(transition.duration, "s ").concat(transition.type)
-                : undefined,
-            listStyle: "none",
-            outline: "none",
+        return (0, react_1.css)(__assign(__assign({}, (0, baseStylesProps_1.baseStylesProps)({
+            transition: transition,
             zIndex: zIndex,
-        });
+            onClick: rest.onClick,
+            onMouseEnter: rest.onMouseEnter,
+        })), { position: "relative", display: "flex", flexDirection: "column" }));
     }, [rest.onClick, rest.onMouseEnter, transition, zIndex]);
     //
     // media-query styles

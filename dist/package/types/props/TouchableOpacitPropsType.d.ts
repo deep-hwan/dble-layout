@@ -16,7 +16,7 @@ export interface TouchableOpacityType extends Omit<HTMLAttributes<HTMLElement>, 
     h?: number | string;
     maxH?: number | string;
     minH?: number | string;
-    flex?: string | number;
+    display?: "none" | "flex";
     direction?: "row" | "row-reverse" | "column" | "column-reverse";
     isReverse?: boolean;
     align?: "start" | "end" | "center" | "baseline" | "stretch";
@@ -52,5 +52,6 @@ export interface TouchableOpacitPropsType<T extends ElementType> extends Omit<To
     _focus?: Partial<TouchableOpacityType>;
     _active?: Partial<TouchableOpacityType>;
     _disabled?: Partial<TouchableOpacityType>;
+    disabled?: boolean;
 }
 export type TouchableOpacityLayoutElement = Omit<TouchableOpacitPropsType<ElementType>, ExcludedProps>;

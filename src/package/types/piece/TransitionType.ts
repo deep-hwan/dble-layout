@@ -1,6 +1,6 @@
 interface TransitionType {
   duration: number;
-  type:
+  type?:
     | "ease"
     | "linear"
     | "ease-in"

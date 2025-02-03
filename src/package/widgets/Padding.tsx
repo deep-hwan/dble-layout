@@ -2,6 +2,7 @@
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
+import { baseStylesProps } from "../styles/baseStylesProps";
 import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { spaceStylesProps } from "../styles/spaceStylesProps";
 import { LayoutPropsRef } from "../types/piece/PipeLinePropsType";
@@ -64,7 +65,6 @@ const Padding = React.forwardRef<
   // extended props styles
   const ExtendedStyles = (props: PaddingType) => {
     return {
-      display: "flex",
       ...screenSizeStylesProps({
         width: props.w,
         maxWidth: props.maxW,
@@ -92,13 +92,15 @@ const Padding = React.forwardRef<
   const baseStyle = useMemo(
     () =>
       css({
-        transition:
-          transition && transition?.duration && transition?.duration > 0
-            ? `all ${transition.duration}s ${transition.type}`
-            : undefined,
-        listStyle: "none",
-        outline: "none",
-        zIndex,
+        ...baseStylesProps({
+          transition,
+          zIndex,
+          onClick: rest.onClick,
+          onMouseEnter: rest.onMouseEnter,
+        }),
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
       }),
     [rest.onClick, rest.onMouseEnter, transition, zIndex]
   );

@@ -99,7 +99,12 @@ const Grid = React.forwardRef<HTMLElement, GridLayoutElement & LayoutPropsRef>(
       () =>
         css({
           position: "relative",
-          ...baseStylesProps({ transition, zIndex }),
+          ...baseStylesProps({
+            transition,
+            zIndex,
+            onClick: rest.onClick,
+            onMouseEnter: rest.onMouseEnter,
+          }),
         }),
       [rest.onClick, rest.onMouseEnter, transition, zIndex]
     );

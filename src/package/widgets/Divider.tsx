@@ -12,6 +12,7 @@ const Divider = React.forwardRef<HTMLDivElement, DividerPropsType>(
       w,
       h,
       color = "#e9e9e9",
+      radius,
       spacing,
       _mq = {},
       css: cssProp,
@@ -35,6 +36,7 @@ const Divider = React.forwardRef<HTMLDivElement, DividerPropsType>(
       css({
         backgroundColor: props.color,
         transition: "0.25s ease-in-out",
+        borderRadius: props.radius,
         marginTop: getSpacing(props.spacing, "vertical"),
         marginBottom: getSpacing(props.spacing, "vertical"),
         marginLeft: getSpacing(props.spacing, "horizontal"),
@@ -54,7 +56,7 @@ const Divider = React.forwardRef<HTMLDivElement, DividerPropsType>(
         ref={ref}
         className={combinedClassName}
         css={css([
-          DividerStyle({ direction, w, h, spacing, color }),
+          DividerStyle({ direction, w, h, spacing, color, radius }),
           ...mediaStyles,
           cssProp,
         ])}

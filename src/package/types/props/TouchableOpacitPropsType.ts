@@ -27,7 +27,7 @@ export interface TouchableOpacityType
   minH?: number | string;
 
   //flex
-  flex?: string | number;
+  display?: "none" | "flex";
   direction?: "row" | "row-reverse" | "column" | "column-reverse";
   isReverse?: boolean; // flex-direction
   align?: "start" | "end" | "center" | "baseline" | "stretch"; // align-items
@@ -86,6 +86,7 @@ export interface TouchableOpacitPropsType<T extends ElementType>
   _focus?: Partial<TouchableOpacityType>;
   _active?: Partial<TouchableOpacityType>;
   _disabled?: Partial<TouchableOpacityType>;
+  disabled?: boolean;
 }
 
 export type TouchableOpacityLayoutElement = Omit<

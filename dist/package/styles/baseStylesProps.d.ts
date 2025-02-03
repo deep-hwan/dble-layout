@@ -6,6 +6,6 @@ export declare const baseStylesProps: ({ cursor, transition, zIndex, userSelect,
     transition?: TransitionType | undefined;
     zIndex?: number | undefined;
     userSelect?: string | undefined;
-    onClick?: (() => void) | undefined;
-    onMouseEnter?: (() => void) | undefined;
+    onClick?: any;
+    onMouseEnter?: any;
 }) => CSSObject;

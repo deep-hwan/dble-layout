@@ -61,7 +61,7 @@ var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
 var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
-    var _b = _a.direction, direction = _b === void 0 ? "horizontal" : _b, w = _a.w, h = _a.h, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, spacing = _a.spacing, _d = _a._mq, _mq = _d === void 0 ? {} : _d, cssProp = _a.css, props = __rest(_a, ["direction", "w", "h", "color", "spacing", "_mq", "css"]);
+    var _b = _a.direction, direction = _b === void 0 ? "horizontal" : _b, w = _a.w, h = _a.h, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, radius = _a.radius, spacing = _a.spacing, _d = _a._mq, _mq = _d === void 0 ? {} : _d, cssProp = _a.css, props = __rest(_a, ["direction", "w", "h", "color", "radius", "spacing", "_mq", "css"]);
     var Types = function (props) {
         var _a, _b, _c, _d;
         return ({
@@ -74,12 +74,12 @@ var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
         return (_b = (_a = spacing === null || spacing === void 0 ? void 0 : spacing.all) !== null && _a !== void 0 ? _a : spacing === null || spacing === void 0 ? void 0 : spacing[type]) !== null && _b !== void 0 ? _b : spacing === null || spacing === void 0 ? void 0 : spacing[type === "vertical" ? "top" : "left"];
     };
     var DividerStyle = function (props) {
-        return (0, react_1.css)(__assign({ backgroundColor: props.color, transition: "0.25s ease-in-out", marginTop: getSpacing(props.spacing, "vertical"), marginBottom: getSpacing(props.spacing, "vertical"), marginLeft: getSpacing(props.spacing, "horizontal"), marginRight: getSpacing(props.spacing, "horizontal") }, Types({ w: props.w, h: props.h })));
+        return (0, react_1.css)(__assign({ backgroundColor: props.color, transition: "0.25s ease-in-out", borderRadius: props.radius, marginTop: getSpacing(props.spacing, "vertical"), marginBottom: getSpacing(props.spacing, "vertical"), marginLeft: getSpacing(props.spacing, "horizontal"), marginRight: getSpacing(props.spacing, "horizontal") }, Types({ w: props.w, h: props.h })));
     };
     var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, DividerStyle); }, [_mq]);
     var combinedClassName = (0, css_1.cx)("dble-divider", props.className);
     return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)(__spreadArray(__spreadArray([
-            DividerStyle({ direction: direction, w: w, h: h, spacing: spacing, color: color })
+            DividerStyle({ direction: direction, w: w, h: h, spacing: spacing, color: color, radius: radius })
         ], mediaStyles, true), [
             cssProp,
         ], false)) }, props)));

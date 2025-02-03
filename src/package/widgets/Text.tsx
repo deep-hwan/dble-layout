@@ -122,8 +122,13 @@ const Text = React.forwardRef<HTMLElement, TextLayoutElement & TextPropsRef>(
     const baseStyle = useMemo(
       () =>
         css({
-          ...baseStylesProps({ transition, zIndex, userSelect }),
-          transition: `all ${transition.duration}s ${transition.type}`,
+          ...baseStylesProps({
+            transition,
+            zIndex,
+            userSelect,
+            onClick: rest.onClick,
+            onMouseEnter: rest.onMouseEnter,
+          }),
         }),
       [rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]
     );
