@@ -15,11 +15,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./piece/FlexType"), exports);
+__exportStar(require("./piece/PipeLinePropsType"), exports);
 __exportStar(require("./props/ButtonPropsType"), exports);
 __exportStar(require("./props/DividerPropsType"), exports);
 __exportStar(require("./props/ExtendedElementPropsType"), exports);
-__exportStar(require("./props/LayerPropsType"), exports);
 __exportStar(require("./props/SkeletonPropsType"), exports);
 __exportStar(require("./props/SpacingPropsType"), exports);
+__exportStar(require("./props/TextPropsType"), exports);
 __exportStar(require("./props/TouchableOpacitPropsType"), exports);
-__exportStar(require("./props/TxtPropsType"), exports);

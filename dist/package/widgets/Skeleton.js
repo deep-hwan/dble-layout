@@ -1,8 +1,4 @@
 "use strict";
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -63,9 +59,9 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
-var mediaScreenSize_1 = require("../utils/mediaScreenSize");
+var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Skeleton = react_2.default.forwardRef(function (_a, ref) {
-    var width = _a.width, _b = _a.height, height = _b === void 0 ? 20 : _b, _c = _a.borderRadius, borderRadius = _c === void 0 ? 8 : _c, _d = _a.primaryColor, primaryColor = _d === void 0 ? "#e2e2e2" : _d, _e = _a.moveColor, moveColor = _e === void 0 ? "#f5f5f5" : _e, mq = _a.mq, cssProp = _a.css, props = __rest(_a, ["width", "height", "borderRadius", "primaryColor", "moveColor", "mq", "css"]);
+    var w = _a.w, h = _a.h, _b = _a.borderRadius, borderRadius = _b === void 0 ? 8 : _b, _c = _a.primaryColor, primaryColor = _c === void 0 ? "#e2e2e2" : _c, _d = _a.moveColor, moveColor = _d === void 0 ? "#f5f5f5" : _d, _e = _a._mq, _mq = _e === void 0 ? {} : _e, cssProp = _a.css, props = __rest(_a, ["w", "h", "borderRadius", "primaryColor", "moveColor", "_mq", "css"]);
     var loadAnimation = "\n      @keyframes load {\n        100% {\n          background-position: -100% 0;\n        }\n      }\n    ";
     var baseStyle = (0, react_2.useMemo)(function () {
         return (0, react_1.css)({
@@ -75,11 +71,11 @@ var Skeleton = react_2.default.forwardRef(function (_a, ref) {
     var ExtendedStyles = (0, react_2.useMemo)(function () {
         return function (props) {
             return (0, react_1.css)({
-                minWidth: props.width,
-                maxWidth: props.width,
-                height: props.height,
-                minHeight: props.height,
-                maxHeight: props.height,
+                minWidth: props.w,
+                maxWidth: props.w,
+                height: props.h,
+                minHeight: props.h,
+                maxHeight: props.h,
                 borderRadius: props.borderRadius,
                 background: "linear-gradient(120deg, ".concat(props.primaryColor, " 30%, ").concat(props.moveColor, " 38%, ").concat(props.moveColor, " 40%, ").concat(props.primaryColor, " 48%)"),
                 backgroundSize: "200% 100%",
@@ -89,22 +85,13 @@ var Skeleton = react_2.default.forwardRef(function (_a, ref) {
             });
         };
     }, [primaryColor, moveColor]);
-    var mediaStyles = (0, react_2.useMemo)(function () {
-        if (!mq)
-            return [];
-        return mediaScreenSize_1.mediaScreenSize.map(function (size) {
-            var breakpointKey = "w".concat(size);
-            var styles = mq[breakpointKey];
-            return styles
-                ? (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n              @media (max-width: ", "px) {\n                ", "\n              }\n            "], ["\n              @media (max-width: ", "px) {\n                ", "\n              }\n            "])), size, ExtendedStyles(styles)) : "";
-        });
-    }, [mq, ExtendedStyles]);
+    var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
     var combinedClassName = (0, css_1.cx)("dble-skeleton", props.className);
     return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("style", { children: loadAnimation }), (0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)(__spreadArray(__spreadArray([
                     baseStyle,
                     ExtendedStyles({
-                        width: width,
-                        height: height,
+                        w: w,
+                        h: h,
                         borderRadius: borderRadius,
                         primaryColor: primaryColor,
                         moveColor: moveColor,
@@ -114,4 +101,3 @@ var Skeleton = react_2.default.forwardRef(function (_a, ref) {
                 ], false)) }, props))] }));
 });
 exports.default = react_2.default.memo(Skeleton);
-var templateObject_1;

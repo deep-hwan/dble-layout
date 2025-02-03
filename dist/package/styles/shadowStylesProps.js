@@ -2,10 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.shadowStylesProps = void 0;
 var shadowStylesProps = function (props) {
+    var _a;
     if (!props)
         return {};
     return {
-        boxShadow: props ? "".concat(props === null || props === void 0 ? void 0 : props.x, "px ").concat(props === null || props === void 0 ? void 0 : props.y, "px ").concat(props === null || props === void 0 ? void 0 : props.blur, "px ").concat(props === null || props === void 0 ? void 0 : props.color) : undefined,
+        boxShadow: props
+            ? "".concat((_a = props.x) !== null && _a !== void 0 ? _a : 0, "px ").concat(props.y, "px ").concat(props.blur, "px ").concat(props.color)
+            : undefined,
     };
 };
 exports.shadowStylesProps = shadowStylesProps;

@@ -2,13 +2,14 @@
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { ComponentPropsWithoutRef, useMemo } from "react";
+import { baseStylesProps } from "../styles/baseStylesProps";
 import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { LayoutElementType } from "../types/piece/LayoutElementType";
 import {
   PositionPropsType,
   PositionType,
 } from "../types/props/PositionPropsType";
-import { mediaScreenSize } from "../utils/mediaScreenSize";
+import { createMediaStyles } from "../utils/createMediaStyles";
 
 const Position = React.forwardRef<
   HTMLElement,
@@ -19,31 +20,41 @@ const Position = React.forwardRef<
     as,
     children,
     className,
+    w,
+    maxW,
+    minW,
+    h,
+    maxH,
+    minH,
     type,
     top,
     bottom,
     left,
     right,
     axis,
-    sizes,
     zIndex,
     transition,
     _hover,
     _focus,
     _active,
-    mq = {},
+    _mq = {},
     css: cssProp,
     ...rest
   } = props;
 
   const pPs = {
+    w,
+    maxW,
+    minW,
+    h,
+    maxH,
+    minH,
     type,
     top,
     bottom,
     left,
     right,
     axis,
-    sizes,
   };
 
   const Component = as || "div";
@@ -53,7 +64,14 @@ const Position = React.forwardRef<
   const ExtendedStyles = (props: PositionType) => {
     return {
       display: "flex",
-      ...screenSizeStylesProps(props.sizes),
+      ...screenSizeStylesProps({
+        width: props.w,
+        maxWidth: props.maxW,
+        minWidth: props.minW,
+        height: props.h,
+        maxHeight: props.maxH,
+        minHeight: props.minH,
+      }),
       position: props.type,
       top: props.top,
       bottom: props.bottom,
@@ -68,36 +86,10 @@ const Position = React.forwardRef<
   };
 
   //
-  // base style
-  const baseStyle = useMemo(
-    () =>
-      css({
-        transition:
-          transition && transition?.time && transition?.time > 0
-            ? `all ${transition.time}s ${transition.type}`
-            : undefined,
-        listStyle: "none",
-        outline: "none",
-        zIndex,
-      }),
-    [rest.onClick, rest.onMouseEnter, transition, zIndex]
-  );
-
-  //
   // media-query styles
   const mediaStyles = useMemo(
-    () =>
-      mediaScreenSize.map((size) => {
-        const breakpointKey = `w${size}` as keyof typeof mq;
-        const styles = mq?.[breakpointKey];
-
-        return css`
-          @media (max-width: ${size}px) {
-            ${styles ? ExtendedStyles(styles) : ""}
-          }
-        `;
-      }),
-    [mq]
+    () => createMediaStyles(_mq, ExtendedStyles),
+    [_mq]
   );
 
   //
@@ -116,12 +108,12 @@ const Position = React.forwardRef<
   // combined styles
   const combinedStyles = useMemo(
     () => css`
-      ${baseStyle}
+      ${baseStylesProps({ transition, zIndex })}
       ${ExtendedStyles({ ...pPs, type: pPs.type ?? "relative" })}
       ${mediaStyles}
       ${pseudoStyles}
     `,
-    [baseStyle, pPs, mediaStyles, pseudoStyles]
+    [pPs, mediaStyles, pseudoStyles]
   );
 
   const combinedClassName = cx("dble-position", className);

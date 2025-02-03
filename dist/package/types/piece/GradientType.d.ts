@@ -1,5 +1,5 @@
 interface GradientType {
-    type?: 'linear' | 'radial';
+    type?: "linear" | "radial";
     colors: Array<{
         color: string;
         stop?: number;

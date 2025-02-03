@@ -1,38 +1,62 @@
-import { BorderType } from '../piece/BorderType';
-import { FlexType } from '../piece/FlexType';
-import { GradientType } from '../piece/GradientType';
-import { MediaQueryType } from '../piece/MediaQueryType';
-import { PositionType } from '../piece/PositionType';
-import { ScreenSizeType } from '../piece/ScreenSizeType';
-import { ShadowType } from '../piece/ShadowType';
-import { TrafficType } from '../piece/TrafficType';
-import { TypographyType } from '../piece/TypographyType';
-import { ElementPropsType } from './ExtendedElementPropsType';
+import { CSSObject } from "@emotion/react";
+import { HTMLAttributes } from "react";
+import { BorderType } from "../piece/BorderType";
+import { CursorType } from "../piece/CursorType";
+import { GradientType } from "../piece/GradientType";
+import { MediaQueryType } from "../piece/MediaQueryType";
+import { ExcludedProps } from "../piece/PipeLinePropsType";
+import { ShadowType } from "../piece/ShadowType";
+import { TransitionType } from "../piece/TransitionType";
 
-export interface ButtonType extends TypographyType {
-  display?: 'flex' | 'none';
-  sizes?: ScreenSizeType;
-  flex?: FlexType;
-  position?: PositionType;
-  padding?: TrafficType;
-  margin?: TrafficType;
-  backgroundFill?: string;
+export interface ButtonType
+  extends Omit<HTMLAttributes<HTMLButtonElement>, ExcludedProps> {
+  w?: number | string;
+  maxW?: number | string;
+  minW?: number | string;
+  h?: number | string;
+  maxH?: number | string;
+  minH?: number | string;
+
+  // typography
+  txtSize?: number | string;
+  txtWeight?: "lighter" | "normal" | "medium" | "bold";
+  txtAlign?: "start" | "end" | "center";
+  txtColor?: string;
+  txtShadow?: string;
+  txtTransform?:
+    | "none"
+    | "capitalize"
+    | "uppercase"
+    | "lowercase"
+    | "initial"
+    | "inherit";
+  lineHeight?: number | string;
+  whiteSpace?: "normal" | "nowrap" | "pre" | "pre-wrap" | "pre-line";
+
+  // background
+  fill?: string;
   gradient?: GradientType | never;
   border?: BorderType;
-  borderRadius?: number | string;
   shadow?: ShadowType;
   opacity?: number;
   scale?: number;
-  rotate?: string | number;
-  axis?: { x?: string | number; y?: string | number };
 }
 
 //
 // TouchableOpacity
-export interface ButtonPropsType extends ElementPropsType, ButtonType {
-  mq?: MediaQueryType<ButtonType>;
+export interface ButtonPropsType extends Omit<ButtonType, ExcludedProps> {
+  children: React.ReactNode;
+  css?: CSSObject;
+  zIndex?: number;
+  transition?: TransitionType;
+  cursor?: CursorType;
+  userSelect?: "none" | "auto" | "text" | "contain" | "all";
+
+  _mq?: MediaQueryType<ButtonType>;
   _hover?: Partial<ButtonType>;
   _focus?: Partial<ButtonType>;
   _active?: Partial<ButtonType>;
   _disabled?: Partial<ButtonType>;
 }
+
+export type ButtonLayoutElement = Omit<ButtonPropsType, ExcludedProps>;

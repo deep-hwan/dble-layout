@@ -1,14 +1,16 @@
-import { ElementType } from "react";
-import { MediaQueryType } from "../piece/MediaQueryType";
-import { TransitionType } from "../piece/TransitionType";
 import { CSSObject } from "@emotion/react";
-export interface PaddingType {
-    width?: number | string;
-    maxWidth?: number | string;
-    minWidth?: number | string;
-    height?: number | string;
-    maxHeight?: number | string;
-    minHeight?: number | string;
+import { ElementType, HTMLAttributes } from "react";
+import { LayoutElementType } from "../piece/LayoutElementType";
+import { MediaQueryType } from "../piece/MediaQueryType";
+import { ExcludedProps } from "../piece/PipeLinePropsType";
+import { TransitionType } from "../piece/TransitionType";
+export interface PaddingType extends Omit<HTMLAttributes<HTMLElement>, ExcludedProps> {
+    w?: number | string;
+    maxW?: number | string;
+    minW?: number | string;
+    h?: number | string;
+    maxH?: number | string;
+    minH?: number | string;
     all?: number | string;
     horizontal?: number | string;
     vertical?: number | string;
@@ -17,14 +19,15 @@ export interface PaddingType {
     left?: number | string;
     right?: number | string;
 }
-export interface PaddingPropsType<T extends ElementType> extends PaddingType {
+export interface PaddingPropsType<T extends ElementType = "div"> extends Omit<PaddingType, ExcludedProps> {
     as?: T;
     children: React.ReactNode;
     css?: CSSObject;
     zIndex?: number;
     transition?: TransitionType;
-    mq?: MediaQueryType<PaddingType>;
+    _mq?: MediaQueryType<PaddingType>;
     _hover?: Partial<PaddingType>;
     _focus?: Partial<PaddingType>;
     _active?: Partial<PaddingType>;
 }
+export type PaddingLayoutElement = Omit<PaddingPropsType<LayoutElementType>, ExcludedProps>;

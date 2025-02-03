@@ -54,69 +54,62 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
+var borderStylesProps_1 = require("../styles/borderStylesProps");
+var gradientStylesProps_1 = require("../styles/gradientStylesProps");
 var shadowStylesProps_1 = require("../styles/shadowStylesProps");
-var mediaScreenSize_1 = require("../utils/mediaScreenSize");
+var transformStylesProps_1 = require("../styles/transformStylesProps");
+var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Background = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, width = props.width, maxWidth = props.maxWidth, minWidth = props.minWidth, height = props.height, maxHeight = props.maxHeight, minHeight = props.minHeight, fill = props.fill, border = props.border, shadow = props.shadow, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props.mq, mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "width", "maxWidth", "minWidth", "height", "maxHeight", "minHeight", "fill", "border", "shadow", "zIndex", "transition", "_hover", "_focus", "_active", "mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, fill = props.fill, imageFill = props.imageFill, gradient = props.gradient, border = props.border, shadow = props.shadow, blur = props.blur, opacity = props.opacity, scale = props.scale, rotate = props.rotate, zIndex = props.zIndex, transition = props.transition, cursor = props.cursor, userSelect = props.userSelect, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "fill", "imageFill", "gradient", "border", "shadow", "blur", "opacity", "scale", "rotate", "zIndex", "transition", "cursor", "userSelect", "_hover", "_focus", "_active", "_mq", "css"]);
     var pPs = {
-        width: width,
-        maxWidth: maxWidth,
-        minWidth: minWidth,
-        height: height,
-        maxHeight: maxHeight,
-        minHeight: minHeight,
+        w: w,
+        maxW: maxW,
+        minW: minW,
+        h: h,
+        maxH: maxH,
+        minH: minH,
         fill: fill,
+        imageFill: imageFill,
+        gradient: gradient,
         border: border,
         shadow: shadow,
+        blur: blur,
+        opacity: opacity,
+        scale: scale,
+        rotate: rotate,
     };
     var Component = as || "div";
-    var borderStylesProps = function (border) {
-        var _a = border !== null && border !== void 0 ? border : {}, radius = _a.radius, stroke = _a.stroke, position = _a.position, shape = _a.shape, color = _a.color;
-        var defaultShape = shape !== null && shape !== void 0 ? shape : "solid";
-        return {
-            border: !position || position === "all"
-                ? "".concat(stroke, "px ").concat(defaultShape, " ").concat(color)
-                : undefined,
-            borderBottom: position === "bottom"
-                ? "".concat(stroke, "px ").concat(defaultShape, " ").concat(color)
-                : undefined,
-            borderTop: position === "top" ? "".concat(stroke, "px ").concat(defaultShape, " ").concat(color) : undefined,
-            borderRight: position === "right"
-                ? "".concat(stroke, "px ").concat(defaultShape, " ").concat(color)
-                : undefined,
-            borderLeft: position === "left"
-                ? "".concat(stroke, "px ").concat(defaultShape, " ").concat(color)
-                : undefined,
-            borderRadius: radius,
-        };
-    };
     //
     // extended props styles
     var ExtendedStyles = function (props) {
-        return __assign(__assign({ width: props === null || props === void 0 ? void 0 : props.width, maxWidth: props === null || props === void 0 ? void 0 : props.maxWidth, minWidth: props === null || props === void 0 ? void 0 : props.minWidth, height: props === null || props === void 0 ? void 0 : props.height, maxHeight: props === null || props === void 0 ? void 0 : props.maxHeight, minHeight: props === null || props === void 0 ? void 0 : props.minHeight, backgroundColor: props.fill }, borderStylesProps(props === null || props === void 0 ? void 0 : props.border)), (0, shadowStylesProps_1.shadowStylesProps)(props.shadow));
+        var _a, _b, _c, _d, _e;
+        return __assign(__assign(__assign(__assign(__assign({ width: props === null || props === void 0 ? void 0 : props.w, maxWidth: props === null || props === void 0 ? void 0 : props.maxW, minWidth: props === null || props === void 0 ? void 0 : props.minW, height: props === null || props === void 0 ? void 0 : props.h, maxHeight: props === null || props === void 0 ? void 0 : props.maxH, minHeight: props === null || props === void 0 ? void 0 : props.minH, backgroundColor: props.fill, backgroundRepeat: (_a = props.imageFill) === null || _a === void 0 ? void 0 : _a.repeat, backgroundSize: (_b = props.imageFill) === null || _b === void 0 ? void 0 : _b.size, backgroundPosition: (_c = props.imageFill) === null || _c === void 0 ? void 0 : _c.position, backgroundImage: ((_d = props.imageFill) === null || _d === void 0 ? void 0 : _d.url)
+                ? "url(".concat(props.imageFill.url, ")")
+                : undefined, backgroundClip: (_e = props.imageFill) === null || _e === void 0 ? void 0 : _e.clip, filter: !!props.blur ? "blur(".concat(props.blur, "px)") : undefined }, (0, gradientStylesProps_1.gradientStylesProps)(props.gradient)), (props.border && (0, borderStylesProps_1.borderStylesProps)(props.border))), (props.shadow && (0, shadowStylesProps_1.shadowStylesProps)(props.shadow))), (0, transformStylesProps_1.transformStylesProps)({
+            scale: props.scale,
+            rotate: props.rotate,
+        })), { opacity: props.opacity });
     };
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
         return (0, react_1.css)({
             position: "relative",
-            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.time) && (transition === null || transition === void 0 ? void 0 : transition.time) > 0
-                ? "all ".concat(transition.time, "s ").concat(transition.type)
+            cursor: cursor
+                ? cursor
+                : (rest.onClick || rest.onMouseEnter) && "pointer",
+            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.duration) && (transition === null || transition === void 0 ? void 0 : transition.duration) > 0
+                ? "all ".concat(transition.duration, "s ").concat(transition.type)
                 : undefined,
             listStyle: "none",
             outline: "none",
             zIndex: zIndex,
+            userSelect: userSelect,
         });
-    }, [rest.onClick, rest.onMouseEnter, transition, zIndex]);
+    }, [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]);
     //
     // media-query styles
-    var mediaStyles = (0, react_2.useMemo)(function () {
-        return mediaScreenSize_1.mediaScreenSize.map(function (size) {
-            var breakpointKey = "w".concat(size);
-            var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
-            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "], ["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "])), size, styles ? ExtendedStyles(styles) : "");
-        });
-    }, [mq]);
+    var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
     //
     // pseudos
     var pseudoStyles = (0, react_2.useMemo)(function () {
@@ -130,10 +123,10 @@ var Background = react_2.default.forwardRef(function (props, ref) {
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { width: (_a = pPs.width) !== null && _a !== void 0 ? _a : "100%" })), mediaStyles, pseudoStyles);
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : "100%" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
-    var combinedClassName = (0, css_1.cx)("dble-position", className);
+    var combinedClassName = (0, css_1.cx)("dble-background".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });
 exports.default = react_2.default.memo(Background);
-var templateObject_1, templateObject_2;
+var templateObject_1;

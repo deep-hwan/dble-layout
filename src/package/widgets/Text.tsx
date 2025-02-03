@@ -1,22 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
-import React, { ComponentPropsWithoutRef, useMemo } from "react";
+import React, { useMemo } from "react";
+import { baseStylesProps } from "../styles/baseStylesProps";
 import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { spaceStylesProps } from "../styles/spaceStylesProps";
 import { transformStylesProps } from "../styles/transformStylesProps";
 import { typographyStylesProps } from "../styles/typographyStylesProps";
 import {
   TextElementType,
-  TextPropsType,
+  TextLayoutElement,
+  TextPropsRef,
   TextType,
 } from "../types/props/TextPropsType";
-import { mediaScreenSize } from "../utils/mediaScreenSize";
+import { createMediaStyles } from "../utils/createMediaStyles";
 
-const Text = React.forwardRef<
-  HTMLElement,
-  TextPropsType<TextElementType> & ComponentPropsWithoutRef<TextElementType>
->(
+const Text = React.forwardRef<HTMLElement, TextLayoutElement & TextPropsRef>(
   (
     {
       as,
@@ -45,11 +44,11 @@ const Text = React.forwardRef<
       rotate,
       zIndex,
       userSelect,
-      transition = { time: 0.25, type: "ease-in-out" },
+      transition = { duration: 0.25, type: "ease-in-out" },
       _hover,
       _focus,
       _active,
-      mq = {},
+      _mq = {},
       css: cssProp,
       ...rest
     },
@@ -99,6 +98,7 @@ const Text = React.forwardRef<
           ellipsis: props.ellipsis,
           txtDecoration: props.decoration,
         }),
+
         ...screenSizeStylesProps({
           width: props.w,
           maxWidth: props.maxW,
@@ -122,12 +122,8 @@ const Text = React.forwardRef<
     const baseStyle = useMemo(
       () =>
         css({
-          transition: `all ${transition.time}s ${transition.type}`,
-          display: "inline-block",
-          listStyle: "none",
-          outline: "none",
-          zIndex,
-          userSelect,
+          ...baseStylesProps({ transition, zIndex, userSelect }),
+          transition: `all ${transition.duration}s ${transition.type}`,
         }),
       [rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]
     );
@@ -135,18 +131,8 @@ const Text = React.forwardRef<
     //
     // media-query styles
     const mediaStyles = useMemo(
-      () =>
-        mediaScreenSize.map((size) => {
-          const breakpointKey = `w${size}` as keyof typeof mq;
-          const styles = mq?.[breakpointKey];
-
-          return css`
-            @media (max-width: ${size}px) {
-              ${styles ? ExtendedStyles(styles) : ""}
-            }
-          `;
-        }),
-      [mq]
+      () => createMediaStyles(_mq, ExtendedStyles),
+      [_mq]
     );
 
     //
@@ -171,6 +157,7 @@ const Text = React.forwardRef<
           size: pPs.size ?? 15,
           color: pPs.color ?? "#5d5d5f",
           whiteSpace: pPs.whiteSpace ?? "pre-line",
+          align: pPs.align ?? "start",
         })}
     ${mediaStyles}
     ${pseudoStyles}
@@ -178,7 +165,7 @@ const Text = React.forwardRef<
       [baseStyle, pPs, mediaStyles, pseudoStyles]
     );
 
-    const combinedClassName = cx(`dble-text-${as}`, className);
+    const combinedClassName = cx(`dble-text${as ? `-${as}` : ""}`, className);
 
     return (
       <Component

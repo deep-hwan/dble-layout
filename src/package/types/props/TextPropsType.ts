@@ -1,24 +1,8 @@
 import { CSSObject } from "@emotion/react";
-import { ElementType, HTMLAttributes } from "react";
+import { ComponentPropsWithoutRef, ElementType, HTMLAttributes } from "react";
 import { MediaQueryType } from "../piece/MediaQueryType";
 import { TrafficType } from "../piece/TrafficType";
 import { TransitionType } from "../piece/TransitionType";
-
-export type TextElementType =
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6"
-  | "strong"
-  | "b"
-  | "i"
-  | "p"
-  | "span"
-  | "div"
-  | "li"
-  | "label";
 
 export interface TextType
   extends Omit<
@@ -54,16 +38,50 @@ export interface TextType
   rotate?: string | number;
 }
 
-export interface TextPropsType<T extends ElementType = "p"> extends TextType {
+interface TextPropsType<T extends ElementType = "p"> extends TextType {
   as?: T;
-  mq?: MediaQueryType<TextType>;
-  _hover?: Partial<TextType>;
-  _focus?: Partial<TextType>;
-  _active?: Partial<TextType>;
-
   children: React.ReactNode;
   css?: CSSObject;
   zIndex?: number;
   transition?: TransitionType;
   userSelect?: "none" | "auto" | "text" | "contain" | "all";
+
+  _mq?: MediaQueryType<TextType>;
+  _hover?: Partial<TextType>;
+  _focus?: Partial<TextType>;
+  _active?: Partial<TextType>;
 }
+
+export type TextElementType =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "strong"
+  | "b"
+  | "i"
+  | "p"
+  | "span"
+  | "div"
+  | "li"
+  | "label";
+
+export type TextLayoutElement = Omit<
+  TextPropsType<TextElementType>,
+  ExcludedProps
+>;
+
+export type TextPropsRef = Omit<
+  ComponentPropsWithoutRef<TextElementType>,
+  ExcludedProps
+>;
+
+type ExcludedProps =
+  | "sizes"
+  | "title"
+  | "hidden"
+  | "title"
+  | "translate"
+  | "radioGroup";

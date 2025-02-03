@@ -1,47 +1,65 @@
 import { CSSObject } from "@emotion/react";
-import { ElementType } from "react";
+import { ElementType, HTMLAttributes } from "react";
+import { BorderType } from "../piece/BorderType";
+import { CursorType } from "../piece/CursorType";
+import { GradientType } from "../piece/GradientType";
+import { LayoutElementType } from "../piece/LayoutElementType";
 import { MediaQueryType } from "../piece/MediaQueryType";
+import { ExcludedProps } from "../piece/PipeLinePropsType";
+import { ShadowType } from "../piece/ShadowType";
 import { TransitionType } from "../piece/TransitionType";
 
-export interface BackgroundType {
-  width?: number | string;
-  maxWidth?: number | string;
-  minWidth?: number | string;
-  height?: number | string;
-  maxHeight?: number | string;
-  minHeight?: number | string;
+export interface BackgroundType
+  extends Omit<HTMLAttributes<HTMLElement>, ExcludedProps> {
+  w?: number | string;
+  maxW?: number | string;
+  minW?: number | string;
+  h?: number | string;
+  maxH?: number | string;
+  minH?: number | string;
+
+  // background
   fill?: string;
-  radius?: number | string;
-  stroke?: number | string;
-  strokeColor?: string;
-  strokePosition?: "top" | "bottom" | "left" | "right";
-  border?: {
-    radius?: number | string;
-    stroke?: number;
-    position?: "all" | "left" | "right" | "top" | "bottom";
-    color?: string;
-    shape?:
-      | "solid"
-      | "dotted"
-      | "dashed"
-      | "double"
-      | "outset"
-      | "inset"
-      | "groove"
-      | "ridge";
+  imageFill?: {
+    url?: never | string;
+    repeat?:
+      | "repeat-x"
+      | "repeat-y"
+      | "repeat"
+      | "space"
+      | "round"
+      | "no-repeat";
+    size?: "contain" | "cover" | string;
+    position?: "top" | "bottom" | "center" | "left" | "right" | "string";
+    clip?: "border-box" | "padding-box" | "content-box" | "initial" | "inherit";
   };
-  shadow?: { x?: number; y?: number; blur?: number; color?: string };
+
+  gradient?: GradientType | never;
+  border?: BorderType;
+  shadow?: ShadowType;
+  blur?: number;
+  opacity?: number;
+  scale?: number;
+  rotate?: string | number;
 }
 
-export interface BackgroundPropsType<T extends ElementType>
-  extends BackgroundType {
+interface BackgroundPropsType<T extends ElementType>
+  extends Omit<BackgroundType, ExcludedProps> {
   as?: T;
   children: React.ReactNode;
   css?: CSSObject;
   zIndex?: number;
   transition?: TransitionType;
-  mq?: MediaQueryType<BackgroundType>;
+  cursor?: CursorType;
+  userSelect?: "none" | "auto" | "text" | "contain" | "all";
+
+  _mq?: MediaQueryType<BackgroundType>;
   _hover?: Partial<BackgroundType>;
   _focus?: Partial<BackgroundType>;
   _active?: Partial<BackgroundType>;
 }
+
+export type BackgroundLayoutElement = Omit<
+  BackgroundPropsType<LayoutElementType>,
+  ExcludedProps
+>;

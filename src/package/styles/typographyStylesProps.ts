@@ -1,7 +1,7 @@
-import { TxtElementType } from "../types";
+import { TextElementType } from "../types";
 import { TypographyType } from "../types/piece/TypographyType";
 
-type Props = TypographyType & { as?: TxtElementType };
+type Props = TypographyType & { as?: TextElementType };
 
 const typographyStylesProps = ({
   as,

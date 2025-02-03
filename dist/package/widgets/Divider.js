@@ -1,8 +1,4 @@
 "use strict";
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -13,6 +9,29 @@ var __assign = (this && this.__assign) || function () {
         return t;
     };
     return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -34,23 +53,20 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 /** @jsxImportSource @emotion/react */
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
-var react_2 = __importDefault(require("react"));
-var mediaScreenSize_1 = require("../utils/mediaScreenSize");
+var react_2 = __importStar(require("react"));
+var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
-    var _b = _a.direction, direction = _b === void 0 ? "horizontal" : _b, width = _a.width, height = _a.height, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, spacing = _a.spacing, mq = _a.mq, cssProp = _a.css, props = __rest(_a, ["direction", "width", "height", "color", "spacing", "mq", "css"]);
+    var _b = _a.direction, direction = _b === void 0 ? "horizontal" : _b, w = _a.w, h = _a.h, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, spacing = _a.spacing, _d = _a._mq, _mq = _d === void 0 ? {} : _d, cssProp = _a.css, props = __rest(_a, ["direction", "w", "h", "color", "spacing", "_mq", "css"]);
     var Types = function (props) {
         var _a, _b, _c, _d;
         return ({
-            width: direction === "horizontal" ? (_a = props.width) !== null && _a !== void 0 ? _a : "100%" : (_b = props.width) !== null && _b !== void 0 ? _b : 1,
-            height: direction === "vertical" ? (_c = props.height) !== null && _c !== void 0 ? _c : "100%" : (_d = props.height) !== null && _d !== void 0 ? _d : 1,
+            width: direction === "horizontal" ? (_a = props.w) !== null && _a !== void 0 ? _a : "100%" : (_b = props.w) !== null && _b !== void 0 ? _b : 1,
+            height: direction === "vertical" ? (_c = props.h) !== null && _c !== void 0 ? _c : "100%" : (_d = props.h) !== null && _d !== void 0 ? _d : 1,
         });
     };
     var getSpacing = function (spacing, type) {
@@ -58,20 +74,14 @@ var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
         return (_b = (_a = spacing === null || spacing === void 0 ? void 0 : spacing.all) !== null && _a !== void 0 ? _a : spacing === null || spacing === void 0 ? void 0 : spacing[type]) !== null && _b !== void 0 ? _b : spacing === null || spacing === void 0 ? void 0 : spacing[type === "vertical" ? "top" : "left"];
     };
     var DividerStyle = function (props) {
-        return (0, react_1.css)(__assign({ backgroundColor: props.color, transition: "0.25s ease-in-out", marginTop: getSpacing(props.spacing, "vertical"), marginBottom: getSpacing(props.spacing, "vertical"), marginLeft: getSpacing(props.spacing, "horizontal"), marginRight: getSpacing(props.spacing, "horizontal") }, Types({ width: props.width, height: props.height })));
+        return (0, react_1.css)(__assign({ backgroundColor: props.color, transition: "0.25s ease-in-out", marginTop: getSpacing(props.spacing, "vertical"), marginBottom: getSpacing(props.spacing, "vertical"), marginLeft: getSpacing(props.spacing, "horizontal"), marginRight: getSpacing(props.spacing, "horizontal") }, Types({ w: props.w, h: props.h })));
     };
-    var mediaStyles = mediaScreenSize_1.mediaScreenSize.map(function (size) {
-        var breakpointKey = "w".concat(size);
-        var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
-        return styles
-            ? (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "], ["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "])), size, DividerStyle(styles)) : "";
-    });
+    var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, DividerStyle); }, [_mq]);
     var combinedClassName = (0, css_1.cx)("dble-divider", props.className);
     return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)(__spreadArray(__spreadArray([
-            DividerStyle({ direction: direction, width: width, height: height, spacing: spacing, color: color })
+            DividerStyle({ direction: direction, w: w, h: h, spacing: spacing, color: color })
         ], mediaStyles, true), [
             cssProp,
         ], false)) }, props)));
 });
 exports.default = react_2.default.memo(Divider);
-var templateObject_1;

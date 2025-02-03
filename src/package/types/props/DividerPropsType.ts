@@ -1,12 +1,13 @@
 import { CSSObject } from "@emotion/react";
 import { MediaQueryType } from "../piece/MediaQueryType";
+import { ExcludedProps } from "../piece/PipeLinePropsType";
 import { TrafficType } from "../piece/TrafficType";
 
 // Divider
 export interface DividerType {
   direction?: "horizontal" | "vertical";
-  width?: number | string;
-  height?: number | string;
+  w?: number | string;
+  h?: number | string;
   color?: string;
   spacing?: TrafficType;
 }
@@ -14,10 +15,10 @@ export interface DividerType {
 export interface DividerPropsType
   extends Omit<
       React.HTMLAttributes<HTMLDivElement>,
-      "children" | "size" | "direction" | "color"
+      "children" | "direction" | ExcludedProps
     >,
     DividerType {
   children?: never[];
-  mq?: MediaQueryType<DividerType>;
+  _mq?: MediaQueryType<DividerType>;
   css?: CSSObject;
 }

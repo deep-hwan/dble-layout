@@ -1,4 +1,4 @@
-import { ShadowType } from '../types/piece/ShadowType';
+import { ShadowType } from "../types/piece/ShadowType";
 declare const shadowStylesProps: (props?: ShadowType) => {
     boxShadow?: undefined;
 } | {

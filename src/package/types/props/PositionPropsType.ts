@@ -1,11 +1,20 @@
 import { CSSObject } from "@emotion/react";
-import { ElementType } from "react";
+import { ElementType, HTMLAttributes } from "react";
+import { LayoutElementType } from "../piece/LayoutElementType";
 import { MediaQueryType } from "../piece/MediaQueryType";
-import { ScreenSizeType } from "../piece/ScreenSizeType";
+import { ExcludedProps } from "../piece/PipeLinePropsType";
 import { TransitionType } from "../piece/TransitionType";
 
-export interface PositionType {
-  sizes?: ScreenSizeType;
+export interface PositionType
+  extends Omit<HTMLAttributes<HTMLElement>, ExcludedProps> {
+  w?: number | string;
+  maxW?: number | string;
+  minW?: number | string;
+  h?: number | string;
+  maxH?: number | string;
+  minH?: number | string;
+
+  // position
   type?: "static" | "relative" | "fixed" | "absolute" | "sticky";
   top?: string | number;
   bottom?: string | number;
@@ -14,14 +23,21 @@ export interface PositionType {
   axis?: { x?: string | number; y?: string | number };
 }
 
-export interface PositionPropsType<T extends ElementType> extends PositionType {
+export interface PositionPropsType<T extends ElementType = "div">
+  extends Omit<PositionType, ExcludedProps> {
   as?: T;
   children: React.ReactNode;
   css?: CSSObject;
   zIndex?: number;
   transition?: TransitionType;
-  mq?: MediaQueryType<PositionType>;
+
+  _mq?: MediaQueryType<PositionType>;
   _hover?: Partial<PositionType>;
   _focus?: Partial<PositionType>;
   _active?: Partial<PositionType>;
 }
+
+export type PositionLayoutElement = Omit<
+  PositionPropsType<LayoutElementType>,
+  ExcludedProps
+>;

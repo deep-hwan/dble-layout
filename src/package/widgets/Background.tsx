@@ -1,99 +1,100 @@
 /** @jsxImportSource @emotion/react */
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
-import React, { ComponentPropsWithoutRef, useMemo } from "react";
+import React, { useMemo } from "react";
+import { borderStylesProps } from "../styles/borderStylesProps";
+import { gradientStylesProps } from "../styles/gradientStylesProps";
 import { shadowStylesProps } from "../styles/shadowStylesProps";
-import { LayoutElementType } from "../types/piece/LayoutElementType";
+import { transformStylesProps } from "../styles/transformStylesProps";
+import { LayoutPropsRef } from "../types";
 import {
-  BackgroundPropsType,
+  BackgroundLayoutElement,
   BackgroundType,
 } from "../types/props/BackgroundPropsType";
-import { mediaScreenSize } from "../utils/mediaScreenSize";
+import { createMediaStyles } from "../utils/createMediaStyles";
 
 const Background = React.forwardRef<
   HTMLElement,
-  BackgroundPropsType<LayoutElementType> &
-    ComponentPropsWithoutRef<LayoutElementType>
+  BackgroundLayoutElement & LayoutPropsRef
 >((props, ref) => {
   const {
     as,
     children,
     className,
-    width,
-    maxWidth,
-    minWidth,
-    height,
-    maxHeight,
-    minHeight,
+    w,
+    maxW,
+    minW,
+    h,
+    maxH,
+    minH,
     fill,
+    imageFill,
+    gradient,
     border,
     shadow,
+    blur,
+    opacity,
+    scale,
+    rotate,
     zIndex,
     transition,
+    cursor,
+    userSelect,
     _hover,
     _focus,
     _active,
-    mq = {},
+    _mq = {},
     css: cssProp,
     ...rest
   } = props;
 
   const pPs = {
-    width,
-    maxWidth,
-    minWidth,
-    height,
-    maxHeight,
-    minHeight,
+    w,
+    maxW,
+    minW,
+    h,
+    maxH,
+    minH,
     fill,
+    imageFill,
+    gradient,
     border,
     shadow,
+    blur,
+    opacity,
+    scale,
+    rotate,
   };
 
   const Component = as || "div";
-
-  const borderStylesProps = (border: BackgroundType["border"]) => {
-    const { radius, stroke, position, shape, color } = border ?? {};
-
-    const defaultShape = shape ?? "solid";
-
-    return {
-      border:
-        !position || position === "all"
-          ? `${stroke}px ${defaultShape} ${color}`
-          : undefined,
-      borderBottom:
-        position === "bottom"
-          ? `${stroke}px ${defaultShape} ${color}`
-          : undefined,
-      borderTop:
-        position === "top" ? `${stroke}px ${defaultShape} ${color}` : undefined,
-      borderRight:
-        position === "right"
-          ? `${stroke}px ${defaultShape} ${color}`
-          : undefined,
-      borderLeft:
-        position === "left"
-          ? `${stroke}px ${defaultShape} ${color}`
-          : undefined,
-      borderRadius: radius,
-    };
-  };
 
   //
   // extended props styles
   const ExtendedStyles = (props: BackgroundType) => {
     return {
-      width: props?.width,
-      maxWidth: props?.maxWidth,
-      minWidth: props?.minWidth,
-      height: props?.height,
-      maxHeight: props?.maxHeight,
-      minHeight: props?.minHeight,
+      width: props?.w,
+      maxWidth: props?.maxW,
+      minWidth: props?.minW,
+      height: props?.h,
+      maxHeight: props?.maxH,
+      minHeight: props?.minH,
       backgroundColor: props.fill,
-
-      ...borderStylesProps(props?.border),
-      ...shadowStylesProps(props.shadow),
+      backgroundRepeat: props.imageFill?.repeat,
+      backgroundSize: props.imageFill?.size,
+      backgroundPosition: props.imageFill?.position,
+      backgroundImage: props.imageFill?.url
+        ? `url(${props.imageFill.url})`
+        : undefined,
+      backgroundClip: props.imageFill?.clip,
+      filter: !!props.blur ? `blur(${props.blur}px)` : undefined,
+      ...gradientStylesProps(props.gradient),
+      ...(props.border && borderStylesProps(props.border)),
+      ...(props.shadow && shadowStylesProps(props.shadow)),
+      ...transformStylesProps({
+        scale: props.scale,
+        rotate: props.rotate,
+      }),
+      opacity: props.opacity,
     };
   };
 
@@ -103,32 +104,26 @@ const Background = React.forwardRef<
     () =>
       css({
         position: "relative",
+        cursor: cursor
+          ? cursor
+          : (rest.onClick || rest.onMouseEnter) && "pointer",
         transition:
-          transition && transition?.time && transition?.time > 0
-            ? `all ${transition.time}s ${transition.type}`
+          transition && transition?.duration && transition?.duration > 0
+            ? `all ${transition.duration}s ${transition.type}`
             : undefined,
         listStyle: "none",
         outline: "none",
         zIndex,
+        userSelect,
       }),
-    [rest.onClick, rest.onMouseEnter, transition, zIndex]
+    [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]
   );
 
   //
   // media-query styles
   const mediaStyles = useMemo(
-    () =>
-      mediaScreenSize.map((size) => {
-        const breakpointKey = `w${size}` as keyof typeof mq;
-        const styles = mq?.[breakpointKey];
-
-        return css`
-          @media (max-width: ${size}px) {
-            ${styles ? ExtendedStyles(styles) : ""}
-          }
-        `;
-      }),
-    [mq]
+    () => createMediaStyles(_mq, ExtendedStyles),
+    [_mq]
   );
 
   //
@@ -148,14 +143,17 @@ const Background = React.forwardRef<
   const combinedStyles = useMemo(
     () => css`
       ${baseStyle}
-      ${ExtendedStyles({ ...pPs, width: pPs.width ?? "100%" })}
+      ${ExtendedStyles({ ...pPs, w: pPs.w ?? "100%" })}
       ${mediaStyles}
       ${pseudoStyles}
     `,
     [baseStyle, pPs, mediaStyles, pseudoStyles]
   );
 
-  const combinedClassName = cx("dble-position", className);
+  const combinedClassName = cx(
+    `dble-background${as ? `-${as}` : ""}`,
+    className
+  );
   return (
     <Component
       ref={ref}

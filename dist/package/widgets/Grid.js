@@ -54,13 +54,19 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
+var baseStylesProps_1 = require("../styles/baseStylesProps");
 var gridStylesProps_1 = require("../styles/gridStylesProps");
 var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
-var mediaScreenSize_1 = require("../utils/mediaScreenSize");
+var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Grid = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, templateColumns = props.templateColumns, templateRows = props.templateRows, templateAreas = props.templateAreas, gap = props.gap, autoFlow = props.autoFlow, autoColumns = props.autoColumns, autoRows = props.autoRows, justifyItems = props.justifyItems, alignItems = props.alignItems, justifyContent = props.justifyContent, alignContent = props.alignContent, sizes = props.sizes, zIndex = props.zIndex, cursor = props.cursor, userSelect = props.userSelect, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props.mq, mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "templateColumns", "templateRows", "templateAreas", "gap", "autoFlow", "autoColumns", "autoRows", "justifyItems", "alignItems", "justifyContent", "alignContent", "sizes", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, templateColumns = props.templateColumns, templateRows = props.templateRows, templateAreas = props.templateAreas, gap = props.gap, autoFlow = props.autoFlow, autoColumns = props.autoColumns, autoRows = props.autoRows, justifyItems = props.justifyItems, alignItems = props.alignItems, justifyContent = props.justifyContent, alignContent = props.alignContent, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "templateColumns", "templateRows", "templateAreas", "gap", "autoFlow", "autoColumns", "autoRows", "justifyItems", "alignItems", "justifyContent", "alignContent", "zIndex", "transition", "_hover", "_focus", "_active", "_mq", "css"]);
     var pPs = {
-        sizes: sizes,
+        w: w,
+        maxW: maxW,
+        minW: minW,
+        h: h,
+        maxH: maxH,
+        minH: minH,
         templateColumns: templateColumns,
         templateRows: templateRows,
         templateAreas: templateAreas,
@@ -77,7 +83,14 @@ var Grid = react_2.default.forwardRef(function (props, ref) {
     //
     // extended props styles
     var ExtendedStyles = function (props) {
-        return __assign(__assign({ display: "grid" }, (0, screenSizeStylesProps_1.screenSizeStylesProps)(props.sizes)), (0, gridStylesProps_1.gridStylesProps)({
+        return __assign(__assign({ display: "grid" }, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
+            width: props.w,
+            maxWidth: props.maxW,
+            minWidth: props.minW,
+            height: props.h,
+            maxHeight: props.maxH,
+            minHeight: props.minH,
+        })), (0, gridStylesProps_1.gridStylesProps)({
             templateColumns: props.templateColumns,
             templateRows: props.templateRows,
             templateAreas: props.templateAreas,
@@ -94,29 +107,11 @@ var Grid = react_2.default.forwardRef(function (props, ref) {
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)({
-            position: "relative",
-            cursor: cursor
-                ? cursor
-                : (rest.onClick || rest.onMouseEnter) && "pointer",
-            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.time) && (transition === null || transition === void 0 ? void 0 : transition.time) > 0
-                ? "all ".concat(transition.time, "s ").concat(transition.type)
-                : undefined,
-            listStyle: "none",
-            outline: "none",
-            zIndex: zIndex,
-            userSelect: userSelect,
-        });
-    }, [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]);
+        return (0, react_1.css)(__assign({ position: "relative" }, (0, baseStylesProps_1.baseStylesProps)({ transition: transition, zIndex: zIndex })));
+    }, [rest.onClick, rest.onMouseEnter, transition, zIndex]);
     //
     // media-query styles
-    var mediaStyles = (0, react_2.useMemo)(function () {
-        return mediaScreenSize_1.mediaScreenSize.map(function (size) {
-            var breakpointKey = "w".concat(size);
-            var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
-            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "], ["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "])), size, styles ? ExtendedStyles(styles) : "");
-        });
-    }, [mq]);
+    var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
     //
     // pseudos
     var pseudoStyles = (0, react_2.useMemo)(function () {
@@ -129,11 +124,11 @@ var Grid = react_2.default.forwardRef(function (props, ref) {
     //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
-        var _a, _b;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n      ", "\n      ", "\n    ", "\n    ", "\n    "], ["\n      ", "\n      ", "\n    ", "\n    ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { sizes: __assign(__assign({}, pPs.sizes), { width: (_b = (_a = pPs.sizes) === null || _a === void 0 ? void 0 : _a.width) !== null && _b !== void 0 ? _b : "100%" }) })), mediaStyles, pseudoStyles);
+        var _a;
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : "100%" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
-    var combinedClassName = (0, css_1.cx)("dble-flex", className);
+    var combinedClassName = (0, css_1.cx)("dble-grid".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });
 exports.default = react_2.default.memo(Grid);
-var templateObject_1, templateObject_2;
+var templateObject_1;

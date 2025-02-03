@@ -14,7 +14,7 @@ const SizeTheme = ({
 });
 
 const Spacing = React.forwardRef(function Spacing(
-  { direction = "column", size, mq, css: cssProp, ...props }: SpacingPropsType,
+  { direction = "column", size, _mq, css: cssProp, ...props }: SpacingPropsType,
   ref?: React.Ref<HTMLDivElement>
 ) {
   const baseStyle = useMemo(() => {
@@ -27,10 +27,10 @@ const Spacing = React.forwardRef(function Spacing(
   }, [direction, size]);
 
   const mediaStyles = useMemo(() => {
-    if (!mq) return [];
+    if (!_mq) return [];
     return mediaScreenSize.map((size) => {
-      const breakpointKey = `w${size}` as keyof typeof mq;
-      const styles = mq[breakpointKey];
+      const breakpointKey = `w${size}` as keyof typeof _mq;
+      const styles = _mq[breakpointKey];
       return styles
         ? css`
             @media (max-width: ${size}px) {
@@ -42,7 +42,7 @@ const Spacing = React.forwardRef(function Spacing(
           `
         : "";
     });
-  }, [mq, direction]);
+  }, [_mq, direction]);
 
   const combinedClassName = cx("dble-spacing", props.className);
 

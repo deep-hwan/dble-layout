@@ -1,99 +1,120 @@
 /** @jsxImportSource @emotion/react */
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
-import React, { ComponentPropsWithoutRef, useCallback, useMemo } from "react";
-import { backgroundStylesProps } from "../styles/bgStylesProps";
+import React, { useCallback, useMemo } from "react";
+import { baseStylesProps } from "../styles/baseStylesProps";
 import { borderStylesProps } from "../styles/borderStylesProps";
 import { flexStylesProps } from "../styles/flexStylesProps";
 import { gradientStylesProps } from "../styles/gradientStylesProps";
-import { positionStylesProps } from "../styles/positionStylesProps";
 import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { shadowStylesProps } from "../styles/shadowStylesProps";
 import { spaceStylesProps } from "../styles/spaceStylesProps";
 import { transformStylesProps } from "../styles/transformStylesProps";
 import { typographyStylesProps } from "../styles/typographyStylesProps";
 import {
-  TouchableOpacitPropsType,
-  TouchableOpacityElementsType,
+  LayoutPropsRef,
+  TouchableOpacityLayoutElement,
   TouchableOpacityType,
 } from "../types";
-import { mediaScreenSize } from "../utils/mediaScreenSize";
+import { createMediaStyles } from "../utils/createMediaStyles";
 
 const TouchableOpacity = React.forwardRef<
   HTMLElement,
-  TouchableOpacitPropsType<TouchableOpacityElementsType> &
-    ComponentPropsWithoutRef<TouchableOpacityElementsType>
+  TouchableOpacityLayoutElement & LayoutPropsRef
 >(
   (
     {
       as,
       children,
       className,
+      w,
+      maxW,
+      minW,
+      h,
+      maxH,
+      minH,
+
+      // flex
+      flex,
+      direction,
+      isReverse,
+      align,
+      crossAlign,
+      gap,
+      wrap,
+
+      // typography
       txtSize,
       txtWeight,
       txtAlign,
       txtColor,
       txtShadow,
       txtTransform,
-      txtDecoration,
       lineHeight,
       whiteSpace,
-      ellipsis,
-      display,
-      sizes,
-      flex,
-      position,
+
+      // padding
       padding,
-      margin,
-      borderRadius,
-      border,
-      background,
-      opacity,
+
+      // background
+      fill,
       gradient,
+      border,
       shadow,
-      axis,
+      opacity,
       scale,
-      rotate,
+
       zIndex,
       cursor,
       userSelect = "none",
-      transition = { time: 0.2, type: "ease-in-out" },
+      transition = { duration: 0.2, type: "ease-in-out" },
+
       _hover,
       _focus,
       _active,
       _disabled,
-      mq = {},
+      _mq = {},
       css: cssProp,
       ...rest
     },
     ref
   ) => {
     const pPs = {
+      w,
+      maxW,
+      minW,
+      h,
+      maxH,
+      minH,
+      //
+      flex,
+      direction,
+      isReverse,
+      align,
+      crossAlign,
+      gap,
+      wrap,
+
+      //
       txtSize,
       txtWeight,
       txtAlign,
       txtColor,
       txtShadow,
       txtTransform,
-      txtDecoration,
       lineHeight,
       whiteSpace,
-      ellipsis,
-      display,
-      sizes,
-      flex,
-      position,
+
+      //
       padding,
-      margin,
-      border,
-      borderRadius,
-      background,
+
+      //
+      fill,
       gradient,
-      opacity,
+      border,
       shadow,
-      axis,
+      opacity,
       scale,
-      rotate,
     };
 
     const Component = as || "div";
@@ -111,8 +132,25 @@ const TouchableOpacity = React.forwardRef<
       props: TouchableOpacityType & { as?: TouchableOpacityType }
     ) => {
       return {
-        display: props.display,
-        opacity: props.opacity,
+        ...screenSizeStylesProps({
+          width: props.w,
+          maxWidth: props.maxW,
+          minWidth: props.minW,
+          height: props.h,
+          maxHeight: props.maxH,
+          minHeight: props.minH,
+        }),
+
+        ...flexStylesProps({
+          flex: props.flex,
+          direction: props.direction,
+          isReverse: props.isReverse,
+          align: props.align,
+          crossAlign: props.crossAlign,
+          gap: props.gap,
+          wrap: props.wrap,
+        }),
+
         ...typographyStylesProps({
           txtSize: props.txtSize,
           txtWeight: props.txtWeight,
@@ -122,26 +160,16 @@ const TouchableOpacity = React.forwardRef<
           txtTransform: props.txtTransform,
           lineHeight: props.lineHeight,
           whiteSpace: props.whiteSpace,
-          ellipsis: props.ellipsis,
-          txtDecoration: props.txtDecoration,
         }),
-        ...((props.display === "flex" || !props.display) &&
-          flexStylesProps(props.flex)),
-        ...screenSizeStylesProps(props.sizes),
-        ...positionStylesProps({ position: props.position }),
-        ...spaceStylesProps({ padding: props.padding, margin: props.margin }),
-        ...borderStylesProps({
-          border: props.border,
-          borderRadius: props.borderRadius,
-        }),
-        ...backgroundStylesProps(props.background),
+
+        ...spaceStylesProps({ padding: props.padding }),
+
+        opacity: props.opacity,
+        backgroundColor: props.fill,
         ...gradientStylesProps(props.gradient),
+        ...borderStylesProps(props.border ?? {}),
         ...shadowStylesProps(props.shadow),
-        ...transformStylesProps({
-          axis: props.axis,
-          scale: props.scale,
-          rotate: props.rotate,
-        }),
+        ...transformStylesProps({ scale: props.scale }),
       };
     };
 
@@ -151,17 +179,8 @@ const TouchableOpacity = React.forwardRef<
       () =>
         css({
           position: "relative",
-          cursor:
-            "disabled" in rest && rest.disabled
-              ? "default"
-              : cursor ?? "pointer",
-          transition: `all ${transition.time}s ${transition.type}`,
-          display: "inline-block",
-          listStyle: "none",
-          outline: "none",
-          zIndex,
-          userSelect,
-          borderWidth: 0,
+          ...baseStylesProps({ transition, zIndex, cursor, userSelect }),
+          display: "flex",
         }),
       [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]
     );
@@ -169,18 +188,8 @@ const TouchableOpacity = React.forwardRef<
     //
     // media-query styles
     const mediaStyles = useMemo(
-      () =>
-        mediaScreenSize.map((size) => {
-          const breakpointKey = `w${size}` as keyof typeof mq;
-          const styles = mq?.[breakpointKey];
-
-          return css`
-            @media (max-width: ${size}px) {
-              ${styles ? ExtendedStyles(styles) : ""}
-            }
-          `;
-        }),
-      [mq]
+      () => createMediaStyles(_mq, ExtendedStyles),
+      [_mq]
     );
 
     //
@@ -189,10 +198,7 @@ const TouchableOpacity = React.forwardRef<
       () =>
         css({
           "&:hover": ExtendedStyles(_hover || {}),
-          "&:focus": ExtendedStyles({
-            ..._focus,
-            opacity: _focus?.opacity ?? 0.75,
-          }),
+          "&:focus": ExtendedStyles(_focus || {}),
           "&:active": ExtendedStyles({
             ..._active,
             opacity: _active?.opacity ?? 0.75,
@@ -212,25 +218,9 @@ const TouchableOpacity = React.forwardRef<
         ${baseStyle}
         ${ExtendedStyles({
           ...pPs,
-          display: pPs.display ?? "flex",
-          flex:
-            pPs.display === "flex" || !pPs.display
-              ? { ...pPs.flex, direction: pPs.flex?.direction ?? "column" }
-              : undefined,
-          position: { ...pPs.position, type: pPs.position?.type ?? "relative" },
-          gradient: {
-            ...pPs.gradient,
-            type: pPs.gradient?.type ?? "linear",
-          } as any,
-          border: {
-            ...pPs.border,
-            stroke: pPs.border?.stroke ?? 0,
-            color: pPs.border?.color ?? "transparent",
-            shape: pPs.border?.shape ?? "solid",
-          } as any,
-          txtSize: pPs.txtSize ?? 14,
+          direction: pPs.direction ?? "row",
+          txtSize: pPs.txtSize ?? 15,
           txtColor: pPs.txtColor ?? "#5b94f0",
-          whiteSpace: pPs.whiteSpace ?? "pre-line",
         })}
     ${mediaStyles}
     ${pseudoStyles}
@@ -238,7 +228,10 @@ const TouchableOpacity = React.forwardRef<
       [baseStyle, pPs, mediaStyles, pseudoStyles]
     );
 
-    const combinedClassName = cx("dble-touchableOpacity", className);
+    const combinedClassName = cx(
+      `dble-touchableOpacity${as ? `-${as}` : ""}`,
+      className
+    );
 
     return (
       <Component

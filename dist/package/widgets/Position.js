@@ -54,49 +54,44 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
+var baseStylesProps_1 = require("../styles/baseStylesProps");
 var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
-var mediaScreenSize_1 = require("../utils/mediaScreenSize");
+var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Position = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, type = props.type, top = props.top, bottom = props.bottom, left = props.left, right = props.right, axis = props.axis, sizes = props.sizes, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props.mq, mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "type", "top", "bottom", "left", "right", "axis", "sizes", "zIndex", "transition", "_hover", "_focus", "_active", "mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, type = props.type, top = props.top, bottom = props.bottom, left = props.left, right = props.right, axis = props.axis, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "type", "top", "bottom", "left", "right", "axis", "zIndex", "transition", "_hover", "_focus", "_active", "_mq", "css"]);
     var pPs = {
+        w: w,
+        maxW: maxW,
+        minW: minW,
+        h: h,
+        maxH: maxH,
+        minH: minH,
         type: type,
         top: top,
         bottom: bottom,
         left: left,
         right: right,
         axis: axis,
-        sizes: sizes,
     };
     var Component = as || "div";
     //
     // extended props styles
     var ExtendedStyles = function (props) {
         var _a, _b;
-        return __assign(__assign({ display: "flex" }, (0, screenSizeStylesProps_1.screenSizeStylesProps)(props.sizes)), { position: props.type, top: props.top, bottom: props.bottom, left: props.left, right: props.right, transform: axis
+        return __assign(__assign({ display: "flex" }, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
+            width: props.w,
+            maxWidth: props.maxW,
+            minWidth: props.minW,
+            height: props.h,
+            maxHeight: props.maxH,
+            minHeight: props.minH,
+        })), { position: props.type, top: props.top, bottom: props.bottom, left: props.left, right: props.right, transform: axis
                 ? "translate(".concat(typeof axis.x === "number" ? "".concat(axis.x, "px") : (_a = axis.x) !== null && _a !== void 0 ? _a : "0", ", ").concat(typeof axis.y === "number" ? "".concat(axis.y, "px") : (_b = axis.y) !== null && _b !== void 0 ? _b : "0", ")")
                 : undefined });
     };
     //
-    // base style
-    var baseStyle = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)({
-            transition: transition && (transition === null || transition === void 0 ? void 0 : transition.time) && (transition === null || transition === void 0 ? void 0 : transition.time) > 0
-                ? "all ".concat(transition.time, "s ").concat(transition.type)
-                : undefined,
-            listStyle: "none",
-            outline: "none",
-            zIndex: zIndex,
-        });
-    }, [rest.onClick, rest.onMouseEnter, transition, zIndex]);
-    //
     // media-query styles
-    var mediaStyles = (0, react_2.useMemo)(function () {
-        return mediaScreenSize_1.mediaScreenSize.map(function (size) {
-            var breakpointKey = "w".concat(size);
-            var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
-            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "], ["\n          @media (max-width: ", "px) {\n            ", "\n          }\n        "])), size, styles ? ExtendedStyles(styles) : "");
-        });
-    }, [mq]);
+    var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
     //
     // pseudos
     var pseudoStyles = (0, react_2.useMemo)(function () {
@@ -110,10 +105,10 @@ var Position = react_2.default.forwardRef(function (props, ref) {
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { type: (_a = pPs.type) !== null && _a !== void 0 ? _a : "relative" })), mediaStyles, pseudoStyles);
-    }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), (0, baseStylesProps_1.baseStylesProps)({ transition: transition, zIndex: zIndex }), ExtendedStyles(__assign(__assign({}, pPs), { type: (_a = pPs.type) !== null && _a !== void 0 ? _a : "relative" })), mediaStyles, pseudoStyles);
+    }, [pPs, mediaStyles, pseudoStyles]);
     var combinedClassName = (0, css_1.cx)("dble-position", className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });
 exports.default = react_2.default.memo(Position);
-var templateObject_1, templateObject_2;
+var templateObject_1;

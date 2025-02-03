@@ -1,16 +1,5 @@
-import { BorderType } from '../types/piece/BorderType';
-type BorderPropsType = {
-    border?: BorderType;
-    borderRadius?: number | string;
-};
-declare const borderStylesProps: (props?: BorderPropsType) => {
-    borderRadius: string | number | undefined;
-    border?: undefined;
-    borderBottom?: undefined;
-    borderTop?: undefined;
-    borderRight?: undefined;
-    borderLeft?: undefined;
-} | {
+import { BorderType } from "../types/piece/BorderType";
+declare const borderStylesProps: (border: BorderType) => {
     border: string | undefined;
     borderBottom: string | undefined;
     borderTop: string | undefined;

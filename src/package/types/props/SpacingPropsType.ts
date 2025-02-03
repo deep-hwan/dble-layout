@@ -10,6 +10,6 @@ export interface SpacingPropsType
     >,
     SpacingType {
   children?: never[];
-  mq?: MediaQueryType<SpacingType>;
+  _mq?: MediaQueryType<SpacingType>;
   css?: CSSObject;
 }

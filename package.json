@@ -1,6 +1,6 @@
 {
-  "name": "dble-widget",
-  "version": "0.0.7",
+  "name": "dble-layout",
+  "version": "0.0.1",
   "private": false,
   "files": [
     "dist",
@@ -70,12 +70,13 @@
       "last 1 safari version"
     ]
   },
-  "description": "reactjs component library widgets",
+  "description": "dble layout component library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/deep-hwan/react-flatlist-ui"
+    "url": "https://github.com/deep-hwan/dble-layout"
   },
   "keywords": [
+    "dble",
     "typescript",
     "Reactjs",
     "react-component",
@@ -85,7 +86,7 @@
   ],
   "author": "deep",
   "license": "ISC",
-  "homepage": "https://www.dbleui.com",
+  "homepage": "https://www.dbleagency.com",
   "devDependencies": {
     "vite-plugin-dts": "^3.7.2"
   }

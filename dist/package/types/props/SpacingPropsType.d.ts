@@ -7,7 +7,7 @@ type SpacingType = {
 };
 export interface SpacingPropsType extends Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "size" | "direction" | "color">, SpacingType {
     children?: never[];
-    mq?: MediaQueryType<SpacingType>;
+    _mq?: MediaQueryType<SpacingType>;
     css?: CSSObject;
 }
 export {};

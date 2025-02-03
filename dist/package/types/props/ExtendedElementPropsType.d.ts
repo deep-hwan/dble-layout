@@ -11,4 +11,4 @@ interface ExtendedElementType {
     userSelect?: "none" | "auto" | "text" | "contain" | "all";
 }
 type ElementPropsType = Omit<ExtendedElementType, "size" | "sizes" | "color" | "title" | "hidden">;
-export type { ElementPropsType };
+export type { ElementPropsType, ExtendedElementType };

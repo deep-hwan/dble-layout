@@ -1,4 +1,4 @@
-import { GradientType } from '../types/piece/GradientType';
+import { GradientType } from "../types/piece/GradientType";
 declare const gradientStylesProps: (props?: GradientType) => {
     background?: undefined;
 } | {

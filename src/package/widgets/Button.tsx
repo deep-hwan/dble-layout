@@ -2,92 +2,88 @@
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { ComponentPropsWithoutRef, useCallback, useMemo } from "react";
+import { baseStylesProps } from "../styles/baseStylesProps";
 import { borderStylesProps } from "../styles/borderStylesProps";
-import { flexStylesProps } from "../styles/flexStylesProps";
 import { gradientStylesProps } from "../styles/gradientStylesProps";
-import { positionStylesProps } from "../styles/positionStylesProps";
 import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { shadowStylesProps } from "../styles/shadowStylesProps";
-import { spaceStylesProps } from "../styles/spaceStylesProps";
 import { transformStylesProps } from "../styles/transformStylesProps";
 import { typographyStylesProps } from "../styles/typographyStylesProps";
-import { ButtonPropsType, ButtonType } from "../types";
-import { mediaScreenSize } from "../utils/mediaScreenSize";
+import { ButtonLayoutElement, ButtonType } from "../types";
+import { createMediaStyles } from "../utils/createMediaStyles";
 
 const Button = React.memo(
   React.forwardRef<
-    HTMLElement,
-    ButtonPropsType & ComponentPropsWithoutRef<"button">
+    HTMLButtonElement,
+    ButtonLayoutElement & ComponentPropsWithoutRef<"button">
   >(
     (
       {
         children,
         className,
+        w,
+        maxW,
+        minW,
+        h,
+        maxH,
+        minH,
+
+        // typography
         txtSize,
         txtWeight,
         txtAlign,
         txtColor,
         txtShadow,
         txtTransform,
-        txtDecoration,
         lineHeight,
         whiteSpace,
-        ellipsis,
-        display,
-        sizes,
-        flex,
-        position,
-        padding,
-        margin,
-        borderRadius,
-        border,
-        backgroundFill,
-        opacity,
+
+        fill,
         gradient,
+        border,
         shadow,
-        axis,
+        opacity,
         scale,
-        rotate,
+
         zIndex,
         cursor,
         userSelect = "none",
-        transition = { time: 0.2, type: "ease-in-out" },
+        transition = { duration: 0.2, type: "ease-in-out" },
+
         _hover,
         _focus,
         _active,
         _disabled,
-        mq = {},
+        _mq = {},
         css: cssProp,
         ...rest
       },
       ref
     ) => {
       const pPs = {
+        w,
+        maxW,
+        minW,
+        h,
+        maxH,
+        minH,
+        //
         txtSize,
         txtWeight,
         txtAlign,
         txtColor,
         txtShadow,
         txtTransform,
-        txtDecoration,
         lineHeight,
         whiteSpace,
-        ellipsis,
-        display,
-        sizes,
-        flex,
-        position,
-        padding,
-        margin,
-        border,
-        borderRadius,
-        backgroundFill,
+
+        //
+        fill,
         gradient,
-        opacity,
+        border,
         shadow,
-        axis,
+        opacity,
         scale,
-        rotate,
       };
 
       const handleClick = useCallback(
@@ -101,9 +97,15 @@ const Button = React.memo(
       // extended props styles
       const ExtendedStyles = (props: ButtonType) => {
         return {
-          display: props.display,
-          opacity: props.opacity,
-          backgroundColor: props.backgroundFill,
+          ...screenSizeStylesProps({
+            width: props.w,
+            maxWidth: props.maxW,
+            minWidth: props.minW,
+            height: props.h,
+            maxHeight: props.maxH,
+            minHeight: props.minH,
+          }),
+
           ...typographyStylesProps({
             txtSize: props.txtSize,
             txtWeight: props.txtWeight,
@@ -113,25 +115,13 @@ const Button = React.memo(
             txtTransform: props.txtTransform,
             lineHeight: props.lineHeight,
             whiteSpace: props.whiteSpace,
-            ellipsis: props.ellipsis,
-            txtDecoration: props.txtDecoration,
           }),
-          ...((props.display === "flex" || !props.display) &&
-            flexStylesProps(props.flex)),
-          ...screenSizeStylesProps(props.sizes),
-          ...positionStylesProps({ position: props.position }),
-          ...spaceStylesProps({ padding: props.padding, margin: props.margin }),
-          ...borderStylesProps({
-            border: props.border,
-            borderRadius: props.borderRadius,
-          }),
+          opacity: props.opacity,
+          backgroundColor: props.fill,
           ...gradientStylesProps(props.gradient),
+          ...borderStylesProps(props.border ?? {}),
           ...shadowStylesProps(props.shadow),
-          ...transformStylesProps({
-            axis: props.axis,
-            scale: props.scale,
-            rotate: props.rotate,
-          }),
+          ...transformStylesProps({ scale: props.scale }),
         };
       };
 
@@ -140,17 +130,9 @@ const Button = React.memo(
       const baseStyle = useMemo(
         () =>
           css({
-            cursor:
-              "disabled" in rest && rest.disabled
-                ? "default"
-                : cursor ?? "pointer",
-            transition: `all ${transition.time}s ${transition.type}`,
+            position: "relative",
+            ...baseStylesProps({ transition, zIndex, cursor, userSelect }),
             display: "inline-block",
-            listStyle: "none",
-            outline: "none",
-            zIndex,
-            userSelect,
-            borderWidth: 0,
           }),
         [
           cursor,
@@ -165,18 +147,8 @@ const Button = React.memo(
       //
       // media-query styles
       const mediaStyles = useMemo(
-        () =>
-          mediaScreenSize.map((size) => {
-            const breakpointKey = `w${size}` as keyof typeof mq;
-            const styles = mq?.[breakpointKey];
-
-            return css`
-              @media (max-width: ${size}px) {
-                ${styles ? ExtendedStyles(styles) : ""}
-              }
-            `;
-          }),
-        [mq]
+        () => createMediaStyles(_mq, ExtendedStyles),
+        [_mq]
       );
 
       //
@@ -195,7 +167,7 @@ const Button = React.memo(
             }),
             "&:disabled": ExtendedStyles({
               ..._disabled,
-              backgroundFill: "#f0f0f0",
+              fill: "#f0f0f0",
               txtColor: _disabled?.txtColor ?? "#aaa",
             }),
           }),
@@ -209,37 +181,20 @@ const Button = React.memo(
           ${baseStyle}
           ${ExtendedStyles({
             ...pPs,
-            display: pPs.display ?? "flex",
-            flex:
-              pPs.display === "flex" || !pPs.display
-                ? {
-                    ...pPs.flex,
-                    direction: pPs.flex?.direction ?? "column",
-                    align: pPs.flex?.align ?? "center",
-                    crossAlign: pPs.flex?.crossAlign ?? "center",
-                  }
-                : undefined,
-            position: {
-              ...pPs.position,
-              type: pPs.position?.type ?? "relative",
-            },
-            padding: {
-              ...pPs.padding,
-              vertical: pPs.padding?.vertical ?? 14,
-              horizontal: pPs.padding?.horizontal ?? 24,
-            },
-            backgroundFill: pPs.backgroundFill ?? "#5b94f0",
+            w: pPs.w ?? 100,
+            h: pPs.h ?? 48,
+            txtAlign: pPs.txtAlign ?? "center",
+            fill: pPs.fill ?? "#5b94f0",
+
             gradient: {
               ...pPs.gradient,
               type: pPs.gradient?.type ?? "linear",
             } as any,
+
             border: {
               ...pPs.border,
-              stroke: pPs.border?.stroke ?? 0,
-              color: pPs.border?.color ?? "transparent",
+              radius: pPs.border?.radius ?? 15,
             } as any,
-            borderRadius: pPs.borderRadius ?? 16,
-            whiteSpace: pPs.whiteSpace ?? "pre-line",
             txtSize: pPs.txtSize ?? 15,
             txtColor: pPs.txtColor ?? "#fbfbfb",
           })}

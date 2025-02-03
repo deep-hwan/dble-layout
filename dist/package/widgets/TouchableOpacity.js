@@ -54,45 +54,59 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
-var bgStylesProps_1 = require("../styles/bgStylesProps");
+var baseStylesProps_1 = require("../styles/baseStylesProps");
 var borderStylesProps_1 = require("../styles/borderStylesProps");
 var flexStylesProps_1 = require("../styles/flexStylesProps");
 var gradientStylesProps_1 = require("../styles/gradientStylesProps");
-var positionStylesProps_1 = require("../styles/positionStylesProps");
 var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
 var shadowStylesProps_1 = require("../styles/shadowStylesProps");
 var spaceStylesProps_1 = require("../styles/spaceStylesProps");
 var transformStylesProps_1 = require("../styles/transformStylesProps");
 var typographyStylesProps_1 = require("../styles/typographyStylesProps");
-var mediaScreenSize_1 = require("../utils/mediaScreenSize");
+var createMediaStyles_1 = require("../utils/createMediaStyles");
 var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
-    var as = _a.as, children = _a.children, className = _a.className, txtSize = _a.txtSize, txtWeight = _a.txtWeight, txtAlign = _a.txtAlign, txtColor = _a.txtColor, txtShadow = _a.txtShadow, txtTransform = _a.txtTransform, txtDecoration = _a.txtDecoration, lineHeight = _a.lineHeight, whiteSpace = _a.whiteSpace, ellipsis = _a.ellipsis, display = _a.display, sizes = _a.sizes, flex = _a.flex, position = _a.position, padding = _a.padding, margin = _a.margin, borderRadius = _a.borderRadius, border = _a.border, background = _a.background, opacity = _a.opacity, gradient = _a.gradient, shadow = _a.shadow, axis = _a.axis, scale = _a.scale, rotate = _a.rotate, zIndex = _a.zIndex, cursor = _a.cursor, _b = _a.userSelect, userSelect = _b === void 0 ? "none" : _b, _c = _a.transition, transition = _c === void 0 ? { time: 0.2, type: "ease-in-out" } : _c, _hover = _a._hover, _focus = _a._focus, _active = _a._active, _disabled = _a._disabled, _d = _a.mq, mq = _d === void 0 ? {} : _d, cssProp = _a.css, rest = __rest(_a, ["as", "children", "className", "txtSize", "txtWeight", "txtAlign", "txtColor", "txtShadow", "txtTransform", "txtDecoration", "lineHeight", "whiteSpace", "ellipsis", "display", "sizes", "flex", "position", "padding", "margin", "borderRadius", "border", "background", "opacity", "gradient", "shadow", "axis", "scale", "rotate", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "_disabled", "mq", "css"]);
+    var as = _a.as, children = _a.children, className = _a.className, w = _a.w, maxW = _a.maxW, minW = _a.minW, h = _a.h, maxH = _a.maxH, minH = _a.minH, 
+    // flex
+    flex = _a.flex, direction = _a.direction, isReverse = _a.isReverse, align = _a.align, crossAlign = _a.crossAlign, gap = _a.gap, wrap = _a.wrap, 
+    // typography
+    txtSize = _a.txtSize, txtWeight = _a.txtWeight, txtAlign = _a.txtAlign, txtColor = _a.txtColor, txtShadow = _a.txtShadow, txtTransform = _a.txtTransform, lineHeight = _a.lineHeight, whiteSpace = _a.whiteSpace, 
+    // padding
+    padding = _a.padding, 
+    // background
+    fill = _a.fill, gradient = _a.gradient, border = _a.border, shadow = _a.shadow, opacity = _a.opacity, scale = _a.scale, zIndex = _a.zIndex, cursor = _a.cursor, _b = _a.userSelect, userSelect = _b === void 0 ? "none" : _b, _c = _a.transition, transition = _c === void 0 ? { duration: 0.2, type: "ease-in-out" } : _c, _hover = _a._hover, _focus = _a._focus, _active = _a._active, _disabled = _a._disabled, _d = _a._mq, _mq = _d === void 0 ? {} : _d, cssProp = _a.css, rest = __rest(_a, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "flex", "direction", "isReverse", "align", "crossAlign", "gap", "wrap", "txtSize", "txtWeight", "txtAlign", "txtColor", "txtShadow", "txtTransform", "lineHeight", "whiteSpace", "padding", "fill", "gradient", "border", "shadow", "opacity", "scale", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "_disabled", "_mq", "css"]);
     var pPs = {
+        w: w,
+        maxW: maxW,
+        minW: minW,
+        h: h,
+        maxH: maxH,
+        minH: minH,
+        //
+        flex: flex,
+        direction: direction,
+        isReverse: isReverse,
+        align: align,
+        crossAlign: crossAlign,
+        gap: gap,
+        wrap: wrap,
+        //
         txtSize: txtSize,
         txtWeight: txtWeight,
         txtAlign: txtAlign,
         txtColor: txtColor,
         txtShadow: txtShadow,
         txtTransform: txtTransform,
-        txtDecoration: txtDecoration,
         lineHeight: lineHeight,
         whiteSpace: whiteSpace,
-        ellipsis: ellipsis,
-        display: display,
-        sizes: sizes,
-        flex: flex,
-        position: position,
+        //
         padding: padding,
-        margin: margin,
-        border: border,
-        borderRadius: borderRadius,
-        background: background,
+        //
+        fill: fill,
         gradient: gradient,
-        opacity: opacity,
+        border: border,
         shadow: shadow,
-        axis: axis,
+        opacity: opacity,
         scale: scale,
-        rotate: rotate,
     };
     var Component = as || "div";
     var handleClick = (0, react_2.useCallback)(function (event) {
@@ -102,7 +116,23 @@ var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
     //
     // extended props styles
     var ExtendedStyles = function (props) {
-        return __assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign({ display: props.display, opacity: props.opacity }, (0, typographyStylesProps_1.typographyStylesProps)({
+        var _a;
+        return __assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign(__assign({}, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
+            width: props.w,
+            maxWidth: props.maxW,
+            minWidth: props.minW,
+            height: props.h,
+            maxHeight: props.maxH,
+            minHeight: props.minH,
+        })), (0, flexStylesProps_1.flexStylesProps)({
+            flex: props.flex,
+            direction: props.direction,
+            isReverse: props.isReverse,
+            align: props.align,
+            crossAlign: props.crossAlign,
+            gap: props.gap,
+            wrap: props.wrap,
+        })), (0, typographyStylesProps_1.typographyStylesProps)({
             txtSize: props.txtSize,
             txtWeight: props.txtWeight,
             txtAlign: props.txtAlign,
@@ -111,63 +141,35 @@ var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
             txtTransform: props.txtTransform,
             lineHeight: props.lineHeight,
             whiteSpace: props.whiteSpace,
-            ellipsis: props.ellipsis,
-            txtDecoration: props.txtDecoration,
-        })), ((props.display === "flex" || !props.display) &&
-            (0, flexStylesProps_1.flexStylesProps)(props.flex))), (0, screenSizeStylesProps_1.screenSizeStylesProps)(props.sizes)), (0, positionStylesProps_1.positionStylesProps)({ position: props.position })), (0, spaceStylesProps_1.spaceStylesProps)({ padding: props.padding, margin: props.margin })), (0, borderStylesProps_1.borderStylesProps)({
-            border: props.border,
-            borderRadius: props.borderRadius,
-        })), (0, bgStylesProps_1.backgroundStylesProps)(props.background)), (0, gradientStylesProps_1.gradientStylesProps)(props.gradient)), (0, shadowStylesProps_1.shadowStylesProps)(props.shadow)), (0, transformStylesProps_1.transformStylesProps)({
-            axis: props.axis,
-            scale: props.scale,
-            rotate: props.rotate,
-        }));
+        })), (0, spaceStylesProps_1.spaceStylesProps)({ padding: props.padding })), { opacity: props.opacity, backgroundColor: props.fill }), (0, gradientStylesProps_1.gradientStylesProps)(props.gradient)), (0, borderStylesProps_1.borderStylesProps)((_a = props.border) !== null && _a !== void 0 ? _a : {})), (0, shadowStylesProps_1.shadowStylesProps)(props.shadow)), (0, transformStylesProps_1.transformStylesProps)({ scale: props.scale }));
     };
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)({
-            cursor: "disabled" in rest && rest.disabled
-                ? "default"
-                : cursor !== null && cursor !== void 0 ? cursor : "pointer",
-            transition: "all ".concat(transition.time, "s ").concat(transition.type),
-            display: "inline-block",
-            listStyle: "none",
-            outline: "none",
-            zIndex: zIndex,
-            userSelect: userSelect,
-            borderWidth: 0,
-        });
+        return (0, react_1.css)(__assign(__assign({ position: "relative" }, (0, baseStylesProps_1.baseStylesProps)({ transition: transition, zIndex: zIndex, cursor: cursor, userSelect: userSelect })), { display: "flex" }));
     }, [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]);
     //
     // media-query styles
-    var mediaStyles = (0, react_2.useMemo)(function () {
-        return mediaScreenSize_1.mediaScreenSize.map(function (size) {
-            var breakpointKey = "w".concat(size);
-            var styles = mq === null || mq === void 0 ? void 0 : mq[breakpointKey];
-            return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "], ["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "])), size, styles ? ExtendedStyles(styles) : "");
-        });
-    }, [mq]);
+    var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
     //
     // pseudos
     var pseudoStyles = (0, react_2.useMemo)(function () {
-        var _a, _b, _c;
+        var _a, _b;
         return (0, react_1.css)({
             "&:hover": ExtendedStyles(_hover || {}),
-            "&:focus": ExtendedStyles(__assign(__assign({}, _focus), { opacity: (_a = _focus === null || _focus === void 0 ? void 0 : _focus.opacity) !== null && _a !== void 0 ? _a : 0.75 })),
-            "&:active": ExtendedStyles(__assign(__assign({}, _active), { opacity: (_b = _active === null || _active === void 0 ? void 0 : _active.opacity) !== null && _b !== void 0 ? _b : 0.75 })),
-            "&:disabled": ExtendedStyles(__assign(__assign({}, _disabled), { txtColor: (_c = _disabled === null || _disabled === void 0 ? void 0 : _disabled.txtColor) !== null && _c !== void 0 ? _c : "#aaa" })),
+            "&:focus": ExtendedStyles(_focus || {}),
+            "&:active": ExtendedStyles(__assign(__assign({}, _active), { opacity: (_a = _active === null || _active === void 0 ? void 0 : _active.opacity) !== null && _a !== void 0 ? _a : 0.75 })),
+            "&:disabled": ExtendedStyles(__assign(__assign({}, _disabled), { txtColor: (_b = _disabled === null || _disabled === void 0 ? void 0 : _disabled.txtColor) !== null && _b !== void 0 ? _b : "#aaa" })),
         });
     }, [_hover, _focus, _active, _disabled]);
     //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r;
-        return (0, react_1.css)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { display: (_a = pPs.display) !== null && _a !== void 0 ? _a : "flex", flex: pPs.display === "flex" || !pPs.display
-                ? __assign(__assign({}, pPs.flex), { direction: (_c = (_b = pPs.flex) === null || _b === void 0 ? void 0 : _b.direction) !== null && _c !== void 0 ? _c : "column" }) : undefined, position: __assign(__assign({}, pPs.position), { type: (_e = (_d = pPs.position) === null || _d === void 0 ? void 0 : _d.type) !== null && _e !== void 0 ? _e : "relative" }), gradient: __assign(__assign({}, pPs.gradient), { type: (_g = (_f = pPs.gradient) === null || _f === void 0 ? void 0 : _f.type) !== null && _g !== void 0 ? _g : "linear" }), border: __assign(__assign({}, pPs.border), { stroke: (_j = (_h = pPs.border) === null || _h === void 0 ? void 0 : _h.stroke) !== null && _j !== void 0 ? _j : 0, color: (_l = (_k = pPs.border) === null || _k === void 0 ? void 0 : _k.color) !== null && _l !== void 0 ? _l : "transparent", shape: (_o = (_m = pPs.border) === null || _m === void 0 ? void 0 : _m.shape) !== null && _o !== void 0 ? _o : "solid" }), txtSize: (_p = pPs.txtSize) !== null && _p !== void 0 ? _p : 14, txtColor: (_q = pPs.txtColor) !== null && _q !== void 0 ? _q : "#5b94f0", whiteSpace: (_r = pPs.whiteSpace) !== null && _r !== void 0 ? _r : "pre-line" })), mediaStyles, pseudoStyles);
+        var _a, _b, _c;
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { direction: (_a = pPs.direction) !== null && _a !== void 0 ? _a : "row", txtSize: (_b = pPs.txtSize) !== null && _b !== void 0 ? _b : 15, txtColor: (_c = pPs.txtColor) !== null && _c !== void 0 ? _c : "#5b94f0" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
-    var combinedClassName = (0, css_1.cx)("dble-touchableOpacity", className);
+    var combinedClassName = (0, css_1.cx)("dble-touchableOpacity".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]), onClick: handleClick }, rest, { children: children })));
 });
 exports.default = react_2.default.memo(TouchableOpacity);
-var templateObject_1, templateObject_2;
+var templateObject_1;

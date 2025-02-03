@@ -1,9 +1,10 @@
 import { CSSObject } from "@emotion/react";
 import { MediaQueryType } from "../piece/MediaQueryType";
+import { ExcludedProps } from "../piece/PipeLinePropsType";
 
 export interface SkeletonType {
-  width?: number;
-  height?: number;
+  w?: number;
+  h?: number;
   primaryColor?: string;
   moveColor?: string;
   borderRadius?: number | string;
@@ -12,10 +13,10 @@ export interface SkeletonType {
 export interface SkeletonPropsType
   extends Omit<
       React.HTMLAttributes<HTMLDivElement>,
-      "children" | "size" | "direction" | "color"
+      "children" | "direction" | ExcludedProps
     >,
     SkeletonType {
   children?: never[];
-  mq?: MediaQueryType<SkeletonType>;
+  _mq?: MediaQueryType<SkeletonType>;
   css?: CSSObject;
 }

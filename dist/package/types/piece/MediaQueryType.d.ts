@@ -5,5 +5,7 @@ type MediaQueryType<T> = {
     w768?: T;
     w600?: T;
     w438?: T;
+    w375?: T;
+    w360?: T;
 };
 export type { MediaQueryType };
