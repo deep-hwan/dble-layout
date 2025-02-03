@@ -18,7 +18,6 @@ __exportStar(require("./piece/FlexType"), exports);
 __exportStar(require("./piece/PipeLinePropsType"), exports);
 __exportStar(require("./props/ButtonPropsType"), exports);
 __exportStar(require("./props/DividerPropsType"), exports);
-__exportStar(require("./props/ExtendedElementPropsType"), exports);
 __exportStar(require("./props/SkeletonPropsType"), exports);
 __exportStar(require("./props/SpacingPropsType"), exports);
 __exportStar(require("./props/TextPropsType"), exports);

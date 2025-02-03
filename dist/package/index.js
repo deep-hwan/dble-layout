@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Text = exports.Spacing = exports.Skeleton = exports.Position = exports.Padding = exports.Grid = exports.Flex = exports.Divider = exports.Button = exports.Background = void 0;
+exports.TouchableOpacity = exports.Text = exports.Spacing = exports.Skeleton = exports.Position = exports.Padding = exports.Grid = exports.Flex = exports.Divider = exports.Button = exports.Background = void 0;
 var Background_1 = __importDefault(require("./widgets/Background"));
 exports.Background = Background_1.default;
 var Button_1 = require("./widgets/Button");
@@ -24,3 +24,5 @@ var Spacing_1 = __importDefault(require("./widgets/Spacing"));
 exports.Spacing = Spacing_1.default;
 var Text_1 = __importDefault(require("./widgets/Text"));
 exports.Text = Text_1.default;
+var TouchableOpacity_1 = __importDefault(require("./widgets/TouchableOpacity"));
+exports.TouchableOpacity = TouchableOpacity_1.default;
