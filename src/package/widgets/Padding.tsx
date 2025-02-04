@@ -98,11 +98,9 @@ const Padding = React.forwardRef<
         ...baseStylesProps({
           transition,
           zIndex,
-          onClick: rest.onClick,
-          onMouseEnter: rest.onMouseEnter,
         }),
       }),
-    [rest.onClick, rest.onMouseEnter, transition, zIndex]
+    [transition, zIndex]
   );
 
   //

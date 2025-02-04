@@ -108,12 +108,7 @@ const Position = React.forwardRef<
   // combined styles
   const combinedStyles = useMemo(
     () => css`
-      ${baseStylesProps({
-        transition,
-        zIndex,
-        onClick: rest.onClick,
-        onMouseEnter: rest.onMouseEnter,
-      })}
+      ${baseStylesProps({ transition, zIndex })}
       ${ExtendedStyles({ ...pPs, type: pPs.type ?? "relative" })}
       ${mediaStyles}
       ${pseudoStyles}

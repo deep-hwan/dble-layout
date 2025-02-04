@@ -104,10 +104,8 @@ var Padding = react_2.default.forwardRef(function (props, ref) {
         return (0, react_1.css)(__assign({ position: "relative", display: "flex", flexDirection: "column" }, (0, baseStylesProps_1.baseStylesProps)({
             transition: transition,
             zIndex: zIndex,
-            onClick: rest.onClick,
-            onMouseEnter: rest.onMouseEnter,
         })));
-    }, [rest.onClick, rest.onMouseEnter, transition, zIndex]);
+    }, [transition, zIndex]);
     //
     // media-query styles
     var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
