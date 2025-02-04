@@ -4,19 +4,17 @@ import { css } from "@emotion/react";
 import React, { useMemo } from "react";
 import { baseStylesProps } from "../styles/baseStylesProps";
 import { borderStylesProps } from "../styles/borderStylesProps";
-import { gradientStylesProps } from "../styles/gradientStylesProps";
 import { shadowStylesProps } from "../styles/shadowStylesProps";
-import { transformStylesProps } from "../styles/transformStylesProps";
 import { LayoutPropsRef } from "../types/piece/PipeLinePropsType";
 import {
-  BackgroundLayoutElement,
-  BackgroundType,
-} from "../types/props/BackgroundPropsType";
+  BorderLayoutElement,
+  BorderType,
+} from "../types/props/BorderPropsType";
 import { createMediaStyles } from "../utils/createMediaStyles";
 
-const Background = React.forwardRef<
+const Border = React.forwardRef<
   HTMLElement,
-  BackgroundLayoutElement & LayoutPropsRef
+  BorderLayoutElement & LayoutPropsRef
 >((props, ref) => {
   const {
     as,
@@ -29,14 +27,13 @@ const Background = React.forwardRef<
     maxH,
     minH,
     fill,
-    imageFill,
-    gradient,
-    border,
+    radius,
+    stroke,
+    position,
+    strokeColor,
+    shape,
     shadow,
-    blur,
     opacity,
-    scale,
-    rotate,
     zIndex,
     transition,
     cursor,
@@ -57,21 +54,20 @@ const Background = React.forwardRef<
     maxH,
     minH,
     fill,
-    imageFill,
-    gradient,
-    border,
+    radius,
+    stroke,
+    position,
+    strokeColor,
+    shape,
     shadow,
-    blur,
     opacity,
-    scale,
-    rotate,
   };
 
   const Component = as || "div";
 
   //
   // extended props styles
-  const ExtendedStyles = (props: BackgroundType) => {
+  const ExtendedStyles = (props: BorderType) => {
     return {
       width: props?.w,
       maxWidth: props?.maxW,
@@ -79,22 +75,15 @@ const Background = React.forwardRef<
       height: props?.h,
       maxHeight: props?.maxH,
       minHeight: props?.minH,
-      backgroundColor: props.fill,
-      backgroundRepeat: props.imageFill?.repeat,
-      backgroundSize: props.imageFill?.size,
-      backgroundPosition: props.imageFill?.position,
-      backgroundImage: props.imageFill?.url
-        ? `url(${props.imageFill.url})`
-        : undefined,
-      backgroundClip: props.imageFill?.clip,
-      filter: !!props.blur ? `blur(${props.blur}px)` : undefined,
-      ...gradientStylesProps(props.gradient),
-      ...(props.border && borderStylesProps(props.border)),
-      ...(props.shadow && shadowStylesProps(props.shadow)),
-      ...transformStylesProps({
-        scale: props.scale,
-        rotate: props.rotate,
+      backgroundColor: props?.fill,
+      ...borderStylesProps({
+        radius: props.radius,
+        stroke: props.stroke,
+        position: props.position,
+        color: props.strokeColor,
+        shape: props.shape,
       }),
+      ...(props.shadow && shadowStylesProps(props.shadow)),
       opacity: props.opacity,
     };
   };
@@ -105,8 +94,6 @@ const Background = React.forwardRef<
     () =>
       css({
         position: "relative",
-        display: "flex",
-        flexDirection: "column",
         ...baseStylesProps({
           transition,
           zIndex,
@@ -145,6 +132,7 @@ const Background = React.forwardRef<
       ${baseStyle}
       ${ExtendedStyles({
         ...pPs,
+        radius: pPs.radius ?? 16,
         w: pPs.w ?? "100%",
       })}
       ${mediaStyles}
@@ -153,10 +141,7 @@ const Background = React.forwardRef<
     [baseStyle, pPs, mediaStyles, pseudoStyles]
   );
 
-  const combinedClassName = cx(
-    `dble-background${as ? `-${as}` : ""}`,
-    className
-  );
+  const combinedClassName = cx(`dble-border${as ? `-${as}` : ""}`, className);
   return (
     <Component
       ref={ref}
@@ -169,4 +154,4 @@ const Background = React.forwardRef<
   );
 });
 
-export default React.memo(Background);
+export default React.memo(Border);

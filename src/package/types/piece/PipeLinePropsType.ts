@@ -14,4 +14,5 @@ export type ExcludedProps =
   | "hidden"
   | "title"
   | "translate"
-  | "radioGroup";
+  | "radioGroup"
+  | "dir";

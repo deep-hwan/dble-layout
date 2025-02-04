@@ -2,7 +2,7 @@
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
-import { DividerPropsType, DividerType } from "../types";
+import { DividerPropsType, DividerType } from "../types/props/DividerPropsType";
 import { createMediaStyles } from "../utils/createMediaStyles";
 
 const Divider = React.forwardRef<HTMLDivElement, DividerPropsType>(

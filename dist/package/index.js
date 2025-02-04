@@ -3,9 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TouchableOpacity = exports.Text = exports.Spacing = exports.Skeleton = exports.Position = exports.Padding = exports.Grid = exports.Flex = exports.Divider = exports.Button = exports.Background = void 0;
+exports.TouchableOpacity = exports.Text = exports.Spacing = exports.Skeleton = exports.Position = exports.Padding = exports.Grid = exports.Flex = exports.Divider = exports.Button = exports.Border = exports.Background = void 0;
 var Background_1 = __importDefault(require("./widgets/Background"));
 exports.Background = Background_1.default;
+var Border_1 = __importDefault(require("./widgets/Border"));
+exports.Border = Border_1.default;
 var Button_1 = require("./widgets/Button");
 Object.defineProperty(exports, "Button", { enumerable: true, get: function () { return Button_1.Button; } });
 var Divider_1 = __importDefault(require("./widgets/Divider"));

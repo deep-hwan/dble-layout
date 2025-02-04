@@ -1,5 +1,5 @@
-import { TextElementType } from "../types";
 import { TypographyType } from "../types/piece/TypographyType";
+import { TextElementType } from "../types/props/TextPropsType";
 type Props = TypographyType & {
     as?: TextElementType;
 };

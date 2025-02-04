@@ -11,11 +11,11 @@ import { shadowStylesProps } from "../styles/shadowStylesProps";
 import { spaceStylesProps } from "../styles/spaceStylesProps";
 import { transformStylesProps } from "../styles/transformStylesProps";
 import { typographyStylesProps } from "../styles/typographyStylesProps";
+import { LayoutPropsRef } from "../types/piece/PipeLinePropsType";
 import {
-  LayoutPropsRef,
   TouchableOpacityLayoutElement,
   TouchableOpacityType,
-} from "../types";
+} from "../types/props/TouchableOpacitPropsType";
 import { createMediaStyles } from "../utils/createMediaStyles";
 
 const TouchableOpacity = React.forwardRef<

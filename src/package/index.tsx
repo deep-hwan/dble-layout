@@ -1,4 +1,5 @@
 import Background from "./widgets/Background";
+import Border from "./widgets/Border";
 import { Button } from "./widgets/Button";
 import Divider from "./widgets/Divider";
 import Flex from "./widgets/Flex";
@@ -12,6 +13,7 @@ import TouchableOpacity from "./widgets/TouchableOpacity";
 
 export {
   Background,
+  Border,
   Button,
   Divider,
   Flex,

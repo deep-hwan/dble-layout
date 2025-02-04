@@ -92,15 +92,15 @@ const Padding = React.forwardRef<
   const baseStyle = useMemo(
     () =>
       css({
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
         ...baseStylesProps({
           transition,
           zIndex,
           onClick: rest.onClick,
           onMouseEnter: rest.onMouseEnter,
         }),
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
       }),
     [rest.onClick, rest.onMouseEnter, transition, zIndex]
   );

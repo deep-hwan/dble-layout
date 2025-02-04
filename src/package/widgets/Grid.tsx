@@ -5,7 +5,7 @@ import React, { useMemo } from "react";
 import { baseStylesProps } from "../styles/baseStylesProps";
 import { gridStylesProps } from "../styles/gridStylesProps";
 import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
-import { LayoutPropsRef } from "../types";
+import { LayoutPropsRef } from "../types/piece/PipeLinePropsType";
 import { GridLayoutElement, GridType } from "../types/props/GridPropsType";
 import { createMediaStyles } from "../utils/createMediaStyles";
 

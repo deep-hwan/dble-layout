@@ -2,7 +2,7 @@
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
-import { SpacingPropsType } from "../types";
+import { SpacingPropsType } from "../types/props/SpacingPropsType";
 import { mediaScreenSize } from "../utils/mediaScreenSize";
 
 const SizeTheme = ({

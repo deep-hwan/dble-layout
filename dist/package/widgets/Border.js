@@ -55,11 +55,11 @@ var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
 var baseStylesProps_1 = require("../styles/baseStylesProps");
-var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
-var spaceStylesProps_1 = require("../styles/spaceStylesProps");
+var borderStylesProps_1 = require("../styles/borderStylesProps");
+var shadowStylesProps_1 = require("../styles/shadowStylesProps");
 var createMediaStyles_1 = require("../utils/createMediaStyles");
-var Padding = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, all = props.all, horizontal = props.horizontal, vertical = props.vertical, top = props.top, bottom = props.bottom, left = props.left, right = props.right, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "all", "horizontal", "vertical", "top", "bottom", "left", "right", "zIndex", "transition", "_hover", "_focus", "_active", "_mq", "css"]);
+var Border = react_2.default.forwardRef(function (props, ref) {
+    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, fill = props.fill, radius = props.radius, stroke = props.stroke, position = props.position, strokeColor = props.strokeColor, shape = props.shape, shadow = props.shadow, opacity = props.opacity, zIndex = props.zIndex, transition = props.transition, cursor = props.cursor, userSelect = props.userSelect, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "fill", "radius", "stroke", "position", "strokeColor", "shape", "shadow", "opacity", "zIndex", "transition", "cursor", "userSelect", "_hover", "_focus", "_active", "_mq", "css"]);
     var pPs = {
         w: w,
         maxW: maxW,
@@ -67,47 +67,39 @@ var Padding = react_2.default.forwardRef(function (props, ref) {
         h: h,
         maxH: maxH,
         minH: minH,
-        all: all,
-        horizontal: horizontal,
-        vertical: vertical,
-        top: top,
-        bottom: bottom,
-        left: left,
-        right: right,
+        fill: fill,
+        radius: radius,
+        stroke: stroke,
+        position: position,
+        strokeColor: strokeColor,
+        shape: shape,
+        shadow: shadow,
+        opacity: opacity,
     };
     var Component = as || "div";
     //
     // extended props styles
     var ExtendedStyles = function (props) {
-        return __assign(__assign({}, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
-            width: props.w,
-            maxWidth: props.maxW,
-            minWidth: props.minW,
-            height: props.h,
-            maxHeight: props.maxH,
-            minHeight: props.minH,
-        })), (0, spaceStylesProps_1.spaceStylesProps)({
-            padding: {
-                all: props.all,
-                horizontal: props.horizontal,
-                vertical: props.vertical,
-                top: props.top,
-                bottom: props.bottom,
-                left: props.left,
-                right: props.right,
-            },
-        }));
+        return __assign(__assign(__assign({ width: props === null || props === void 0 ? void 0 : props.w, maxWidth: props === null || props === void 0 ? void 0 : props.maxW, minWidth: props === null || props === void 0 ? void 0 : props.minW, height: props === null || props === void 0 ? void 0 : props.h, maxHeight: props === null || props === void 0 ? void 0 : props.maxH, minHeight: props === null || props === void 0 ? void 0 : props.minH, backgroundColor: props === null || props === void 0 ? void 0 : props.fill }, (0, borderStylesProps_1.borderStylesProps)({
+            radius: props.radius,
+            stroke: props.stroke,
+            position: props.position,
+            color: props.strokeColor,
+            shape: props.shape,
+        })), (props.shadow && (0, shadowStylesProps_1.shadowStylesProps)(props.shadow))), { opacity: props.opacity });
     };
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)(__assign({ position: "relative", display: "flex", flexDirection: "column" }, (0, baseStylesProps_1.baseStylesProps)({
+        return (0, react_1.css)(__assign({ position: "relative" }, (0, baseStylesProps_1.baseStylesProps)({
             transition: transition,
             zIndex: zIndex,
+            cursor: cursor,
+            userSelect: userSelect,
             onClick: rest.onClick,
             onMouseEnter: rest.onMouseEnter,
         })));
-    }, [rest.onClick, rest.onMouseEnter, transition, zIndex]);
+    }, [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]);
     //
     // media-query styles
     var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
@@ -115,19 +107,19 @@ var Padding = react_2.default.forwardRef(function (props, ref) {
     // pseudos
     var pseudoStyles = (0, react_2.useMemo)(function () {
         return (0, react_1.css)({
-            "&:hover": ExtendedStyles(_hover || {}),
-            "&:focus": ExtendedStyles(_focus || {}),
-            "&:active": ExtendedStyles(_active || {}),
+            "&:hover": ExtendedStyles(__assign({}, _hover)),
+            "&:focus": ExtendedStyles(__assign({}, _focus)),
+            "&:active": ExtendedStyles(__assign({}, _active)),
         });
     }, [_hover, _focus, _active]);
     //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
-        var _a;
-        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n    ", "\n    ", "\n    "], ["\n      ", "\n      ", "\n    ", "\n    ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : "100%" })), mediaStyles, pseudoStyles);
+        var _a, _b;
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { radius: (_a = pPs.radius) !== null && _a !== void 0 ? _a : 16, w: (_b = pPs.w) !== null && _b !== void 0 ? _b : "100%" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
-    var combinedClassName = (0, css_1.cx)("dble-padding".concat(as ? "-".concat(as) : ""), className);
+    var combinedClassName = (0, css_1.cx)("dble-border".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });
-exports.default = react_2.default.memo(Padding);
+exports.default = react_2.default.memo(Border);
 var templateObject_1;

@@ -5,7 +5,7 @@ import React, { useMemo } from "react";
 import { baseStylesProps } from "../styles/baseStylesProps";
 import { flexStylesProps } from "../styles/flexStylesProps";
 import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
-import { LayoutPropsRef } from "../types";
+import { LayoutPropsRef } from "../types/piece/PipeLinePropsType";
 import { FlexLayoutElement, FlexType } from "../types/props/FlexPropsType";
 import { createMediaStyles } from "../utils/createMediaStyles";
 

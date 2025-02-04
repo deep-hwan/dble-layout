@@ -9,7 +9,10 @@ import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { shadowStylesProps } from "../styles/shadowStylesProps";
 import { transformStylesProps } from "../styles/transformStylesProps";
 import { typographyStylesProps } from "../styles/typographyStylesProps";
-import { ButtonLayoutElement, ButtonType } from "../types";
+import {
+  ButtonLayoutElement,
+  ButtonType,
+} from "../types/props/ButtonPropsType";
 import { createMediaStyles } from "../utils/createMediaStyles";
 
 const Button = React.memo(

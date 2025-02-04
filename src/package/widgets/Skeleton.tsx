@@ -2,7 +2,10 @@
 import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { ForwardedRef, useMemo } from "react";
-import { SkeletonPropsType, SkeletonType } from "../types";
+import {
+  SkeletonPropsType,
+  SkeletonType,
+} from "../types/props/SkeletonPropsType";
 import { createMediaStyles } from "../utils/createMediaStyles";
 
 const Skeleton = React.forwardRef(
