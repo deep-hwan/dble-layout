@@ -144,7 +144,7 @@ var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
     //
     // base style
     var baseStyle = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)(__assign({ position: "relative" }, (0, baseStylesProps_1.baseStylesProps)({
+        return (0, react_1.css)(__assign({ position: "relative", display: "flex" }, (0, baseStylesProps_1.baseStylesProps)({
             transition: transition,
             zIndex: zIndex,
             cursor: disabled ? "default" : cursor,

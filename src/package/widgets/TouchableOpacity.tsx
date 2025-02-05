@@ -178,6 +178,7 @@ const TouchableOpacity = React.forwardRef<
       () =>
         css({
           position: "relative",
+          display: "flex",
           ...baseStylesProps({
             transition,
             zIndex,
