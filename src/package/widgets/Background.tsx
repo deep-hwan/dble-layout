@@ -28,6 +28,7 @@ const Background = React.forwardRef<
     h,
     maxH,
     minH,
+    flex,
     fill,
     imageFill,
     gradient,
@@ -56,6 +57,7 @@ const Background = React.forwardRef<
     h,
     maxH,
     minH,
+    flex,
     fill,
     imageFill,
     gradient,
@@ -79,6 +81,7 @@ const Background = React.forwardRef<
       height: props?.h,
       maxHeight: props?.maxH,
       minHeight: props?.minH,
+      flex: props?.flex,
       backgroundColor: props.fill,
       backgroundRepeat: props.imageFill?.repeat,
       backgroundSize: props.imageFill?.size,
@@ -146,6 +149,7 @@ const Background = React.forwardRef<
       ${ExtendedStyles({
         ...pPs,
         w: pPs.w ?? "100%",
+        h: pPs.h ?? (pPs.flex === 1 ? "100%" : undefined),
       })}
       ${mediaStyles}
       ${pseudoStyles}

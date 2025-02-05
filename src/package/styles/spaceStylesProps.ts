@@ -1,17 +1,52 @@
-import { TrafficType } from '../types/piece/TrafficType';
+import { TrafficType } from "../types/piece/TrafficType";
 
-const spaceStylesProps = (props?: { padding?: TrafficType; margin?: TrafficType }) => {
+const getSpaceValue = (
+  spaceObj: TrafficType | undefined,
+  direction:
+    | "all"
+    | "vertical"
+    | "horizontal"
+    | "top"
+    | "bottom"
+    | "left"
+    | "right"
+) => {
+  if (!spaceObj) return undefined;
+  const value = spaceObj[direction];
+  return value === 0 ? "0px" : value;
+};
+
+const spaceStylesProps = (props?: {
+  padding?: TrafficType;
+  margin?: TrafficType;
+}) => {
   if (!props) return {};
-  return {
-    paddingTop: props.padding?.all || props.padding?.vertical || props.padding?.top,
-    paddingBottom: props.padding?.all || props.padding?.vertical || props.padding?.bottom,
-    paddingRight: props.padding?.all || props.padding?.horizontal || props.padding?.right,
-    paddingLeft: props.padding?.all || props.padding?.horizontal || props.padding?.left,
 
-    marginTop: props.margin?.all || props.margin?.vertical || props.margin?.top,
-    marginBottom: props.margin?.all || props.margin?.vertical || props.margin?.bottom,
-    marginRight: props.margin?.all || props.margin?.horizontal || props.margin?.right,
-    marginLeft: props.margin?.all || props.margin?.horizontal || props.margin?.left,
+  const createSpaceProps = (
+    spaceObj: TrafficType | undefined,
+    prefix: string
+  ) => ({
+    [`${prefix}Top`]:
+      getSpaceValue(spaceObj, "all") ||
+      getSpaceValue(spaceObj, "vertical") ||
+      getSpaceValue(spaceObj, "top"),
+    [`${prefix}Bottom`]:
+      getSpaceValue(spaceObj, "all") ||
+      getSpaceValue(spaceObj, "vertical") ||
+      getSpaceValue(spaceObj, "bottom"),
+    [`${prefix}Right`]:
+      getSpaceValue(spaceObj, "all") ||
+      getSpaceValue(spaceObj, "horizontal") ||
+      getSpaceValue(spaceObj, "right"),
+    [`${prefix}Left`]:
+      getSpaceValue(spaceObj, "all") ||
+      getSpaceValue(spaceObj, "horizontal") ||
+      getSpaceValue(spaceObj, "left"),
+  });
+
+  return {
+    ...createSpaceProps(props.padding, "padding"),
+    ...createSpaceProps(props.margin, "margin"),
   };
 };
 

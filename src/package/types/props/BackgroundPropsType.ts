@@ -18,6 +18,8 @@ export interface BackgroundType
   maxH?: number | string;
   minH?: number | string;
 
+  flex?: number | string;
+
   // background
   fill?: string;
   imageFill?: {

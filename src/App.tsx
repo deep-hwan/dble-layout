@@ -36,28 +36,13 @@ export default function App() {
               }}
             >
               <Text
-                maxW={500}
                 size={50}
                 weight="bold"
                 color="#000"
                 lineHeight={1.5}
                 whiteSpace="nowrap"
-                ellipsis={{ isActive: true, line: 1 }}
-                _mq={{ w600: { size: 15 } }}
-              >
-                안녕나의 디자몬 아구몬이야
-              </Text>
-
-              <Text
-                as="span"
-                maxW={500}
-                size={50}
-                weight="bold"
-                color="#000"
-                lineHeight={1.5}
-                whiteSpace="nowrap"
-                ellipsis={{ isActive: true, line: 1 }}
-                _mq={{ w600: { size: 15 } }}
+                padding={{ all: 50 }}
+                _mq={{ w600: { size: 15, padding: { all: 0 } } }}
               >
                 안녕나의 디자몬 아구몬이야
               </Text>
@@ -83,7 +68,7 @@ export default function App() {
 
           <Spacing size={10} _mq={{ w1080: { size: 50 } }} />
 
-          <Padding all={10}>
+          <Padding all={10} _mq={{ w1080: { all: 0 } }}>
             <TouchableOpacity
               w="auto"
               gap={20}
