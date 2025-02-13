@@ -61,12 +61,12 @@ var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
 var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
-    var _b = _a.direction, direction = _b === void 0 ? "horizontal" : _b, w = _a.w, h = _a.h, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, radius = _a.radius, spacing = _a.spacing, _d = _a._mq, _mq = _d === void 0 ? {} : _d, cssProp = _a.css, props = __rest(_a, ["direction", "w", "h", "color", "radius", "spacing", "_mq", "css"]);
+    var _b = _a.direc, direc = _b === void 0 ? "horizontal" : _b, w = _a.w, h = _a.h, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, radius = _a.radius, spacing = _a.spacing, _d = _a._mq, _mq = _d === void 0 ? {} : _d, cssProp = _a.css, props = __rest(_a, ["direc", "w", "h", "color", "radius", "spacing", "_mq", "css"]);
     var Types = function (props) {
         var _a, _b, _c, _d;
         return ({
-            width: direction === "horizontal" ? (_a = props.w) !== null && _a !== void 0 ? _a : "100%" : (_b = props.w) !== null && _b !== void 0 ? _b : 1,
-            height: direction === "vertical" ? (_c = props.h) !== null && _c !== void 0 ? _c : "100%" : (_d = props.h) !== null && _d !== void 0 ? _d : 1,
+            width: direc === "horizontal" ? (_a = props.w) !== null && _a !== void 0 ? _a : "100%" : (_b = props.w) !== null && _b !== void 0 ? _b : 1,
+            height: direc === "vertical" ? (_c = props.h) !== null && _c !== void 0 ? _c : "100%" : (_d = props.h) !== null && _d !== void 0 ? _d : 1,
         });
     };
     var getSpacing = function (spacing, type) {
@@ -79,7 +79,7 @@ var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
     var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, DividerStyle); }, [_mq]);
     var combinedClassName = (0, css_1.cx)("dble-divider", props.className);
     return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)(__spreadArray(__spreadArray([
-            DividerStyle({ direction: direction, w: w, h: h, spacing: spacing, color: color, radius: radius })
+            DividerStyle({ direc: direc, w: w, h: h, spacing: spacing, color: color, radius: radius })
         ], mediaStyles, true), [
             cssProp,
         ], false)) }, props)));

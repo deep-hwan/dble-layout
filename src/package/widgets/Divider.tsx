@@ -8,7 +8,7 @@ import { createMediaStyles } from "../utils/createMediaStyles";
 const Divider = React.forwardRef<HTMLDivElement, DividerPropsType>(
   function Solid(
     {
-      direction = "horizontal",
+      direc = "horizontal",
       w,
       h,
       color = "#e9e9e9",
@@ -23,8 +23,8 @@ const Divider = React.forwardRef<HTMLDivElement, DividerPropsType>(
     type NumbericType = number | string;
 
     const Types = (props: { w?: NumbericType; h?: NumbericType }) => ({
-      width: direction === "horizontal" ? props.w ?? "100%" : props.w ?? 1,
-      height: direction === "vertical" ? props.h ?? "100%" : props.h ?? 1,
+      width: direc === "horizontal" ? props.w ?? "100%" : props.w ?? 1,
+      height: direc === "vertical" ? props.h ?? "100%" : props.h ?? 1,
     });
 
     const getSpacing = (spacing: any, type: string) =>
@@ -56,7 +56,7 @@ const Divider = React.forwardRef<HTMLDivElement, DividerPropsType>(
         ref={ref}
         className={combinedClassName}
         css={css([
-          DividerStyle({ direction, w, h, spacing, color, radius }),
+          DividerStyle({ direc, w, h, spacing, color, radius }),
           ...mediaStyles,
           cssProp,
         ])}

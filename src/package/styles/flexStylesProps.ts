@@ -1,15 +1,16 @@
-import { FlexType } from '../types/piece/FlexType';
+import { CSSObject } from "@emotion/react";
+import { FlexType } from "../types/piece/FlexType";
 
 const flexStylesProps = (props?: FlexType) => {
-  const computedDirection: FlexType['direction'] = props?.isReverse
-    ? (`${props.direction}-reverse` as 'row-reverse' | 'column-reverse')
-    : props?.direction;
+  const computedDirection: FlexType["direc"] = props?.isReverse
+    ? (`${props.direc}-reverse` as "row-reverse" | "column-reverse")
+    : props?.direc;
 
   const computedCrossAlign = props?.isReverse
-    ? props.crossAlign === 'start'
-      ? 'flex-end'
-      : 'flex-start'
-    : props?.crossAlign;
+    ? props.justify === "start"
+      ? "flex-end"
+      : "flex-start"
+    : props?.justify;
 
   const baseStyle = {
     flexDirection: computedDirection,
@@ -24,7 +25,7 @@ const flexStylesProps = (props?: FlexType) => {
     alignContent: props?.alignContent,
     alignSelf: props?.alignSelf,
     flexWrap: props?.wrap,
-  };
+  } as CSSObject;
 
   if (!props) return {};
   return baseStyle;

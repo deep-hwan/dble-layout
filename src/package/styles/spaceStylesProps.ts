@@ -2,17 +2,10 @@ import { TrafficType } from "../types/piece/TrafficType";
 
 const getSpaceValue = (
   spaceObj: TrafficType | undefined,
-  direction:
-    | "all"
-    | "vertical"
-    | "horizontal"
-    | "top"
-    | "bottom"
-    | "left"
-    | "right"
+  dir: "all" | "vertical" | "horizontal" | "top" | "bottom" | "left" | "right"
 ) => {
   if (!spaceObj) return undefined;
-  const value = spaceObj[direction];
+  const value = spaceObj[dir];
   return value === 0 ? "0px" : value;
 };
 

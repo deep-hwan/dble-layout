@@ -5,7 +5,7 @@ import { TrafficType } from "../piece/TrafficType";
 
 // Divider
 export interface DividerType {
-  direction?: "horizontal" | "vertical";
+  direc?: "horizontal" | "vertical";
   w?: number | string;
   h?: number | string;
   color?: string;
@@ -16,7 +16,7 @@ export interface DividerType {
 export interface DividerPropsType
   extends Omit<
       React.HTMLAttributes<HTMLDivElement>,
-      "children" | "direction" | ExcludedProps
+      "children" | "dir" | ExcludedProps
     >,
     DividerType {
   children?: never[];

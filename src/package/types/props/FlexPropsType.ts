@@ -16,10 +16,10 @@ export interface FlexType
 
   // flex
   flex?: string | number;
-  direction?: "row" | "row-reverse" | "column" | "column-reverse";
-  isReverse?: boolean; // flex-direction
+  direc?: "row" | "row-reverse" | "column" | "column-reverse";
+  isReverse?: boolean;
   align?: "start" | "end" | "center" | "baseline" | "stretch"; // align-items
-  crossAlign?:
+  justify?:
     | "start"
     | "end"
     | "center"

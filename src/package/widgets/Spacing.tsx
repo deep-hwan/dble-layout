@@ -6,25 +6,25 @@ import { SpacingPropsType } from "../types/props/SpacingPropsType";
 import { mediaScreenSize } from "../utils/mediaScreenSize";
 
 const SizeTheme = ({
-  direction,
+  direc,
   size,
-}: Pick<SpacingPropsType, "direction" | "size">) => ({
-  width: direction === "row" ? `${size}px` : "100%",
-  height: direction === "column" ? `${size}px` : "100%",
+}: Pick<SpacingPropsType, "direc" | "size">) => ({
+  width: direc === "row" ? `${size}px` : "100%",
+  height: direc === "column" ? `${size}px` : "100%",
 });
 
 const Spacing = React.forwardRef(function Spacing(
-  { direction = "column", size, _mq, css: cssProp, ...props }: SpacingPropsType,
+  { direc = "column", size, _mq, css: cssProp, ...props }: SpacingPropsType,
   ref?: React.Ref<HTMLDivElement>
 ) {
   const baseStyle = useMemo(() => {
-    const sizeTheme = SizeTheme({ direction, size });
+    const sizeTheme = SizeTheme({ direc, size });
     return css({
       display: "flex",
       transition: "0.2s ease-in-out",
       ...sizeTheme,
     });
-  }, [direction, size]);
+  }, [direc, size]);
 
   const mediaStyles = useMemo(() => {
     if (!_mq) return [];
@@ -35,14 +35,14 @@ const Spacing = React.forwardRef(function Spacing(
         ? css`
             @media (max-width: ${size}px) {
               ${SizeTheme({
-                direction,
-                ...(styles as Pick<SpacingPropsType, "direction" | "size">),
+                direc,
+                ...(styles as Pick<SpacingPropsType, "direc" | "size">),
               })}
             }
           `
         : "";
     });
-  }, [_mq, direction]);
+  }, [_mq, direc]);
 
   const combinedClassName = cx("dble-spacing", props.className);
 

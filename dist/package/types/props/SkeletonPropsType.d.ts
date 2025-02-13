@@ -9,7 +9,7 @@ export interface SkeletonType {
     moveColor?: string;
     borderRadius?: number | string;
 }
-export interface SkeletonPropsType extends Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "direction" | ExcludedProps>, SkeletonType {
+export interface SkeletonPropsType extends Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "dir" | ExcludedProps>, SkeletonType {
     children?: never[];
     _mq?: MediaQueryType<SkeletonType>;
     css?: CSSObject;

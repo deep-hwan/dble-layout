@@ -22,10 +22,10 @@ const Flex = React.forwardRef<HTMLElement, FlexLayoutElement & LayoutPropsRef>(
       maxH,
       minH,
       flex,
-      direction,
+      direc,
       isReverse,
       align,
-      crossAlign,
+      justify,
       gap,
       order,
       grow,
@@ -52,10 +52,10 @@ const Flex = React.forwardRef<HTMLElement, FlexLayoutElement & LayoutPropsRef>(
       maxH,
       minH,
       flex,
-      direction,
+      direc,
       isReverse,
       align,
-      crossAlign,
+      justify,
       gap,
       order,
       grow,
@@ -83,10 +83,10 @@ const Flex = React.forwardRef<HTMLElement, FlexLayoutElement & LayoutPropsRef>(
         }),
         ...flexStylesProps({
           flex: props.flex,
-          direction: props.direction,
+          direc: props.direc,
           isReverse: props.isReverse,
           align: props.align,
-          crossAlign: props.crossAlign,
+          justify: props.justify,
           gap: props.gap,
           wrap: props.wrap,
           order: props.order,
@@ -140,7 +140,7 @@ const Flex = React.forwardRef<HTMLElement, FlexLayoutElement & LayoutPropsRef>(
         ${ExtendedStyles({
           ...pPs,
           w: pPs.w ?? "100%",
-          direction: pPs.direction ?? "column",
+          direc: pPs.direc ?? "column",
         })}
     ${mediaStyles}
     ${pseudoStyles}

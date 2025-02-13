@@ -12,10 +12,10 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.spaceStylesProps = void 0;
-var getSpaceValue = function (spaceObj, direction) {
+var getSpaceValue = function (spaceObj, dir) {
     if (!spaceObj)
         return undefined;
-    var value = spaceObj[direction];
+    var value = spaceObj[dir];
     return value === 0 ? "0px" : value;
 };
 var spaceStylesProps = function (props) {

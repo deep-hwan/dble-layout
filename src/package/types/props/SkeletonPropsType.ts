@@ -13,7 +13,7 @@ export interface SkeletonType {
 export interface SkeletonPropsType
   extends Omit<
       React.HTMLAttributes<HTMLDivElement>,
-      "children" | "direction" | ExcludedProps
+      "children" | "dir" | ExcludedProps
     >,
     SkeletonType {
   children?: never[];

@@ -59,7 +59,7 @@ var flexStylesProps_1 = require("../styles/flexStylesProps");
 var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
 var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Flex = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, flex = props.flex, direction = props.direction, isReverse = props.isReverse, align = props.align, crossAlign = props.crossAlign, gap = props.gap, order = props.order, grow = props.grow, shrink = props.shrink, basis = props.basis, alignContent = props.alignContent, alignSelf = props.alignSelf, wrap = props.wrap, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "flex", "direction", "isReverse", "align", "crossAlign", "gap", "order", "grow", "shrink", "basis", "alignContent", "alignSelf", "wrap", "zIndex", "transition", "_hover", "_focus", "_active", "_mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, flex = props.flex, direc = props.direc, isReverse = props.isReverse, align = props.align, justify = props.justify, gap = props.gap, order = props.order, grow = props.grow, shrink = props.shrink, basis = props.basis, alignContent = props.alignContent, alignSelf = props.alignSelf, wrap = props.wrap, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "flex", "direc", "isReverse", "align", "justify", "gap", "order", "grow", "shrink", "basis", "alignContent", "alignSelf", "wrap", "zIndex", "transition", "_hover", "_focus", "_active", "_mq", "css"]);
     var pPs = {
         w: w,
         maxW: maxW,
@@ -68,10 +68,10 @@ var Flex = react_2.default.forwardRef(function (props, ref) {
         maxH: maxH,
         minH: minH,
         flex: flex,
-        direction: direction,
+        direc: direc,
         isReverse: isReverse,
         align: align,
-        crossAlign: crossAlign,
+        justify: justify,
         gap: gap,
         order: order,
         grow: grow,
@@ -94,10 +94,10 @@ var Flex = react_2.default.forwardRef(function (props, ref) {
             minHeight: props.minH,
         })), (0, flexStylesProps_1.flexStylesProps)({
             flex: props.flex,
-            direction: props.direction,
+            direc: props.direc,
             isReverse: props.isReverse,
             align: props.align,
-            crossAlign: props.crossAlign,
+            justify: props.justify,
             gap: props.gap,
             wrap: props.wrap,
             order: props.order,
@@ -132,7 +132,7 @@ var Flex = react_2.default.forwardRef(function (props, ref) {
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a, _b;
-        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : "100%", direction: (_b = pPs.direction) !== null && _b !== void 0 ? _b : "column" })), mediaStyles, pseudoStyles);
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : "100%", direc: (_b = pPs.direc) !== null && _b !== void 0 ? _b : "column" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
     var combinedClassName = (0, css_1.cx)("dble-flex".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));

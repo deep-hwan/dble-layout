@@ -3,13 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.flexStylesProps = void 0;
 var flexStylesProps = function (props) {
     var computedDirection = (props === null || props === void 0 ? void 0 : props.isReverse)
-        ? "".concat(props.direction, "-reverse")
-        : props === null || props === void 0 ? void 0 : props.direction;
+        ? "".concat(props.direc, "-reverse")
+        : props === null || props === void 0 ? void 0 : props.direc;
     var computedCrossAlign = (props === null || props === void 0 ? void 0 : props.isReverse)
-        ? props.crossAlign === 'start'
-            ? 'flex-end'
-            : 'flex-start'
-        : props === null || props === void 0 ? void 0 : props.crossAlign;
+        ? props.justify === "start"
+            ? "flex-end"
+            : "flex-start"
+        : props === null || props === void 0 ? void 0 : props.justify;
     var baseStyle = {
         flexDirection: computedDirection,
         alignItems: props === null || props === void 0 ? void 0 : props.align,

@@ -35,10 +35,10 @@ const TouchableOpacity = React.forwardRef<
       minH,
 
       // flex
-      direction,
+      direc,
       isReverse,
       align,
-      crossAlign,
+      justify,
       gap,
       wrap,
 
@@ -88,10 +88,10 @@ const TouchableOpacity = React.forwardRef<
       minH,
 
       //
-      direction,
+      direc,
       isReverse,
       align,
-      crossAlign,
+      justify,
       gap,
       wrap,
 
@@ -142,10 +142,10 @@ const TouchableOpacity = React.forwardRef<
         }),
 
         ...flexStylesProps({
-          direction: props.direction,
+          direc: props.direc,
           isReverse: props.isReverse,
           align: props.align,
-          crossAlign: props.crossAlign,
+          justify: props.justify,
           gap: props.gap,
           wrap: props.wrap,
         }),
@@ -224,7 +224,7 @@ const TouchableOpacity = React.forwardRef<
         ${baseStyle}
         ${ExtendedStyles({
           ...pPs,
-          direction: pPs.direction ?? "row",
+          direc: pPs.direc ?? "row",
           txtSize: pPs.txtSize ?? 15,
           txtColor: pPs.txtColor ?? "#5b94f0",
         })}

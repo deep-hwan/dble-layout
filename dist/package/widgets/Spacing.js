@@ -65,18 +65,18 @@ var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
 var mediaScreenSize_1 = require("../utils/mediaScreenSize");
 var SizeTheme = function (_a) {
-    var direction = _a.direction, size = _a.size;
+    var direc = _a.direc, size = _a.size;
     return ({
-        width: direction === "row" ? "".concat(size, "px") : "100%",
-        height: direction === "column" ? "".concat(size, "px") : "100%",
+        width: direc === "row" ? "".concat(size, "px") : "100%",
+        height: direc === "column" ? "".concat(size, "px") : "100%",
     });
 };
 var Spacing = react_2.default.forwardRef(function Spacing(_a, ref) {
-    var _b = _a.direction, direction = _b === void 0 ? "column" : _b, size = _a.size, _mq = _a._mq, cssProp = _a.css, props = __rest(_a, ["direction", "size", "_mq", "css"]);
+    var _b = _a.direc, direc = _b === void 0 ? "column" : _b, size = _a.size, _mq = _a._mq, cssProp = _a.css, props = __rest(_a, ["direc", "size", "_mq", "css"]);
     var baseStyle = (0, react_2.useMemo)(function () {
-        var sizeTheme = SizeTheme({ direction: direction, size: size });
+        var sizeTheme = SizeTheme({ direc: direc, size: size });
         return (0, react_1.css)(__assign({ display: "flex", transition: "0.2s ease-in-out" }, sizeTheme));
-    }, [direction, size]);
+    }, [direc, size]);
     var mediaStyles = (0, react_2.useMemo)(function () {
         if (!_mq)
             return [];
@@ -84,9 +84,9 @@ var Spacing = react_2.default.forwardRef(function Spacing(_a, ref) {
             var breakpointKey = "w".concat(size);
             var styles = _mq[breakpointKey];
             return styles
-                ? (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "], ["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "])), size, SizeTheme(__assign({ direction: direction }, styles))) : "";
+                ? (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "], ["\n            @media (max-width: ", "px) {\n              ", "\n            }\n          "])), size, SizeTheme(__assign({ direc: direc }, styles))) : "";
         });
-    }, [_mq, direction]);
+    }, [_mq, direc]);
     var combinedClassName = (0, css_1.cx)("dble-spacing", props.className);
     return ((0, jsx_runtime_1.jsx)("div", __assign({ ref: ref, className: combinedClassName, css: __spreadArray(__spreadArray([baseStyle], mediaStyles, true), [cssProp], false) }, props)));
 });

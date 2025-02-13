@@ -16,10 +16,10 @@ export interface TouchableOpacityType extends Omit<HTMLAttributes<HTMLElement>, 
     h?: number | string;
     maxH?: number | string;
     minH?: number | string;
-    direction?: "row" | "row-reverse" | "column" | "column-reverse";
+    direc?: "row" | "row-reverse" | "column" | "column-reverse";
     isReverse?: boolean;
     align?: "start" | "end" | "center" | "baseline" | "stretch";
-    crossAlign?: "start" | "end" | "center" | "space-between" | "space-around" | "space-evenly";
+    justify?: "start" | "end" | "center" | "space-between" | "space-around" | "space-evenly";
     gap?: string | number;
     wrap?: "nowrap" | "wrap" | "wrap-reverse";
     txtSize?: number | string;

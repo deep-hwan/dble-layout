@@ -12,10 +12,10 @@ export interface FlexType extends Omit<HTMLAttributes<HTMLElement>, ExcludedProp
     maxH?: number | string;
     minH?: number | string;
     flex?: string | number;
-    direction?: "row" | "row-reverse" | "column" | "column-reverse";
+    direc?: "row" | "row-reverse" | "column" | "column-reverse";
     isReverse?: boolean;
     align?: "start" | "end" | "center" | "baseline" | "stretch";
-    crossAlign?: "start" | "end" | "center" | "space-between" | "space-around" | "space-evenly";
+    justify?: "start" | "end" | "center" | "space-between" | "space-around" | "space-evenly";
     gap?: string | number;
     order?: number;
     grow?: number;

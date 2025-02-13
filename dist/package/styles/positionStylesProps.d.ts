@@ -8,7 +8,7 @@ declare const positionStylesProps: (props?: {
     left?: undefined;
     right?: undefined;
 } | {
-    position: "static" | "relative" | "fixed" | "absolute" | "sticky" | undefined;
+    position: "fixed" | "absolute" | "relative" | "static" | "sticky" | undefined;
     top: string | number | undefined;
     bottom: string | number | undefined;
     left: string | number | undefined;

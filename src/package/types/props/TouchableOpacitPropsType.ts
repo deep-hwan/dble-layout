@@ -27,10 +27,10 @@ export interface TouchableOpacityType
   minH?: number | string;
 
   //flex
-  direction?: "row" | "row-reverse" | "column" | "column-reverse";
-  isReverse?: boolean; // flex-direction
+  direc?: "row" | "row-reverse" | "column" | "column-reverse";
+  isReverse?: boolean;
   align?: "start" | "end" | "center" | "baseline" | "stretch"; // align-items
-  crossAlign?:
+  justify?:
     | "start"
     | "end"
     | "center"
