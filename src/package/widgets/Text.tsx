@@ -185,4 +185,4 @@ const Text = React.forwardRef<HTMLElement, TextLayoutElement & TextPropsRef>(
   }
 );
 
-export default React.memo(Text);
+export default Text;

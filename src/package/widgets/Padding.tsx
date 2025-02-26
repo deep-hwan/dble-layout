@@ -150,4 +150,4 @@ const Padding = React.forwardRef<
   );
 });
 
-export default React.memo(Padding);
+export default Padding;

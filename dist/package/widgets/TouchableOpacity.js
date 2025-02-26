@@ -170,11 +170,11 @@ var TouchableOpacity = react_2.default.forwardRef(function (_a, ref) {
     //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
-        var _a, _b, _c;
-        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { direc: (_a = pPs.direc) !== null && _a !== void 0 ? _a : "row", txtSize: (_b = pPs.txtSize) !== null && _b !== void 0 ? _b : 15, txtColor: (_c = pPs.txtColor) !== null && _c !== void 0 ? _c : "#5b94f0" })), mediaStyles, pseudoStyles);
+        var _a, _b, _c, _d;
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { direc: (_a = pPs.direc) !== null && _a !== void 0 ? _a : "row", txtSize: (_b = pPs.txtSize) !== null && _b !== void 0 ? _b : 15, txtColor: (_c = pPs.txtColor) !== null && _c !== void 0 ? _c : "#5b94f0", whiteSpace: (_d = pPs.whiteSpace) !== null && _d !== void 0 ? _d : "nowrap" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
     var combinedClassName = (0, css_1.cx)("dble-touchableOpacity".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]), onClick: disabled ? undefined : handleClick, disabled: disabled }, rest, { children: children })));
 });
-exports.default = react_2.default.memo(TouchableOpacity);
+exports.default = TouchableOpacity;
 var templateObject_1;

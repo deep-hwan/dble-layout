@@ -129,4 +129,4 @@ const Position = React.forwardRef<
   );
 });
 
-export default React.memo(Position);
+export default Position;

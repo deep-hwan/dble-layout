@@ -154,4 +154,4 @@ const Border = React.forwardRef<
   );
 });
 
-export default React.memo(Border);
+export default Border;

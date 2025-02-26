@@ -63,7 +63,7 @@ var shadowStylesProps_1 = require("../styles/shadowStylesProps");
 var transformStylesProps_1 = require("../styles/transformStylesProps");
 var typographyStylesProps_1 = require("../styles/typographyStylesProps");
 var createMediaStyles_1 = require("../utils/createMediaStyles");
-var Button = react_2.default.memo(react_2.default.forwardRef(function (_a, ref) {
+var Button = react_2.default.forwardRef(function (_a, ref) {
     var children = _a.children, className = _a.className, w = _a.w, maxW = _a.maxW, minW = _a.minW, h = _a.h, maxH = _a.maxH, minH = _a.minH, 
     // typography
     txtSize = _a.txtSize, txtWeight = _a.txtWeight, txtAlign = _a.txtAlign, txtColor = _a.txtColor, txtShadow = _a.txtShadow, txtTransform = _a.txtTransform, lineHeight = _a.lineHeight, whiteSpace = _a.whiteSpace, fill = _a.fill, gradient = _a.gradient, border = _a.border, shadow = _a.shadow, opacity = _a.opacity, scale = _a.scale, zIndex = _a.zIndex, cursor = _a.cursor, _b = _a.userSelect, userSelect = _b === void 0 ? "none" : _b, _c = _a.transition, transition = _c === void 0 ? { duration: 0.2, type: "ease-in-out" } : _c, _hover = _a._hover, _focus = _a._focus, _active = _a._active, _disabled = _a._disabled, _d = _a._mq, _mq = _d === void 0 ? {} : _d, cssProp = _a.css, rest = __rest(_a, ["children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "txtSize", "txtWeight", "txtAlign", "txtColor", "txtShadow", "txtTransform", "lineHeight", "whiteSpace", "fill", "gradient", "border", "shadow", "opacity", "scale", "zIndex", "cursor", "userSelect", "transition", "_hover", "_focus", "_active", "_disabled", "_mq", "css"]);
@@ -128,14 +128,7 @@ var Button = react_2.default.memo(react_2.default.forwardRef(function (_a, ref) 
             onClick: rest.onClick,
             onMouseEnter: rest.onMouseEnter,
         })));
-    }, [
-        cursor,
-        rest.onClick,
-        rest.onMouseEnter,
-        transition,
-        zIndex,
-        userSelect,
-    ]);
+    }, [cursor, rest.onClick, rest.onMouseEnter, transition, zIndex, userSelect]);
     //
     // media-query styles
     var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
@@ -153,11 +146,11 @@ var Button = react_2.default.memo(react_2.default.forwardRef(function (_a, ref) 
     //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
-        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n          ", "\n          ", "\n    ", "\n    ", "\n        "], ["\n          ", "\n          ", "\n    ", "\n    ", "\n        "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : 100, h: (_b = pPs.h) !== null && _b !== void 0 ? _b : 48, txtAlign: (_c = pPs.txtAlign) !== null && _c !== void 0 ? _c : "center", fill: (_d = pPs.fill) !== null && _d !== void 0 ? _d : "#5b94f0", gradient: __assign(__assign({}, pPs.gradient), { type: (_f = (_e = pPs.gradient) === null || _e === void 0 ? void 0 : _e.type) !== null && _f !== void 0 ? _f : "linear" }), border: __assign(__assign({}, pPs.border), { radius: (_h = (_g = pPs.border) === null || _g === void 0 ? void 0 : _g.radius) !== null && _h !== void 0 ? _h : 15 }), txtSize: (_j = pPs.txtSize) !== null && _j !== void 0 ? _j : 15, txtColor: (_k = pPs.txtColor) !== null && _k !== void 0 ? _k : "#fbfbfb" })), mediaStyles, pseudoStyles);
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n        ", "\n        ", "\n    ", "\n    ", "\n      "], ["\n        ", "\n        ", "\n    ", "\n    ", "\n      "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : 100, h: (_b = pPs.h) !== null && _b !== void 0 ? _b : 48, txtAlign: (_c = pPs.txtAlign) !== null && _c !== void 0 ? _c : "center", fill: (_d = pPs.fill) !== null && _d !== void 0 ? _d : "#5b94f0", gradient: __assign(__assign({}, pPs.gradient), { type: (_f = (_e = pPs.gradient) === null || _e === void 0 ? void 0 : _e.type) !== null && _f !== void 0 ? _f : "linear" }), border: __assign(__assign({}, pPs.border), { radius: (_h = (_g = pPs.border) === null || _g === void 0 ? void 0 : _g.radius) !== null && _h !== void 0 ? _h : 15 }), txtSize: (_j = pPs.txtSize) !== null && _j !== void 0 ? _j : 15, txtColor: (_k = pPs.txtColor) !== null && _k !== void 0 ? _k : "#fbfbfb", whiteSpace: (_l = pPs.whiteSpace) !== null && _l !== void 0 ? _l : "nowrap" })), mediaStyles, pseudoStyles);
     }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
     var combinedClassName = (0, css_1.cx)("dble-button", className);
     return ((0, jsx_runtime_1.jsx)("button", __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]), onClick: handleClick }, rest, { children: children })));
-}));
+});
 exports.Button = Button;
 var templateObject_1;

@@ -162,4 +162,4 @@ const Flex = React.forwardRef<HTMLElement, FlexLayoutElement & LayoutPropsRef>(
   }
 );
 
-export default React.memo(Flex);
+export default Flex;

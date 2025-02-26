@@ -155,4 +155,4 @@ const Grid = React.forwardRef<HTMLElement, GridLayoutElement & LayoutPropsRef>(
   }
 );
 
-export default React.memo(Grid);
+export default Grid;

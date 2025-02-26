@@ -227,6 +227,7 @@ const TouchableOpacity = React.forwardRef<
           direc: pPs.direc ?? "row",
           txtSize: pPs.txtSize ?? 15,
           txtColor: pPs.txtColor ?? "#5b94f0",
+          whiteSpace: pPs.whiteSpace ?? "nowrap",
         })}
     ${mediaStyles}
     ${pseudoStyles}
@@ -254,4 +255,4 @@ const TouchableOpacity = React.forwardRef<
   }
 );
 
-export default React.memo(TouchableOpacity);
+export default TouchableOpacity;

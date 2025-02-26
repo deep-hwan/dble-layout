@@ -127,5 +127,5 @@ var Padding = react_2.default.forwardRef(function (props, ref) {
     var combinedClassName = (0, css_1.cx)("dble-padding".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });
-exports.default = react_2.default.memo(Padding);
+exports.default = Padding;
 var templateObject_1;

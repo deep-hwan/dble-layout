@@ -173,4 +173,4 @@ const Background = React.forwardRef<
   );
 });
 
-export default React.memo(Background);
+export default Background;
