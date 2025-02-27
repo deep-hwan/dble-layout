@@ -38,9 +38,6 @@ const Border = React.forwardRef<
     transition,
     cursor,
     userSelect,
-    _hover,
-    _focus,
-    _active,
     _mq = {},
     css: cssProp,
     ...rest
@@ -114,18 +111,6 @@ const Border = React.forwardRef<
   );
 
   //
-  // pseudos
-  const pseudoStyles = useMemo(
-    () =>
-      css({
-        "&:hover": ExtendedStyles({ ..._hover }),
-        "&:focus": ExtendedStyles({ ..._focus }),
-        "&:active": ExtendedStyles({ ..._active }),
-      }),
-    [_hover, _focus, _active]
-  );
-
-  //
   // combined styles
   const combinedStyles = useMemo(
     () => css`
@@ -136,9 +121,8 @@ const Border = React.forwardRef<
         w: pPs.w ?? "100%",
       })}
       ${mediaStyles}
-      ${pseudoStyles}
     `,
-    [baseStyle, pPs, mediaStyles, pseudoStyles]
+    [baseStyle, pPs, mediaStyles]
   );
 
   const combinedClassName = cx(`dble-border${as ? `-${as}` : ""}`, className);

@@ -32,9 +32,6 @@ interface FlexPropsType<T extends ElementType = "div"> extends Omit<FlexType, Ex
     zIndex?: number;
     transition?: TransitionType;
     _mq?: MediaQueryType<FlexType>;
-    _hover?: Partial<FlexType>;
-    _focus?: Partial<FlexType>;
-    _active?: Partial<FlexType>;
 }
 export type FlexLayoutElement = Omit<FlexPropsType<LayoutElementType>, ExcludedProps>;
 export {};

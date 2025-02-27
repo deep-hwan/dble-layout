@@ -4,6 +4,7 @@ import { Button } from "./widgets/Button";
 import Divider from "./widgets/Divider";
 import Flex from "./widgets/Flex";
 import Grid from "./widgets/Grid";
+import Layer from "./widgets/Layer";
 import { LoadingSpinner } from "./widgets/LoadingSpinner";
 import Padding from "./widgets/Padding";
 import Position from "./widgets/Position";
@@ -19,6 +20,7 @@ export {
   Divider,
   Flex,
   Grid,
+  Layer,
   LoadingSpinner,
   Padding,
   Position,

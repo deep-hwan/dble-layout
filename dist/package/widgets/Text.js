@@ -55,7 +55,6 @@ var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
 var baseStylesProps_1 = require("../styles/baseStylesProps");
-var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
 var spaceStylesProps_1 = require("../styles/spaceStylesProps");
 var transformStylesProps_1 = require("../styles/transformStylesProps");
 var typographyStylesProps_1 = require("../styles/typographyStylesProps");
@@ -89,7 +88,7 @@ var Text = react_2.default.forwardRef(function (_a, ref) {
     //
     // extended props styles
     var ExtendedStyles = function (props) {
-        return __assign(__assign(__assign(__assign({ opacity: props.opacity }, (0, typographyStylesProps_1.typographyStylesProps)({
+        return __assign(__assign(__assign({ width: props === null || props === void 0 ? void 0 : props.w, maxWidth: props === null || props === void 0 ? void 0 : props.maxW, minWidth: props === null || props === void 0 ? void 0 : props.minW, height: props === null || props === void 0 ? void 0 : props.h, maxHeight: props === null || props === void 0 ? void 0 : props.maxH, minHeight: props === null || props === void 0 ? void 0 : props.minH, opacity: props.opacity }, (0, typographyStylesProps_1.typographyStylesProps)({
             as: props.as,
             txtSize: props.size,
             txtWeight: props.weight,
@@ -101,13 +100,6 @@ var Text = react_2.default.forwardRef(function (_a, ref) {
             whiteSpace: props.whiteSpace,
             ellipsis: props.ellipsis,
             txtDecoration: props.decoration,
-        })), (0, screenSizeStylesProps_1.screenSizeStylesProps)({
-            width: props.w,
-            maxWidth: props.maxW,
-            minWidth: props.minW,
-            height: props.h,
-            maxHeight: props.maxH,
-            minHeight: props.minH,
         })), (0, spaceStylesProps_1.spaceStylesProps)({ padding: props.padding, margin: props.margin })), (0, transformStylesProps_1.transformStylesProps)({
             scale: props.scale,
             rotate: props.rotate,

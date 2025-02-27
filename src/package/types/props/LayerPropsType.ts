@@ -1,11 +1,16 @@
 import { CSSObject } from "@emotion/react";
 import { ElementType, HTMLAttributes } from "react";
+import { BorderType } from "../piece/BorderType";
+import { CursorType } from "../piece/CursorType";
 import { LayoutElementType } from "../piece/LayoutElementType";
 import { MediaQueryType } from "../piece/MediaQueryType";
 import { ExcludedProps } from "../piece/PipeLinePropsType";
+import { PositionType } from "../piece/PositionType";
+import { ShadowType } from "../piece/ShadowType";
+import { TrafficType } from "../piece/TrafficType";
 import { TransitionType } from "../piece/TransitionType";
 
-export interface FlexType
+export interface LayerType
   extends Omit<HTMLAttributes<HTMLElement>, ExcludedProps> {
   w?: number | string;
   maxW?: number | string;
@@ -14,7 +19,7 @@ export interface FlexType
   maxH?: number | string;
   minH?: number | string;
 
-  // flex
+  //flex
   flex?: string | number;
   direc?: "row" | "row-reverse" | "column" | "column-reverse";
   isReverse?: boolean;
@@ -28,32 +33,45 @@ export interface FlexType
     | "space-evenly"; // justify-content
   gap?: string | number;
   order?: number;
-  grow?: number;
-  shrink?: number; // flex-shrink
-  basis?: string | number; // flex-basis
-  alignContent?:
-    | "start"
-    | "end"
-    | "center"
-    | "space-between"
-    | "space-around"
-    | "stretch"; // align-content
-  alignSelf?: "auto" | "start" | "end" | "center" | "baseline" | "stretch"; // align-self
   wrap?: "nowrap" | "wrap" | "wrap-reverse"; // flex-wrap
+
+  // position
+  position?: PositionType;
+  axis?: { x?: string | number; y?: string | number };
+
+  // padding
+  padding?: TrafficType;
+
+  // margin
+  margin?: TrafficType;
+
+  // background
+  fill?: string;
+  border?: BorderType;
+  shadow?: ShadowType;
+  blur?: number;
+  opacity?: number;
+  scale?: number;
+  rotate?: string | number;
 }
 
-interface FlexPropsType<T extends ElementType = "div">
-  extends Omit<FlexType, ExcludedProps> {
+interface LayerPropsType<T extends ElementType>
+  extends Omit<LayerType, ExcludedProps> {
   as?: T;
   children: React.ReactNode;
   css?: CSSObject;
   zIndex?: number;
   transition?: TransitionType;
+  cursor?: CursorType;
+  userSelect?: "none" | "auto" | "text" | "contain" | "all";
 
-  _mq?: MediaQueryType<FlexType>;
+  _mq?: MediaQueryType<LayerType>;
+  _hover?: Partial<LayerType>;
+  _focus?: Partial<LayerType>;
+  _active?: Partial<LayerType>;
 }
 
-export type FlexLayoutElement = Omit<
-  FlexPropsType<LayoutElementType>,
+export type LayerLayoutElement = Omit<
+  LayerPropsType<LayoutElementType>,
   ExcludedProps
 >;

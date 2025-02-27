@@ -59,7 +59,7 @@ var borderStylesProps_1 = require("../styles/borderStylesProps");
 var shadowStylesProps_1 = require("../styles/shadowStylesProps");
 var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Border = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, fill = props.fill, radius = props.radius, stroke = props.stroke, position = props.position, strokeColor = props.strokeColor, shape = props.shape, shadow = props.shadow, opacity = props.opacity, zIndex = props.zIndex, transition = props.transition, cursor = props.cursor, userSelect = props.userSelect, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "fill", "radius", "stroke", "position", "strokeColor", "shape", "shadow", "opacity", "zIndex", "transition", "cursor", "userSelect", "_hover", "_focus", "_active", "_mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, fill = props.fill, radius = props.radius, stroke = props.stroke, position = props.position, strokeColor = props.strokeColor, shape = props.shape, shadow = props.shadow, opacity = props.opacity, zIndex = props.zIndex, transition = props.transition, cursor = props.cursor, userSelect = props.userSelect, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "fill", "radius", "stroke", "position", "strokeColor", "shape", "shadow", "opacity", "zIndex", "transition", "cursor", "userSelect", "_mq", "css"]);
     var pPs = {
         w: w,
         maxW: maxW,
@@ -104,20 +104,11 @@ var Border = react_2.default.forwardRef(function (props, ref) {
     // media-query styles
     var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
     //
-    // pseudos
-    var pseudoStyles = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)({
-            "&:hover": ExtendedStyles(__assign({}, _hover)),
-            "&:focus": ExtendedStyles(__assign({}, _focus)),
-            "&:active": ExtendedStyles(__assign({}, _active)),
-        });
-    }, [_hover, _focus, _active]);
-    //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a, _b;
-        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { radius: (_a = pPs.radius) !== null && _a !== void 0 ? _a : 16, w: (_b = pPs.w) !== null && _b !== void 0 ? _b : "100%" })), mediaStyles, pseudoStyles);
-    }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { radius: (_a = pPs.radius) !== null && _a !== void 0 ? _a : 16, w: (_b = pPs.w) !== null && _b !== void 0 ? _b : "100%" })), mediaStyles);
+    }, [baseStyle, pPs, mediaStyles]);
     var combinedClassName = (0, css_1.cx)("dble-border".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });

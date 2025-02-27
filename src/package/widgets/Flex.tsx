@@ -4,7 +4,6 @@ import { css } from "@emotion/react";
 import React, { useMemo } from "react";
 import { baseStylesProps } from "../styles/baseStylesProps";
 import { flexStylesProps } from "../styles/flexStylesProps";
-import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { LayoutPropsRef } from "../types/piece/PipeLinePropsType";
 import { FlexLayoutElement, FlexType } from "../types/props/FlexPropsType";
 import { createMediaStyles } from "../utils/createMediaStyles";
@@ -36,9 +35,6 @@ const Flex = React.forwardRef<HTMLElement, FlexLayoutElement & LayoutPropsRef>(
       wrap,
       zIndex,
       transition,
-      _hover,
-      _focus,
-      _active,
       _mq = {},
       css: cssProp,
       ...rest
@@ -72,15 +68,14 @@ const Flex = React.forwardRef<HTMLElement, FlexLayoutElement & LayoutPropsRef>(
     // extended props styles
     const ExtendedStyles = (props: FlexType) => {
       return {
+        width: props?.w,
+        maxWidth: props?.maxW,
+        minWidth: props?.minW,
+        height: props?.h,
+        maxHeight: props?.maxH,
+        minHeight: props?.minH,
         display: "flex",
-        ...screenSizeStylesProps({
-          width: props.w,
-          maxWidth: props.maxW,
-          minWidth: props.minW,
-          height: props.h,
-          maxHeight: props.maxH,
-          minHeight: props.minH,
-        }),
+
         ...flexStylesProps({
           flex: props.flex,
           direc: props.direc,
@@ -121,18 +116,6 @@ const Flex = React.forwardRef<HTMLElement, FlexLayoutElement & LayoutPropsRef>(
     );
 
     //
-    // pseudos
-    const pseudoStyles = useMemo(
-      () =>
-        css({
-          "&:hover": ExtendedStyles(_hover || {}),
-          "&:focus": ExtendedStyles(_focus || {}),
-          "&:active": ExtendedStyles(_active || {}),
-        }),
-      [_hover, _focus, _active]
-    );
-
-    //
     // combined styles
     const combinedStyles = useMemo(
       () => css`
@@ -143,9 +126,8 @@ const Flex = React.forwardRef<HTMLElement, FlexLayoutElement & LayoutPropsRef>(
           direc: pPs.direc ?? "column",
         })}
     ${mediaStyles}
-    ${pseudoStyles}
       `,
-      [baseStyle, pPs, mediaStyles, pseudoStyles]
+      [baseStyle, pPs, mediaStyles]
     );
 
     const combinedClassName = cx(`dble-flex${as ? `-${as}` : ""}`, className);

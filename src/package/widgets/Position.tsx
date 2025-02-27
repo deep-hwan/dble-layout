@@ -3,7 +3,6 @@ import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { ComponentPropsWithoutRef, useMemo } from "react";
 import { baseStylesProps } from "../styles/baseStylesProps";
-import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { LayoutElementType } from "../types/piece/LayoutElementType";
 import {
   PositionPropsType,
@@ -34,9 +33,6 @@ const Position = React.forwardRef<
     axis,
     zIndex,
     transition,
-    _hover,
-    _focus,
-    _active,
     _mq = {},
     css: cssProp,
     ...rest
@@ -63,15 +59,15 @@ const Position = React.forwardRef<
   // extended props styles
   const ExtendedStyles = (props: PositionType) => {
     return {
+      width: props?.w,
+      maxWidth: props?.maxW,
+      minWidth: props?.minW,
+      height: props?.h,
+      maxHeight: props?.maxH,
+      minHeight: props?.minH,
+
       display: "flex",
-      ...screenSizeStylesProps({
-        width: props.w,
-        maxWidth: props.maxW,
-        minWidth: props.minW,
-        height: props.h,
-        maxHeight: props.maxH,
-        minHeight: props.minH,
-      }),
+
       position: props.type,
       top: props.top,
       bottom: props.bottom,
@@ -93,27 +89,14 @@ const Position = React.forwardRef<
   );
 
   //
-  // pseudos
-  const pseudoStyles = useMemo(
-    () =>
-      css({
-        "&:hover": ExtendedStyles(_hover || {}),
-        "&:focus": ExtendedStyles(_focus || {}),
-        "&:active": ExtendedStyles(_active || {}),
-      }),
-    [_hover, _focus, _active]
-  );
-
-  //
   // combined styles
   const combinedStyles = useMemo(
     () => css`
       ${baseStylesProps({ transition, zIndex })}
       ${ExtendedStyles({ ...pPs, type: pPs.type ?? "relative" })}
       ${mediaStyles}
-      ${pseudoStyles}
     `,
-    [pPs, mediaStyles, pseudoStyles]
+    [pPs, mediaStyles]
   );
 
   const combinedClassName = cx("dble-position", className);

@@ -3,7 +3,6 @@ import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
 import { baseStylesProps } from "../styles/baseStylesProps";
-import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { spaceStylesProps } from "../styles/spaceStylesProps";
 import { LayoutPropsRef } from "../types/piece/PipeLinePropsType";
 import {
@@ -35,9 +34,7 @@ const Padding = React.forwardRef<
     right,
     zIndex,
     transition,
-    _hover,
-    _focus,
-    _active,
+
     _mq = {},
     css: cssProp,
     ...rest
@@ -65,14 +62,13 @@ const Padding = React.forwardRef<
   // extended props styles
   const ExtendedStyles = (props: PaddingType) => {
     return {
-      ...screenSizeStylesProps({
-        width: props.w,
-        maxWidth: props.maxW,
-        minWidth: props.minW,
-        height: props.h,
-        maxHeight: props.maxH,
-        minHeight: props.minH,
-      }),
+      width: props?.w,
+      maxWidth: props?.maxW,
+      minWidth: props?.minW,
+      height: props?.h,
+      maxHeight: props?.maxH,
+      minHeight: props?.minH,
+
       ...spaceStylesProps({
         padding: {
           all: props.all,
@@ -111,18 +107,6 @@ const Padding = React.forwardRef<
   );
 
   //
-  // pseudos
-  const pseudoStyles = useMemo(
-    () =>
-      css({
-        "&:hover": ExtendedStyles(_hover || {}),
-        "&:focus": ExtendedStyles(_focus || {}),
-        "&:active": ExtendedStyles(_active || {}),
-      }),
-    [_hover, _focus, _active]
-  );
-
-  //
   // combined styles
   const combinedStyles = useMemo(
     () => css`
@@ -132,9 +116,8 @@ const Padding = React.forwardRef<
         w: pPs.w ?? "100%",
       })}
     ${mediaStyles}
-    ${pseudoStyles}
     `,
-    [baseStyle, pPs, mediaStyles, pseudoStyles]
+    [baseStyle, pPs, mediaStyles]
   );
 
   const combinedClassName = cx(`dble-padding${as ? `-${as}` : ""}`, className);

@@ -31,9 +31,6 @@ interface GridPropsType<T extends ElementType = "div"> extends Omit<GridType, Ex
     zIndex?: number;
     transition?: TransitionType;
     _mq?: MediaQueryType<GridType>;
-    _hover?: Partial<GridType>;
-    _focus?: Partial<GridType>;
-    _active?: Partial<GridType>;
 }
 export type GridLayoutElement = Omit<GridPropsType<LayoutElementType>, ExcludedProps>;
 export {};

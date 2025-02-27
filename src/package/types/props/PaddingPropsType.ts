@@ -32,9 +32,6 @@ export interface PaddingPropsType<T extends ElementType = "div">
   zIndex?: number;
   transition?: TransitionType;
   _mq?: MediaQueryType<PaddingType>;
-  _hover?: Partial<PaddingType>;
-  _focus?: Partial<PaddingType>;
-  _active?: Partial<PaddingType>;
 }
 
 export type PaddingLayoutElement = Omit<

@@ -55,10 +55,9 @@ var css_1 = require("@emotion/css");
 var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
 var baseStylesProps_1 = require("../styles/baseStylesProps");
-var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
 var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Position = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, type = props.type, top = props.top, bottom = props.bottom, left = props.left, right = props.right, axis = props.axis, zIndex = props.zIndex, transition = props.transition, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "type", "top", "bottom", "left", "right", "axis", "zIndex", "transition", "_hover", "_focus", "_active", "_mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, type = props.type, top = props.top, bottom = props.bottom, left = props.left, right = props.right, axis = props.axis, zIndex = props.zIndex, transition = props.transition, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "type", "top", "bottom", "left", "right", "axis", "zIndex", "transition", "_mq", "css"]);
     var pPs = {
         w: w,
         maxW: maxW,
@@ -78,35 +77,33 @@ var Position = react_2.default.forwardRef(function (props, ref) {
     // extended props styles
     var ExtendedStyles = function (props) {
         var _a, _b;
-        return __assign(__assign({ display: "flex" }, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
-            width: props.w,
-            maxWidth: props.maxW,
-            minWidth: props.minW,
-            height: props.h,
-            maxHeight: props.maxH,
-            minHeight: props.minH,
-        })), { position: props.type, top: props.top, bottom: props.bottom, left: props.left, right: props.right, transform: axis
+        return {
+            width: props === null || props === void 0 ? void 0 : props.w,
+            maxWidth: props === null || props === void 0 ? void 0 : props.maxW,
+            minWidth: props === null || props === void 0 ? void 0 : props.minW,
+            height: props === null || props === void 0 ? void 0 : props.h,
+            maxHeight: props === null || props === void 0 ? void 0 : props.maxH,
+            minHeight: props === null || props === void 0 ? void 0 : props.minH,
+            display: "flex",
+            position: props.type,
+            top: props.top,
+            bottom: props.bottom,
+            left: props.left,
+            right: props.right,
+            transform: axis
                 ? "translate(".concat(typeof axis.x === "number" ? "".concat(axis.x, "px") : (_a = axis.x) !== null && _a !== void 0 ? _a : "0", ", ").concat(typeof axis.y === "number" ? "".concat(axis.y, "px") : (_b = axis.y) !== null && _b !== void 0 ? _b : "0", ")")
-                : undefined });
+                : undefined,
+        };
     };
     //
     // media-query styles
     var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
     //
-    // pseudos
-    var pseudoStyles = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)({
-            "&:hover": ExtendedStyles(_hover || {}),
-            "&:focus": ExtendedStyles(_focus || {}),
-            "&:active": ExtendedStyles(_active || {}),
-        });
-    }, [_hover, _focus, _active]);
-    //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a;
-        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), (0, baseStylesProps_1.baseStylesProps)({ transition: transition, zIndex: zIndex }), ExtendedStyles(__assign(__assign({}, pPs), { type: (_a = pPs.type) !== null && _a !== void 0 ? _a : "relative" })), mediaStyles, pseudoStyles);
-    }, [pPs, mediaStyles, pseudoStyles]);
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n    "])), (0, baseStylesProps_1.baseStylesProps)({ transition: transition, zIndex: zIndex }), ExtendedStyles(__assign(__assign({}, pPs), { type: (_a = pPs.type) !== null && _a !== void 0 ? _a : "relative" })), mediaStyles);
+    }, [pPs, mediaStyles]);
     var combinedClassName = (0, css_1.cx)("dble-position", className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });

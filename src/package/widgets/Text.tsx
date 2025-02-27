@@ -3,7 +3,6 @@ import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
 import { baseStylesProps } from "../styles/baseStylesProps";
-import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { spaceStylesProps } from "../styles/spaceStylesProps";
 import { transformStylesProps } from "../styles/transformStylesProps";
 import { typographyStylesProps } from "../styles/typographyStylesProps";
@@ -84,7 +83,15 @@ const Text = React.forwardRef<HTMLElement, TextLayoutElement & TextPropsRef>(
     // extended props styles
     const ExtendedStyles = (props: TextType & { as?: TextElementType }) => {
       return {
+        width: props?.w,
+        maxWidth: props?.maxW,
+        minWidth: props?.minW,
+        height: props?.h,
+        maxHeight: props?.maxH,
+        minHeight: props?.minH,
+
         opacity: props.opacity,
+
         ...typographyStylesProps({
           as: props.as,
           txtSize: props.size,
@@ -97,15 +104,6 @@ const Text = React.forwardRef<HTMLElement, TextLayoutElement & TextPropsRef>(
           whiteSpace: props.whiteSpace,
           ellipsis: props.ellipsis,
           txtDecoration: props.decoration,
-        }),
-
-        ...screenSizeStylesProps({
-          width: props.w,
-          maxWidth: props.maxW,
-          minWidth: props.minW,
-          height: props.h,
-          maxHeight: props.maxH,
-          minHeight: props.minH,
         }),
 
         ...spaceStylesProps({ padding: props.padding, margin: props.margin }),

@@ -61,7 +61,7 @@ var shadowStylesProps_1 = require("../styles/shadowStylesProps");
 var transformStylesProps_1 = require("../styles/transformStylesProps");
 var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Background = react_2.default.forwardRef(function (props, ref) {
-    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, flex = props.flex, fill = props.fill, imageFill = props.imageFill, gradient = props.gradient, border = props.border, shadow = props.shadow, blur = props.blur, opacity = props.opacity, scale = props.scale, rotate = props.rotate, zIndex = props.zIndex, transition = props.transition, cursor = props.cursor, userSelect = props.userSelect, _hover = props._hover, _focus = props._focus, _active = props._active, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "flex", "fill", "imageFill", "gradient", "border", "shadow", "blur", "opacity", "scale", "rotate", "zIndex", "transition", "cursor", "userSelect", "_hover", "_focus", "_active", "_mq", "css"]);
+    var as = props.as, children = props.children, className = props.className, w = props.w, maxW = props.maxW, minW = props.minW, h = props.h, maxH = props.maxH, minH = props.minH, flex = props.flex, fill = props.fill, imageFill = props.imageFill, gradient = props.gradient, border = props.border, shadow = props.shadow, blur = props.blur, opacity = props.opacity, scale = props.scale, rotate = props.rotate, zIndex = props.zIndex, transition = props.transition, cursor = props.cursor, userSelect = props.userSelect, _a = props._mq, _mq = _a === void 0 ? {} : _a, cssProp = props.css, rest = __rest(props, ["as", "children", "className", "w", "maxW", "minW", "h", "maxH", "minH", "flex", "fill", "imageFill", "gradient", "border", "shadow", "blur", "opacity", "scale", "rotate", "zIndex", "transition", "cursor", "userSelect", "_mq", "css"]);
     var pPs = {
         w: w,
         maxW: maxW,
@@ -108,20 +108,11 @@ var Background = react_2.default.forwardRef(function (props, ref) {
     // media-query styles
     var mediaStyles = (0, react_2.useMemo)(function () { return (0, createMediaStyles_1.createMediaStyles)(_mq, ExtendedStyles); }, [_mq]);
     //
-    // pseudos
-    var pseudoStyles = (0, react_2.useMemo)(function () {
-        return (0, react_1.css)({
-            "&:hover": ExtendedStyles(__assign({}, _hover)),
-            "&:focus": ExtendedStyles(__assign({}, _focus)),
-            "&:active": ExtendedStyles(__assign({}, _active)),
-        });
-    }, [_hover, _focus, _active]);
-    //
     // combined styles
     var combinedStyles = (0, react_2.useMemo)(function () {
         var _a, _b;
-        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : "100%", h: (_b = pPs.h) !== null && _b !== void 0 ? _b : (pPs.flex === 1 ? "100%" : undefined) })), mediaStyles, pseudoStyles);
-    }, [baseStyle, pPs, mediaStyles, pseudoStyles]);
+        return (0, react_1.css)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n      ", "\n      ", "\n      ", "\n    "], ["\n      ", "\n      ", "\n      ", "\n    "])), baseStyle, ExtendedStyles(__assign(__assign({}, pPs), { w: (_a = pPs.w) !== null && _a !== void 0 ? _a : "100%", h: (_b = pPs.h) !== null && _b !== void 0 ? _b : (pPs.flex === 1 ? "100%" : undefined) })), mediaStyles);
+    }, [baseStyle, pPs, mediaStyles]);
     var combinedClassName = (0, css_1.cx)("dble-background".concat(as ? "-".concat(as) : ""), className);
     return ((0, jsx_runtime_1.jsx)(Component, __assign({ ref: ref, className: combinedClassName, css: (0, react_1.css)([combinedStyles, cssProp]) }, rest, { children: children })));
 });

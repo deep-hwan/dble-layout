@@ -10,6 +10,7 @@ import {
   Spacing,
   Text,
 } from "./package";
+import Layer from "./package/widgets/Layer";
 import TouchableOpacity from "./package/widgets/TouchableOpacity";
 
 export default function App() {
@@ -19,8 +20,17 @@ export default function App() {
   const skRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Background as="section" fill="#f2f3fa" flex={1} h="100vh">
-      <Padding all={40} ref={ttRef}>
+    <Layer
+      as="section"
+      fill="#f2f3fa"
+      flex={1}
+      h="100vh"
+      padding={{ all: 60 }}
+      margin={{ top: 20 }}
+      border={{ stroke: 2, color: "#000" }}
+      _mq={{ w1080: { padding: { all: 20 } } }}
+    >
+      <Padding all={0} ref={ttRef}>
         <TouchableOpacity>버튼이야</TouchableOpacity>
 
         <Flex
@@ -113,6 +123,6 @@ export default function App() {
           </TouchableOpacity>
         </Flex>
       </Padding>
-    </Background>
+    </Layer>
   );
 }

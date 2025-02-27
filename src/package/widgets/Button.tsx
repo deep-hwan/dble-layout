@@ -5,7 +5,6 @@ import React, { ComponentPropsWithoutRef, useCallback, useMemo } from "react";
 import { baseStylesProps } from "../styles/baseStylesProps";
 import { borderStylesProps } from "../styles/borderStylesProps";
 import { gradientStylesProps } from "../styles/gradientStylesProps";
-import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { shadowStylesProps } from "../styles/shadowStylesProps";
 import { transformStylesProps } from "../styles/transformStylesProps";
 import { typographyStylesProps } from "../styles/typographyStylesProps";
@@ -99,14 +98,12 @@ const Button = React.forwardRef<
     // extended props styles
     const ExtendedStyles = (props: ButtonType) => {
       return {
-        ...screenSizeStylesProps({
-          width: props.w,
-          maxWidth: props.maxW,
-          minWidth: props.minW,
-          height: props.h,
-          maxHeight: props.maxH,
-          minHeight: props.minH,
-        }),
+        width: props?.w,
+        maxWidth: props?.maxW,
+        minWidth: props?.minW,
+        height: props?.h,
+        maxHeight: props?.maxH,
+        minHeight: props?.minH,
 
         ...typographyStylesProps({
           txtSize: props.txtSize,

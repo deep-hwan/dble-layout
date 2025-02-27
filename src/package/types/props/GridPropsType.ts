@@ -49,9 +49,6 @@ interface GridPropsType<T extends ElementType = "div">
   transition?: TransitionType;
 
   _mq?: MediaQueryType<GridType>;
-  _hover?: Partial<GridType>;
-  _focus?: Partial<GridType>;
-  _active?: Partial<GridType>;
 }
 
 export type GridLayoutElement = Omit<

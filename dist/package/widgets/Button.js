@@ -58,7 +58,6 @@ var react_2 = __importStar(require("react"));
 var baseStylesProps_1 = require("../styles/baseStylesProps");
 var borderStylesProps_1 = require("../styles/borderStylesProps");
 var gradientStylesProps_1 = require("../styles/gradientStylesProps");
-var screenSizeStylesProps_1 = require("../styles/screenSizeStylesProps");
 var shadowStylesProps_1 = require("../styles/shadowStylesProps");
 var transformStylesProps_1 = require("../styles/transformStylesProps");
 var typographyStylesProps_1 = require("../styles/typographyStylesProps");
@@ -99,14 +98,7 @@ var Button = react_2.default.forwardRef(function (_a, ref) {
     // extended props styles
     var ExtendedStyles = function (props) {
         var _a;
-        return __assign(__assign(__assign(__assign(__assign(__assign(__assign({}, (0, screenSizeStylesProps_1.screenSizeStylesProps)({
-            width: props.w,
-            maxWidth: props.maxW,
-            minWidth: props.minW,
-            height: props.h,
-            maxHeight: props.maxH,
-            minHeight: props.minH,
-        })), (0, typographyStylesProps_1.typographyStylesProps)({
+        return __assign(__assign(__assign(__assign(__assign(__assign({ width: props === null || props === void 0 ? void 0 : props.w, maxWidth: props === null || props === void 0 ? void 0 : props.maxW, minWidth: props === null || props === void 0 ? void 0 : props.minW, height: props === null || props === void 0 ? void 0 : props.h, maxHeight: props === null || props === void 0 ? void 0 : props.maxH, minHeight: props === null || props === void 0 ? void 0 : props.minH }, (0, typographyStylesProps_1.typographyStylesProps)({
             txtSize: props.txtSize,
             txtWeight: props.txtWeight,
             txtAlign: props.txtAlign,

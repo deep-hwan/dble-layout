@@ -41,9 +41,6 @@ interface BackgroundPropsType<T extends ElementType> extends Omit<BackgroundType
     cursor?: CursorType;
     userSelect?: "none" | "auto" | "text" | "contain" | "all";
     _mq?: MediaQueryType<BackgroundType>;
-    _hover?: Partial<BackgroundType>;
-    _focus?: Partial<BackgroundType>;
-    _active?: Partial<BackgroundType>;
 }
 export type BackgroundLayoutElement = Omit<BackgroundPropsType<LayoutElementType>, ExcludedProps>;
 export {};

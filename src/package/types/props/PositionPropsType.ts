@@ -32,9 +32,6 @@ export interface PositionPropsType<T extends ElementType = "div">
   transition?: TransitionType;
 
   _mq?: MediaQueryType<PositionType>;
-  _hover?: Partial<PositionType>;
-  _focus?: Partial<PositionType>;
-  _active?: Partial<PositionType>;
 }
 
 export type PositionLayoutElement = Omit<

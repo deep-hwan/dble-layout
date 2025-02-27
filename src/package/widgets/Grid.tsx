@@ -4,7 +4,6 @@ import { css } from "@emotion/react";
 import React, { useMemo } from "react";
 import { baseStylesProps } from "../styles/baseStylesProps";
 import { gridStylesProps } from "../styles/gridStylesProps";
-import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { LayoutPropsRef } from "../types/piece/PipeLinePropsType";
 import { GridLayoutElement, GridType } from "../types/props/GridPropsType";
 import { createMediaStyles } from "../utils/createMediaStyles";
@@ -34,9 +33,6 @@ const Grid = React.forwardRef<HTMLElement, GridLayoutElement & LayoutPropsRef>(
       alignContent,
       zIndex,
       transition,
-      _hover,
-      _focus,
-      _active,
       _mq = {},
       css: cssProp,
       ...rest
@@ -68,15 +64,15 @@ const Grid = React.forwardRef<HTMLElement, GridLayoutElement & LayoutPropsRef>(
     // extended props styles
     const ExtendedStyles = (props: GridType) => {
       return {
+        width: props?.w,
+        maxWidth: props?.maxW,
+        minWidth: props?.minW,
+        height: props?.h,
+        maxHeight: props?.maxH,
+        minHeight: props?.minH,
+
         display: "grid",
-        ...screenSizeStylesProps({
-          width: props.w,
-          maxWidth: props.maxW,
-          minWidth: props.minW,
-          height: props.h,
-          maxHeight: props.maxH,
-          minHeight: props.minH,
-        }),
+
         ...gridStylesProps({
           templateColumns: props.templateColumns,
           templateRows: props.templateRows,
@@ -115,18 +111,6 @@ const Grid = React.forwardRef<HTMLElement, GridLayoutElement & LayoutPropsRef>(
     );
 
     //
-    // pseudos
-    const pseudoStyles = useMemo(
-      () =>
-        css({
-          "&:hover": ExtendedStyles(_hover || {}),
-          "&:focus": ExtendedStyles(_focus || {}),
-          "&:active": ExtendedStyles(_active || {}),
-        }),
-      [_hover, _focus, _active]
-    );
-
-    //
     // combined styles
     const combinedStyles = useMemo(
       () => css`
@@ -136,9 +120,8 @@ const Grid = React.forwardRef<HTMLElement, GridLayoutElement & LayoutPropsRef>(
           w: pPs.w ?? "100%",
         })}
     ${mediaStyles}
-    ${pseudoStyles}
       `,
-      [baseStyle, pPs, mediaStyles, pseudoStyles]
+      [baseStyle, pPs, mediaStyles]
     );
 
     const combinedClassName = cx(`dble-grid${as ? `-${as}` : ""}`, className);

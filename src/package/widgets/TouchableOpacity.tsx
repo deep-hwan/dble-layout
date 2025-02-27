@@ -6,7 +6,6 @@ import { baseStylesProps } from "../styles/baseStylesProps";
 import { borderStylesProps } from "../styles/borderStylesProps";
 import { flexStylesProps } from "../styles/flexStylesProps";
 import { gradientStylesProps } from "../styles/gradientStylesProps";
-import { screenSizeStylesProps } from "../styles/screenSizeStylesProps";
 import { shadowStylesProps } from "../styles/shadowStylesProps";
 import { spaceStylesProps } from "../styles/spaceStylesProps";
 import { transformStylesProps } from "../styles/transformStylesProps";
@@ -132,14 +131,12 @@ const TouchableOpacity = React.forwardRef<
       props: TouchableOpacityType & { as?: TouchableOpacityType }
     ) => {
       return {
-        ...screenSizeStylesProps({
-          width: props.w,
-          maxWidth: props.maxW,
-          minWidth: props.minW,
-          height: props.h,
-          maxHeight: props.maxH,
-          minHeight: props.minH,
-        }),
+        width: props?.w,
+        maxWidth: props?.maxW,
+        minWidth: props?.minW,
+        height: props?.h,
+        maxHeight: props?.maxH,
+        minHeight: props?.minH,
 
         ...flexStylesProps({
           direc: props.direc,
