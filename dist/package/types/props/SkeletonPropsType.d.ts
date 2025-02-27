@@ -7,7 +7,7 @@ export interface SkeletonType {
     h?: number;
     primaryColor?: string;
     moveColor?: string;
-    borderRadius?: number | string;
+    radius?: number | string;
 }
 export interface SkeletonPropsType extends Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "dir" | ExcludedProps>, SkeletonType {
     children?: never[];

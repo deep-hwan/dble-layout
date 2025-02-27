@@ -61,7 +61,7 @@ var react_1 = require("@emotion/react");
 var react_2 = __importStar(require("react"));
 var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Skeleton = react_2.default.forwardRef(function (_a, ref) {
-    var w = _a.w, h = _a.h, _b = _a.borderRadius, borderRadius = _b === void 0 ? 8 : _b, _c = _a.primaryColor, primaryColor = _c === void 0 ? "#e2e2e2" : _c, _d = _a.moveColor, moveColor = _d === void 0 ? "#f5f5f5" : _d, _e = _a._mq, _mq = _e === void 0 ? {} : _e, cssProp = _a.css, props = __rest(_a, ["w", "h", "borderRadius", "primaryColor", "moveColor", "_mq", "css"]);
+    var w = _a.w, h = _a.h, _b = _a.radius, radius = _b === void 0 ? 8 : _b, _c = _a.primaryColor, primaryColor = _c === void 0 ? "#e2e2e2" : _c, _d = _a.moveColor, moveColor = _d === void 0 ? "#f5f5f5" : _d, _e = _a._mq, _mq = _e === void 0 ? {} : _e, cssProp = _a.css, props = __rest(_a, ["w", "h", "radius", "primaryColor", "moveColor", "_mq", "css"]);
     var loadAnimation = "\n      @keyframes load {\n        100% {\n          background-position: -100% 0;\n        }\n      }\n    ";
     var baseStyle = (0, react_2.useMemo)(function () {
         return (0, react_1.css)({
@@ -76,7 +76,7 @@ var Skeleton = react_2.default.forwardRef(function (_a, ref) {
                 height: props.h,
                 minHeight: props.h,
                 maxHeight: props.h,
-                borderRadius: props.borderRadius,
+                borderRadius: props.radius,
                 background: "linear-gradient(120deg, ".concat(props.primaryColor, " 30%, ").concat(props.moveColor, " 38%, ").concat(props.moveColor, " 40%, ").concat(props.primaryColor, " 48%)"),
                 backgroundSize: "200% 100%",
                 backgroundPosition: "100% 0",
@@ -92,7 +92,7 @@ var Skeleton = react_2.default.forwardRef(function (_a, ref) {
                     ExtendedStyles({
                         w: w,
                         h: h,
-                        borderRadius: borderRadius,
+                        radius: radius,
                         primaryColor: primaryColor,
                         moveColor: moveColor,
                     })

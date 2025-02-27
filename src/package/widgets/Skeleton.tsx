@@ -13,7 +13,7 @@ const Skeleton = React.forwardRef(
     {
       w,
       h,
-      borderRadius = 8,
+      radius = 8,
       primaryColor = "#e2e2e2",
       moveColor = "#f5f5f5",
       _mq = {},
@@ -44,7 +44,7 @@ const Skeleton = React.forwardRef(
           height: props.h,
           minHeight: props.h,
           maxHeight: props.h,
-          borderRadius: props.borderRadius,
+          borderRadius: props.radius,
           background: `linear-gradient(120deg, ${props.primaryColor} 30%, ${props.moveColor} 38%, ${props.moveColor} 40%, ${props.primaryColor} 48%)`,
           backgroundSize: "200% 100%",
           backgroundPosition: "100% 0",
@@ -71,7 +71,7 @@ const Skeleton = React.forwardRef(
             ExtendedStyles({
               w,
               h,
-              borderRadius,
+              radius,
               primaryColor,
               moveColor,
             }),

@@ -7,7 +7,7 @@ export interface SkeletonType {
   h?: number;
   primaryColor?: string;
   moveColor?: string;
-  borderRadius?: number | string;
+  radius?: number | string;
 }
 
 export interface SkeletonPropsType
