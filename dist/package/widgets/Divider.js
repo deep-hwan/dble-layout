@@ -63,10 +63,14 @@ var createMediaStyles_1 = require("../utils/createMediaStyles");
 var Divider = react_2.default.forwardRef(function Solid(_a, ref) {
     var _b = _a.direc, direc = _b === void 0 ? "horizontal" : _b, w = _a.w, h = _a.h, _c = _a.color, color = _c === void 0 ? "#e9e9e9" : _c, radius = _a.radius, spacing = _a.spacing, _d = _a._mq, _mq = _d === void 0 ? {} : _d, cssProp = _a.css, props = __rest(_a, ["direc", "w", "h", "color", "radius", "spacing", "_mq", "css"]);
     var Types = function (props) {
-        var _a, _b, _c, _d;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
         return ({
             width: direc === "horizontal" ? (_a = props.w) !== null && _a !== void 0 ? _a : "100%" : (_b = props.w) !== null && _b !== void 0 ? _b : 1,
-            height: direc === "vertical" ? (_c = props.h) !== null && _c !== void 0 ? _c : "100%" : (_d = props.h) !== null && _d !== void 0 ? _d : 1,
+            minWidth: direc === "horizontal" ? (_c = props.w) !== null && _c !== void 0 ? _c : "100%" : (_d = props.w) !== null && _d !== void 0 ? _d : 1,
+            maxWidth: direc === "horizontal" ? (_e = props.w) !== null && _e !== void 0 ? _e : "100%" : (_f = props.w) !== null && _f !== void 0 ? _f : 1,
+            height: direc === "vertical" ? (_g = props.h) !== null && _g !== void 0 ? _g : "100%" : (_h = props.h) !== null && _h !== void 0 ? _h : 1,
+            minHeight: direc === "vertical" ? (_j = props.h) !== null && _j !== void 0 ? _j : "100%" : (_k = props.h) !== null && _k !== void 0 ? _k : 1,
+            maxHeight: direc === "vertical" ? (_l = props.h) !== null && _l !== void 0 ? _l : "100%" : (_m = props.h) !== null && _m !== void 0 ? _m : 1,
         });
     };
     var getSpacing = function (spacing, type) {

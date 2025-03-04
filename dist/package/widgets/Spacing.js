@@ -68,7 +68,11 @@ var SizeTheme = function (_a) {
     var direc = _a.direc, size = _a.size;
     return ({
         width: direc === "row" ? "".concat(size, "px") : "100%",
+        minWidth: direc === "row" ? "".concat(size, "px") : "100%",
+        maxWidth: direc === "row" ? "".concat(size, "px") : "100%",
         height: direc === "column" ? "".concat(size, "px") : "100%",
+        minHeight: direc === "column" ? "".concat(size, "px") : "100%",
+        maxHeight: direc === "column" ? "".concat(size, "px") : "100%",
     });
 };
 var Spacing = react_2.default.forwardRef(function Spacing(_a, ref) {

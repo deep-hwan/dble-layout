@@ -43,8 +43,10 @@ const LoadingSpinnerUi = forwardRef(
           css={{
             width: `${size}px`,
             minWidth: `${size}px`,
+            maxWidth: `${size}px`,
             height: `${size}px`,
             minHeight: `${size}px`,
+            maxHeight: `${size}px`,
             border: `${storkeSize}px solid ${color}`,
             borderBottomColor: "transparent",
             borderRadius: "50%",

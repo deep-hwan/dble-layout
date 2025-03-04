@@ -24,7 +24,11 @@ const Divider = React.forwardRef<HTMLDivElement, DividerPropsType>(
 
     const Types = (props: { w?: NumbericType; h?: NumbericType }) => ({
       width: direc === "horizontal" ? props.w ?? "100%" : props.w ?? 1,
+      minWidth: direc === "horizontal" ? props.w ?? "100%" : props.w ?? 1,
+      maxWidth: direc === "horizontal" ? props.w ?? "100%" : props.w ?? 1,
       height: direc === "vertical" ? props.h ?? "100%" : props.h ?? 1,
+      minHeight: direc === "vertical" ? props.h ?? "100%" : props.h ?? 1,
+      maxHeight: direc === "vertical" ? props.h ?? "100%" : props.h ?? 1,
     });
 
     const getSpacing = (spacing: any, type: string) =>

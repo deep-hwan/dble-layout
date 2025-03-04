@@ -10,7 +10,11 @@ const SizeTheme = ({
   size,
 }: Pick<SpacingPropsType, "direc" | "size">) => ({
   width: direc === "row" ? `${size}px` : "100%",
+  minWidth: direc === "row" ? `${size}px` : "100%",
+  maxWidth: direc === "row" ? `${size}px` : "100%",
   height: direc === "column" ? `${size}px` : "100%",
+  minHeight: direc === "column" ? `${size}px` : "100%",
+  maxHeight: direc === "column" ? `${size}px` : "100%",
 });
 
 const Spacing = React.forwardRef(function Spacing(

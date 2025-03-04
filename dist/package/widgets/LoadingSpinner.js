@@ -44,8 +44,10 @@ var LoadingSpinnerUi = (0, react_2.forwardRef)(function (_a, ref) {
         } }, props, { children: (0, jsx_runtime_1.jsx)("div", { css: {
                 width: "".concat(size, "px"),
                 minWidth: "".concat(size, "px"),
+                maxWidth: "".concat(size, "px"),
                 height: "".concat(size, "px"),
                 minHeight: "".concat(size, "px"),
+                maxHeight: "".concat(size, "px"),
                 border: "".concat(storkeSize, "px solid ").concat(color),
                 borderBottomColor: "transparent",
                 borderRadius: "50%",
